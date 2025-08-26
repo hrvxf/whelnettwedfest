@@ -9,25 +9,51 @@
       background-color: #fcdb92;
       font-family: 'Montserrat', sans-serif;
       color: #3d2500;
-      padding: 40px 80px; /* Increased left and right padding */
+      padding: 40px 80px;
       text-align: center;
     }
 
     h1 {
       font-family: Impact, sans-serif;
       color: #2d967b;
-      font-size: 5em; /* Double the previous size */
+      font-size: 5em;
       text-transform: uppercase;
       margin-bottom: 30px;
     }
 
     p {
-      font-size: 2em; /* Double the previous size */
+      font-size: 2em;
       margin-bottom: 20px;
     }
 
+    .bunting {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+
+    .flag {
+      width: 40px;
+      height: 40px;
+      background-color: #fff;
+      clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+      margin: 0 5px;
+      animation: wave 1.5s infinite ease-in-out;
+    }
+
+    .flag:nth-child(1) { background-color: #ff6f61; animation-delay: 0s; }
+    .flag:nth-child(2) { background-color: #6b5b95; animation-delay: 0.2s; }
+    .flag:nth-child(3) { background-color: #88b04b; animation-delay: 0.4s; }
+    .flag:nth-child(4) { background-color: #f7cac9; animation-delay: 0.6s; }
+    .flag:nth-child(5) { background-color: #92a8d1; animation-delay: 0.8s; }
+
+    @keyframes wave {
+      0%, 100% { transform: rotate(0deg); }
+      50% { transform: rotate(10deg); }
+    }
+
     .loading-container {
-      margin-top: 50px;
+      margin-top: 20px;
       width: 80%;
       max-width: 600px;
       margin-left: auto;
@@ -35,12 +61,13 @@
       background-color: #ddd;
       border-radius: 25px;
       overflow: hidden;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
     }
 
     .loading-bar {
       height: 40px;
       width: 0%;
-      background-color: #4CAF50;
+      background: linear-gradient(90deg, #ff6f61, #f7cac9, #88b04b, #92a8d1);
       text-align: center;
       line-height: 40px;
       color: white;
@@ -55,6 +82,14 @@
   <p>You are in the queue for the <strong>Whelnett Wedfest 2026</strong> ticket sale. When it is your turn, you will have until <strong>8th February 2026</strong> to enter the website and reserve your ticket.</p>
   <p>You will then be asked what ticket you would like: <em>Day, Camping or Glamping</em>, as well as your dietary requirements, and if you are trying to book tickets for any children or dogs.</p>
 
+  <div class="bunting">
+    <div class="flag"></div>
+    <div class="flag"></div>
+    <div class="flag"></div>
+    <div class="flag"></div>
+    <div class="flag"></div>
+  </div>
+
   <div class="loading-container">
     <div class="loading-bar" id="loadingBar">0%</div>
   </div>
@@ -63,7 +98,7 @@
     const bar = document.getElementById('loadingBar');
     let progress = 0;
     const duration = 30000; // 30 seconds
-    const interval = 100; // update every 100ms
+    const interval = 100;
     const step = 100 / (duration / interval);
 
     const timer = setInterval(() => {
