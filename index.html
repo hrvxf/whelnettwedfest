@@ -9,19 +9,25 @@
       background-color: #fcdb92;
       font-family: 'Montserrat', sans-serif;
       color: #3d2500;
-      padding: 40px;
+      padding: 40px 80px; /* Increased left and right padding */
       text-align: center;
     }
 
     h1 {
       font-family: Impact, sans-serif;
       color: #2d967b;
-      font-size: 2.5em;
+      font-size: 5em; /* Double the previous size */
+      text-transform: uppercase;
+      margin-bottom: 30px;
+    }
+
+    p {
+      font-size: 2em; /* Double the previous size */
       margin-bottom: 20px;
     }
 
     .loading-container {
-      margin-top: 40px;
+      margin-top: 50px;
       width: 80%;
       max-width: 600px;
       margin-left: auto;
@@ -32,13 +38,14 @@
     }
 
     .loading-bar {
-      height: 30px;
+      height: 40px;
       width: 0%;
       background-color: #4CAF50;
       text-align: center;
-      line-height: 30px;
+      line-height: 40px;
       color: white;
       font-weight: bold;
+      font-size: 1.5em;
       transition: width 0.1s linear;
     }
   </style>
