@@ -26,30 +26,11 @@
       margin-bottom: 20px;
     }
 
-    .bunting {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 40px;
-    }
-
-    .flag {
-      width: 40px;
-      height: 40px;
-      background-color: #fff;
-      clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
-      margin: 0 5px;
-      animation: wave 1.5s infinite ease-in-out;
-    }
-
-    .flag:nth-child(1) { background-color: #ff6f61; animation-delay: 0s; }
-    .flag:nth-child(2) { background-color: #6b5b95; animation-delay: 0.2s; }
-    .flag:nth-child(3) { background-color: #88b04b; animation-delay: 0.4s; }
-    .flag:nth-child(4) { background-color: #f7cac9; animation-delay: 0.6s; }
-    .flag:nth-child(5) { background-color: #92a8d1; animation-delay: 0.8s; }
-
-    @keyframes wave {
-      0%, 100% { transform: rotate(0deg); }
-      50% { transform: rotate(10deg); }
+    #countdown {
+      font-size: 2em;
+      font-weight: bold;
+      margin: 30px 0;
+      color: #2d967b;
     }
 
     .loading-container {
@@ -67,7 +48,13 @@
     .loading-bar {
       height: 40px;
       width: 0%;
-      background: linear-gradient(90deg, #ff6f61, #f7cac9, #88b04b, #92a8d1);
+      background-image: repeating-linear-gradient(
+        90deg,
+        #2d967b,
+        #2d967b 10px,
+        #ffffff 10px,
+        #ffffff 20px
+      );
       text-align: center;
       line-height: 40px;
       color: white;
@@ -82,13 +69,7 @@
   <p>You are in the queue for the <strong>Whelnett Wedfest 2026</strong> ticket sale. When it is your turn, you will have until <strong>8th February 2026</strong> to enter the website and reserve your ticket.</p>
   <p>You will then be asked what ticket you would like: <em>Day, Camping or Glamping</em>, as well as your dietary requirements, and if you are trying to book tickets for any children or dogs.</p>
 
-  <div class="bunting">
-    <div class="flag"></div>
-    <div class="flag"></div>
-    <div class="flag"></div>
-    <div class="flag"></div>
-    <div class="flag"></div>
-  </div>
+  <div id="countdown">Ticket release opens in 30 seconds</div>
 
   <div class="loading-container">
     <div class="loading-bar" id="loadingBar">0%</div>
@@ -96,9 +77,11 @@
 
   <script>
     const bar = document.getElementById('loadingBar');
+    const countdown = document.getElementById('countdown');
     let progress = 0;
+    let timeLeft = 30;
     const duration = 30000; // 30 seconds
-    const interval = 100;
+    const interval = 100; // update every 100ms
     const step = 100 / (duration / interval);
 
     const timer = setInterval(() => {
@@ -110,6 +93,12 @@
       }
       bar.style.width = progress + "%";
       bar.textContent = Math.floor(progress) + "%";
+
+      // Update countdown every second
+      if (progress % (step * 10) < step) {
+        timeLeft--;
+        countdown.textContent = `Ticket release opens in ${timeLeft} seconds`;
+      }
     }, interval);
   </script>
 </body>
