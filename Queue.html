@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Whelnett Wedfest Queue</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f8f8;
+      padding: 40px;
+      text-align: center;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    .loading-container {
+      margin-top: 40px;
+      width: 80%;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      background-color: #ddd;
+      border-radius: 25px;
+      overflow: hidden;
+    }
+
+    .loading-bar {
+      height: 30px;
+      width: 0%;
+      background-color: #4CAF50;
+      text-align: center;
+      line-height: 30px;
+      color: white;
+      font-weight: bold;
+      transition: width 0.1s linear;
+    }
+
+    footer {
+      margin-top: 60px;
+      font-size: 0.9em;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <h1>You are now in the queue!</h1>
+  <p>You are in the queue for the <strong>Whelnett Wedfest 2026</strong> ticket sale. When it is your turn, you will have until <strong>8th February 2026</strong> to enter the website and reserve your ticket.</p>
+  <p>You will then be asked what ticket you would like: <em>Day, Camping or Glamping</em>, as well as your dietary requirements, and if you are trying to book tickets for any children or dogs.</p>
+
+  <div class="loading-container">
+    <div class="loading-bar" id="loadingBar">0%</div>
+  </div>
+
+  <footer>
+    <p>Designed with <a href="https://www.canva.com">Canva</a></p>
+    <p><a href="https://www.canva.com/policies/terms-of-use/">Terms of Use</a> | <a href="https://www.canva.com/policies/acceptable-use-policy/">Acceptable Use Policy</a></p>
+  </footer>
+
+  <script>
+    const bar = document.getElementById('loadingBar');
+    let progress = 0;
+    const duration = 10000; // 10 seconds
+    const interval = 100; // update every 100ms
+    const step = 100 / (duration / interval);
+
+    const timer = setInterval(() => {
+      progress += step;
+      if (progress >= 100) {
+        progress = 100;
+        clearInterval(timer);
+        window.location.href = "https://whelnettwedfest.my.canva.site/#registration-form";
+      }
+      bar.style.width = progress + "%";
+      bar.textContent = Math.floor(progress) + "%";
+    }, interval);
+  </script>
+</body>
+</html>
