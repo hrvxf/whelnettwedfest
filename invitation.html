@@ -35,15 +35,27 @@
       text-decoration: underline;
     }
 
-    .container {
-      max-width: 800px;
-      margin: 60px auto;
-      padding: 40px;
+    .split {
+      display: flex;
+      flex-wrap: wrap;
+      min-height: 100vh;
+    }
+
+    .left {
+      flex: 1;
+      background: url('EngagementPhoto.jpg') center center no-repeat;
+      background-size: cover;
+      min-height: 400px;
+    }
+
+    .right {
+      flex: 1;
+      padding: 60px 40px;
       background-color: #fff;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-      position: relative;
-      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      box-shadow: -4px 0 20px rgba(0,0,0,0.05);
       animation: fadeIn 1.2s ease-out;
     }
 
@@ -55,15 +67,15 @@
     h1 {
       font-size: 2.5em;
       color: #d94f4f;
-      text-align: center;
       margin-bottom: 20px;
+      text-align: center;
     }
 
     h2 {
       font-size: 1.5em;
       color: #4f7bd9;
-      text-align: center;
       margin-bottom: 30px;
+      text-align: center;
     }
 
     p {
@@ -80,17 +92,6 @@
 
     a:hover {
       text-decoration: underline;
-    }
-
-    .photo {
-      display: block;
-      max-width: 100%;
-      height: auto;
-      margin: 30px auto;
-      border-radius: 16px;
-      border: 8px solid #f7c948;
-      box-shadow: 0 6px 16px rgba(0,0,0,0.2);
-      animation: fadeIn 1.5s ease-out;
     }
 
     #countdown {
@@ -118,6 +119,17 @@
         transform: translateY(100vh) rotate(360deg);
       }
     }
+
+    @media (max-width: 768px) {
+      .split {
+        flex-direction: column;
+      }
+
+      .left, .right {
+        flex: 100%;
+        min-height: auto;
+      }
+    }
   </style>
 </head>
 <body>
@@ -129,19 +141,20 @@
     <a href="schedule.html">Schedule</a>
   </nav>
 
-  <div class="container">
-    <h1>Whelnett Wedfest 2026</h1>
-    <h2>Hannah Wheldon and Laurence Bennett invite you to celebrate</h2>
+  <div class="split">
+    <div class="left"></div>
+    <div class="right">
+      <h1>Whelnett Wedfest 2026</h1>
+      <h2>Hannah Wheldon and Laurence Bennett invite you to celebrate</h2>
 
-    <div id="countdown">
-      Countdown to the festival: <span id="timer">Loading...</span>
+      <div id="countdown">
+        Countdown to the festival: <span id="timer">Loading...</span>
+      </div>
+
+      <p>You have been registered ahead of ticket release. All those who hope to attend Whelnett Wedfest must individually queue (RSVP) for tickets.</p>
+      <p>If you plan to reserve tickets for children and/or dogs, they also need to be individually registered during ticket selection.</p>
+      <p>For more information, please visit the <a href="https://whelnettwedfest.my.canva.site/#page-2" target="_blank">Festival FAQs</a>.</p>
     </div>
-
-    <img src="EngagementPhoto.jpg" alt="Hannah and Laurence Engagement" class="photo">
-
-    <p>You have been registered ahead of ticket release. All those who hope to attend Whelnett Wedfest must individually queue (RSVP) for tickets.</p>
-    <p>If you plan to reserve tickets for children and/or dogs, they also need to be individually registered during ticket selection.</p>
-    <p>For more information, please visit the <a href="https://whelnettwedfest.my.canva.site/#page-2" target="_blank">Festival FAQs</a>.</p>
   </div>
 
   <script>
