@@ -33,4 +33,180 @@
     }
 
     nav a:hover {
-      text-decoration
+      text-decoration: underline;
+    }
+
+    .split {
+      display: flex;
+      flex-wrap: wrap;
+      min-height: 100vh;
+    }
+
+    .left {
+      flex: 1;
+      height: 100vh;
+      background: url('EngagementPhoto.jpg') center center no-repeat;
+      background-size: cover;
+      background-color: #f5b502;
+    }
+
+    .right {
+      flex: 1;
+      padding: 60px 40px;
+      background-color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      box-shadow: -4px 0 20px rgba(0,0,0,0.05);
+      animation: fadeIn 1.2s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1, h2, h3 {
+      font-family: Impact, sans-serif;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 20px;
+      color: #000;
+    }
+
+    h1 {
+      font-size: 3em;
+    }
+
+    h2 {
+      font-size: 2em;
+    }
+
+    h3 {
+      font-size: 1.5em;
+    }
+
+    p, a {
+      font-size: 1.1em;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      color: #000;
+      text-align: center;
+    }
+
+    a {
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    #countdown {
+      text-align: center;
+      font-size: 1.5em;
+      margin: 30px 0;
+      color: #000;
+      font-weight: bold;
+    }
+
+    .confetti {
+      position: fixed;
+      top: -10px;
+      width: 10px;
+      height: 10px;
+      background-color: red;
+      opacity: 0.8;
+      border-radius: 50%;
+      animation: fall linear infinite;
+      z-index: 0;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(100vh) rotate(360deg);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .split {
+        flex-direction: column;
+      }
+
+      .left {
+        height: 300px;
+      }
+
+      .left, .right {
+        flex: 100%;
+        min-height: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="rsvp.html">RSVP</a>
+    <a href="invitation.html">Invitation</a>
+    <a href="schedule.html">Schedule</a>
+  </nav>
+
+  <div class="split">
+    <div class="left"></div>
+    <div class="right">
+      <h1>Hannah and Laurence</h1>
+      <h2>Are tying the knot!</h2>
+      <h3>Saturday 8th August 2026</h3>
+
+      <div id="countdown">
+        Countdown to the festival: <span id="timer">Loading...</span>
+      </div>
+
+      <p><a href="https://maps.app.goo.gl/LT5X6w4R3DoaW7L6A" target="_blank">Poplar Farm, Clevedon BS21 6UN</a></p>
+    </div>
+  </div>
+
+  <script>
+    // Countdown Timer
+    const targetDate = new Date("August 8, 2026 12:00:00 BST").getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance < 0) {
+        document.getElementById("timer").innerHTML = "It's festival time!";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("timer").innerHTML =
+        `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    setInterval(updateCountdown, 1000);
+
+    // Confetti Generator
+    function createConfetti() {
+      const confetti = document.createElement('div');
+      confetti.classList.add('confetti');
+      confetti.style.left = Math.random() * window.innerWidth + 'px';
+      confetti.style.backgroundColor = ['#d94f4f', '#4f7bd9', '#f7c948', '#6cc47f', '#ffffff'][Math.floor(Math.random() * 5)];
+      confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+      document.body.appendChild(confetti);
+
+      setTimeout(() => confetti.remove(), 5000);
+    }
+
+    setInterval(createConfetti, 200);
+  </script>
+
+</body>
+</html>
