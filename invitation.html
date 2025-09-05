@@ -112,21 +112,19 @@
       height: auto;
     }
 
-    .confetti {
+    .petal {
       position: fixed;
       top: -20px;
-      width: 2px;
-      height: 40px;
-      background-color: red;
-      opacity: 0.8;
-      border-radius: 1px;
-      animation: streamerFall linear infinite;
+      pointer-events: none;
+      opacity: 0.85;
       z-index: 9999;
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      animation: petalFall linear;
     }
 
-    @keyframes streamerFall {
+    @keyframes petalFall {
       to {
-        transform: translateY(100vh) rotate(720deg);
+        transform: translateY(100vh) rotate(360deg);
       }
     }
 
@@ -234,17 +232,26 @@
     setInterval(updateCountdown, 1000);
 
     function createConfetti() {
-      const confetti = document.createElement('div');
-      confetti.classList.add('confetti');
-      confetti.style.left = Math.random() * window.innerWidth + 'px';
-      confetti.style.backgroundColor = ['#d94f4f', '#4f7bd9', '#f7c948', '#6cc47f', '#ffffff'][Math.floor(Math.random() * 5)];
-      confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
-      document.body.appendChild(confetti);
+      const petal = document.createElement('div');
+      petal.classList.add('petal');
 
-      setTimeout(() => confetti.remove(), 5000);
+      const size = Math.random() * 12 + 8;
+      petal.style.left = Math.random() * window.innerWidth + 'px';
+      petal.style.width = `${size}px`;
+      petal.style.height = `${size * 1.2}px`;
+
+      // Bright, festival-inspired colors
+      const colors = ['#ff007f', '#ffd700', '#00bfff', '#ff4500', '#32cd32', '#ffffff'];
+      petal.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+
+      const duration = Math.random() * 4 + 3;
+      petal.style.animationDuration = `${duration}s`;
+
+      document.body.appendChild(petal);
+      setTimeout(() => petal.remove(), duration * 1000);
     }
 
-    setInterval(createConfetti, 200);
+    setInterval(createConfetti, 180);
   </script>
 
 </body>
