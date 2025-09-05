@@ -13,15 +13,43 @@
       overflow-x: hidden;
     }
 
+    nav {
+      background-color: #ffffffcc;
+      padding: 15px 30px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: #d94f4f;
+      font-weight: bold;
+      font-size: 1.1em;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
     .container {
       max-width: 800px;
-      margin: 80px auto;
+      margin: 60px auto;
       padding: 40px;
       background-color: #fff;
       border-radius: 12px;
       box-shadow: 0 4px 20px rgba(0,0,0,0.1);
       position: relative;
       z-index: 1;
+      animation: fadeIn 1.2s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     h1 {
@@ -59,8 +87,18 @@
       max-width: 100%;
       height: auto;
       margin: 30px auto;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      border-radius: 16px;
+      border: 8px solid #f7c948;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+      animation: fadeIn 1.5s ease-out;
+    }
+
+    #countdown {
+      text-align: center;
+      font-size: 1.5em;
+      margin: 30px 0;
+      color: #6cc47f;
+      font-weight: bold;
     }
 
     .confetti {
@@ -83,16 +121,54 @@
   </style>
 </head>
 <body>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="rsvp.html">RSVP</a>
+    <a href="invitation.html">Invitation</a>
+    <a href="schedule.html">Schedule</a>
+  </nav>
+
   <div class="container">
     <h1>Whelnett Wedfest 2026</h1>
     <h2>Hannah Wheldon and Laurence Bennett invite you to celebrate</h2>
+
+    <div id="countdown">
+      Countdown to the festival: <span id="timer">Loading...</span>
+    </div>
+
     <img src="EngagementPhoto.jpg" alt="Hannah and Laurence Engagement" class="photo">
+
     <p>You have been registered ahead of ticket release. All those who hope to attend Whelnett Wedfest must individually queue (RSVP) for tickets.</p>
     <p>If you plan to reserve tickets for children and/or dogs, they also need to be individually registered during ticket selection.</p>
     <p>For more information, please visit the <a href="https://whelnettwedfest.my.canva.site/#page-2" target="_blank">Festival FAQs</a>.</p>
   </div>
 
   <script>
+    // Countdown Timer
+    const targetDate = new Date("July 25, 2026 12:00:00 BST").getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance < 0) {
+        document.getElementById("timer").innerHTML = "It's festival time!";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("timer").innerHTML =
+        `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    setInterval(updateCountdown, 1000);
+
+    // Confetti Generator
     function createConfetti() {
       const confetti = document.createElement('div');
       confetti.classList.add('confetti');
@@ -106,5 +182,6 @@
 
     setInterval(createConfetti, 200);
   </script>
+
 </body>
 </html>
