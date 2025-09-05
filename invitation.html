@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Whelnett Wedfest 2026 Invitation</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #fef9f4;
+      color: #333;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 80px auto;
+      padding: 40px;
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      position: relative;
+      z-index: 1;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      color: #d94f4f;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      font-size: 1.5em;
+      color: #4f7bd9;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    p {
+      font-size: 1.1em;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    a {
+      color: #4f7bd9;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .confetti {
+      position: fixed;
+      top: -10px;
+      width: 10px;
+      height: 10px;
+      background-color: red;
+      opacity: 0.8;
+      border-radius: 50%;
+      animation: fall linear infinite;
+      z-index: 0;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(100vh) rotate(360deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Whelnett Wedfest 2026</h1>
+    <h2>Hannah Wheldon and Laurence Bennett invite you to celebrate</h2>
+    <p>You have been registered ahead of ticket release. All those who hope to attend Whelnett Wedfest must individually queue (RSVP) for tickets.</p>
+    <p>If you plan to reserve tickets for children and/or dogs, they also need to be individually registered during ticket selection.</p>
+    <p>For more information, please visit the <a href="https://whelnettwedfest.my.canva.site/#page-2" target="_blank">Festival FAQs</a>.</p>
+  </div>
+
+  <script>
+    function createConfetti() {
+      const confetti = document.createElement('div');
+      confetti.classList.add('confetti');
+      confetti.style.left = Math.random() * window.innerWidth + 'px';
+      confetti.style.backgroundColor = ['#d94f4f', '#4f7bd9', '#f7c948', '#6cc47f', '#ffffff'][Math.floor(Math.random() * 5)];
+      confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+      document.body.appendChild(confetti);
+
+      setTimeout(() => confetti.remove(), 5000);
+    }
+
+    setInterval(createConfetti, 200);
+  </script>
+</body>
+</html>
