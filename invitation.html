@@ -10,7 +10,7 @@
       padding: 0;
       font-family: 'Montserrat', sans-serif;
       background: #f5b502;
-      color: #333;
+      color: #000;
       overflow-x: hidden;
     }
 
@@ -27,7 +27,7 @@
     nav a {
       margin: 0 15px;
       text-decoration: none;
-      color: #d94f4f;
+      color: #000;
       font-weight: bold;
       font-size: 1.1em;
     }
@@ -70,34 +70,43 @@
       text-transform: uppercase;
       text-align: center;
       margin-bottom: 20px;
+      color: #000;
     }
 
     h1 {
       font-size: 3em;
-      color: #d94f4f;
     }
 
     h2 {
       font-size: 2em;
-      color: #4f7bd9;
     }
 
     h3 {
       font-size: 1.5em;
-      color: #6cc47f;
     }
 
-    p {
+    p, a {
       font-size: 1.1em;
       line-height: 1.6;
       margin-bottom: 20px;
+      color: #000;
+      text-align: center;
+    }
+
+    a {
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    a:hover {
+      text-decoration: underline;
     }
 
     #countdown {
       text-align: center;
       font-size: 1.5em;
       margin: 30px 0;
-      color: #6cc47f;
+      color: #000;
       font-weight: bold;
     }
 
@@ -150,6 +159,8 @@
       <div id="countdown">
         Countdown to the festival: <span id="timer">Loading...</span>
       </div>
+
+      <p><a href="https://maps.app.goo.gl/LT5X6w4R3DoaW7L6A" target="_blank">Poplar Farm, Clevedon BS21 6UN</a></p>
     </div>
   </div>
 
