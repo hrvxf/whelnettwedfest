@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <title>Whelnett Wedfest 2026 Invitation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: #fef9f4;
+      font-family: 'Montserrat', sans-serif;
+      background: #f5b502;
       color: #333;
       overflow-x: hidden;
     }
@@ -64,34 +65,32 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    h1 {
-      font-size: 2.5em;
-      color: #d94f4f;
-      margin-bottom: 20px;
+    h1, h2, h3 {
+      font-family: Impact, sans-serif;
+      text-transform: uppercase;
       text-align: center;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 3em;
+      color: #d94f4f;
     }
 
     h2 {
-      font-size: 1.5em;
+      font-size: 2em;
       color: #4f7bd9;
-      margin-bottom: 30px;
-      text-align: center;
+    }
+
+    h3 {
+      font-size: 1.5em;
+      color: #6cc47f;
     }
 
     p {
       font-size: 1.1em;
       line-height: 1.6;
       margin-bottom: 20px;
-    }
-
-    a {
-      color: #4f7bd9;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    a:hover {
-      text-decoration: underline;
     }
 
     #countdown {
@@ -144,22 +143,19 @@
   <div class="split">
     <div class="left"></div>
     <div class="right">
-      <h1>Whelnett Wedfest 2026</h1>
-      <h2>Hannah Wheldon and Laurence Bennett invite you to celebrate</h2>
+      <h1>Hannah and Laurence</h1>
+      <h2>Are tying the knot!</h2>
+      <h3>Saturday 8th August 2026</h3>
 
       <div id="countdown">
         Countdown to the festival: <span id="timer">Loading...</span>
       </div>
-
-      <p>You have been registered ahead of ticket release. All those who hope to attend Whelnett Wedfest must individually queue (RSVP) for tickets.</p>
-      <p>If you plan to reserve tickets for children and/or dogs, they also need to be individually registered during ticket selection.</p>
-      <p>For more information, please visit the <a href="https://whelnettwedfest.my.canva.site/#page-2" target="_blank">Festival FAQs</a>.</p>
     </div>
   </div>
 
   <script>
     // Countdown Timer
-    const targetDate = new Date("July 25, 2026 12:00:00 BST").getTime();
+    const targetDate = new Date("August 8, 2026 12:00:00 BST").getTime();
 
     function updateCountdown() {
       const now = new Date().getTime();
