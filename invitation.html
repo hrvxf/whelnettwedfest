@@ -5,23 +5,25 @@
   <title>Whelnett Wedfest 2026 Invitation</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    body {
+    html, body {
       margin: 0;
       padding: 0;
       font-family: 'Montserrat', sans-serif;
-      background-color: #f5b502;
       color: #000;
+      background: url('invitationBG.png') center top no-repeat;
+      background-size: auto 100%;
+      background-repeat: no-repeat;
+      background-attachment: scroll;
       overflow-x: hidden;
     }
 
     nav {
-      background-color: #ffffffcc;
       padding: 15px 30px;
       text-align: center;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      background: transparent;
       position: sticky;
       top: 0;
-      z-index: 10;
+      z-index: 1000;
     }
 
     nav a {
@@ -36,111 +38,114 @@
       text-decoration: underline;
     }
 
-    .split {
+    .wrapper {
       display: flex;
-      flex-wrap: wrap;
       min-height: 100vh;
     }
 
-    .left {
-      flex: 1;
-      height: 100vh;
-      background: url('EngagementPhoto.jpg') center center no-repeat;
-      background-size: cover;
-      background-color: #f5b502;
-    }
-
     .right {
-      flex: 1;
-      padding: 60px 40px;
-      background-color: #fff;
+      margin-left: auto;
+      width: 50%;
+      transform: translateX(-5%);
+      padding-right: 40px;
+      padding-top: 60px;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      box-shadow: -4px 0 20px rgba(0,0,0,0.05);
-      animation: fadeIn 1.2s ease-out;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    h1, h2, h3 {
-      font-family: Impact, sans-serif;
-      text-transform: uppercase;
+      align-items: center;
       text-align: center;
-      margin-bottom: 20px;
-      color: #000;
+      background: rgba(255, 255, 255, 0);
     }
 
     h1 {
+      font-family: Impact, sans-serif;
+      text-transform: uppercase;
       font-size: 3em;
+      margin-bottom: 20px;
     }
 
     h2 {
+      font-family: 'Montserrat', sans-serif;
       font-size: 2em;
+      margin-bottom: 20px;
+      text-transform: none;
     }
 
     h3 {
+      font-family: Impact, sans-serif;
+      text-transform: uppercase;
       font-size: 1.5em;
-    }
-
-    p, a {
-      font-size: 1.1em;
-      line-height: 1.6;
       margin-bottom: 20px;
-      color: #000;
-      text-align: center;
-    }
-
-    a {
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    a:hover {
-      text-decoration: underline;
     }
 
     #countdown {
-      text-align: center;
       font-size: 1.5em;
       margin: 30px 0;
-      color: #000;
       font-weight: bold;
+    }
+
+    p {
+      font-size: 1.1em;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    a {
+      font-weight: bold;
+      color: #000;
+      text-decoration: underline;
+    }
+
+    a:hover {
+      color: #4f7bd9;
     }
 
     .confetti {
       position: fixed;
-      top: -10px;
-      width: 10px;
-      height: 10px;
+      top: -20px;
+      width: 2px;
+      height: 40px;
       background-color: red;
       opacity: 0.8;
-      border-radius: 50%;
-      animation: fall linear infinite;
-      z-index: 0;
+      border-radius: 1px;
+      animation: streamerFall linear infinite;
+      z-index: 9999;
     }
 
-    @keyframes fall {
+    @keyframes streamerFall {
       to {
-        transform: translateY(100vh) rotate(360deg);
+        transform: translateY(100vh) rotate(720deg);
       }
     }
 
     @media (max-width: 768px) {
-      .split {
+      .wrapper {
         flex-direction: column;
       }
 
-      .left {
-        height: 300px;
+      .right {
+        margin-left: 0;
+        width: 100%;
+        transform: none;
+        padding: 40px 20px;
+        align-items: center;
+        text-align: center;
       }
 
-      .left, .right {
-        flex: 100%;
-        min-height: auto;
+      h1 {
+        font-size: 2.2em;
+      }
+
+      h2 {
+        font-size: 1.5em;
+      }
+
+      h3 {
+        font-size: 1.2em;
+      }
+
+      #countdown {
+        font-size: 1.2em;
       }
     }
   </style>
@@ -154,8 +159,7 @@
     <a href="schedule.html">Schedule</a>
   </nav>
 
-  <div class="split">
-    <div class="left"></div>
+  <div class="wrapper">
     <div class="right">
       <h1>Hannah and Laurence</h1>
       <h2>Are tying the knot!</h2>
@@ -165,12 +169,15 @@
         Countdown to the festival: <span id="timer">Loading...</span>
       </div>
 
-      <p><a href="https://maps.app.goo.gl/LT5X6w4R3DoaW7L6A" target="_blank">Poplar Farm, Clevedon BS21 6UN</a></p>
+      <p>
+        <a href="https://maps.app.goo.gl/LT5X6w4R3DoaW7L6A" target="_blank">
+          Poplar Farm, Clevedon BS21 6UN
+        </a>
+      </p>
     </div>
   </div>
 
   <script>
-    // Countdown Timer
     const targetDate = new Date("2026-08-08T12:00:00+01:00").getTime();
 
     function updateCountdown() {
@@ -193,7 +200,6 @@
 
     setInterval(updateCountdown, 1000);
 
-    // Confetti Generator
     function createConfetti() {
       const confetti = document.createElement('div');
       confetti.classList.add('confetti');
