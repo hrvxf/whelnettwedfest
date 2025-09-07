@@ -14,28 +14,6 @@
       overflow-x: hidden;
     }
 
-    nav {
-      padding: 15px 30px;
-      text-align: center;
-      background-color: #30997a;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-
-    nav a {
-      margin: 0 15px;
-      text-decoration: none;
-      color: #fff;
-      font-weight: bold;
-      font-size: 1.1em;
-      font-family: 'Montserrat', sans-serif;
-    }
-
-    nav a:hover {
-      text-decoration: underline;
-    }
-
     .background {
       background-image: url('invitationBG.PNG');
       background-position: center top;
@@ -54,7 +32,7 @@
       width: 50%;
       transform: translateX(-8%);
       padding-right: 40px;
-      padding-top: 100px;
+      padding-top: 108px;
       margin-top: -1.5em;
       display: flex;
       flex-direction: column;
@@ -67,14 +45,14 @@
     h1 {
       font-family: Impact, sans-serif;
       text-transform: uppercase;
-      font-size: 2em;
+      font-size: 1.6em;
       font-weight: normal;
       margin-bottom: 0.3em;
     }
 
     h2 {
       font-family: 'Montserrat', sans-serif;
-      font-size: 2.2em;
+      font-size: 2em;
       font-weight: normal;
       margin: 10px 0;
       text-transform: none;
@@ -95,6 +73,100 @@
       color: #4f7bd9;
     }
 
+    .rsvp-button {
+      margin-top: 20px;
+      background-color: #ffffff;
+      border-radius: 40px;
+      font-size: 1.2em;
+      font-weight: bold;
+      font-family: 'Montserrat', sans-serif;
+      position: relative;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      box-shadow: 0 0 12px rgba(255, 182, 193, 0.5);
+      transition: all 0.4s ease;
+      overflow: hidden;
+      width: 120px;
+      padding: 16px 0;
+      text-align: center;
+      border: 2px solid transparent;
+      background-image:
+        linear-gradient(#ffffff, #ffffff),
+        linear-gradient(45deg, #8f9114, #748ec4, #30997a, #e1007b);
+      background-origin: border-box;
+      background-clip: padding-box, border-box;
+    }
+
+    .rsvp-button:hover {
+      width: 320px;
+      padding: 16px 32px;
+    }
+
+    .rsvp-button .label {
+      transition: opacity 0.3s ease;
+    }
+
+    .rsvp-button .alt-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 1.1em;
+      font-weight: bold;
+      opacity: 0;
+      background: linear-gradient(90deg, #8f9114, #748ec4, #30997a, #e1007b);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      animation: shimmer 2s infinite ease-in-out;
+      white-space: nowrap;
+    }
+
+    .rsvp-button:hover .label {
+      opacity: 0;
+    }
+
+    .rsvp-button:hover .alt-text {
+      opacity: 1;
+    }
+
+    @keyframes shimmer {
+      0% { background-position: -100% 0; }
+      50% { background-position: 100% 0; }
+      100% { background-position: -100% 0; }
+    }
+
+    .rsvp-button span {
+      display: inline-block;
+    }
+
+    .rsvp-button .r { color: #8f9114; }
+    .rsvp-button .s { color: #748ec4; }
+    .rsvp-button .v { color: #30997a; }
+    .rsvp-button .p { color: #e1007b; }
+
+    .sparkle {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      opacity: 0.9;
+      pointer-events: none;
+      animation: sparkleFly 0.8s ease-out forwards;
+    }
+
+    @keyframes sparkleFly {
+      0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translate(var(--x), var(--y)) scale(0.5);
+        opacity: 0;
+      }
+    }
+
     footer {
       background-color: #30997a;
       text-align: center;
@@ -110,6 +182,7 @@
     footer img {
       width: 60px;
       height: auto;
+      display: inline-block;
     }
 
     .petal {
@@ -127,55 +200,9 @@
         transform: translateY(100vh) rotate(360deg);
       }
     }
-
-    @media (max-width: 768px) {
-      .wrapper {
-        flex-direction: column;
-      }
-
-      .right {
-        margin-left: 0;
-        width: 100%;
-        transform: none;
-        padding: 40px 20px;
-        align-items: center;
-        text-align: center;
-        margin-top: 0;
-      }
-
-      h1 {
-        font-size: 1.6em;
-      }
-
-      h2 {
-        font-size: 1.8em;
-      }
-
-      nav {
-        padding: 12px 20px;
-      }
-
-      nav a {
-        font-size: 1em;
-      }
-
-      footer p {
-        font-size: 0.8em;
-      }
-
-      footer img {
-        width: 50px;
-      }
-    }
   </style>
 </head>
 <body>
-
-  <nav>
-    <a href="invitation.html">Invitation</a>
-    <a href="https://hannahwh05.github.io/whelnettwedfest/" target="_blank">RSVP</a>
-    <a href="schedule.html">Schedule</a>
-  </nav>
 
   <div class="background">
     <div class="wrapper">
@@ -199,6 +226,13 @@
             Poplar Farm, Clevedon<br>BS21 6UN
           </a>
         </h1>
+
+        <a href="https://hannahwh05.github.io/whelnettwedfest/" target="_blank" class="rsvp-button" title="Register for Whelnett Wedfest Tickets" onmouseenter="burstSparkles(event)">
+          <span class="label">
+            <span class="r">R</span><span class="s">S</span><span class="v">V</span><span class="p">P</span>
+          </span>
+          <span class="alt-text">Whelnett Wedfest Registration</span>
+        </a>
       </div>
     </div>
   </div>
@@ -240,7 +274,6 @@
       petal.style.width = `${size}px`;
       petal.style.height = `${size * 1.2}px`;
 
-      // Bright, festival-inspired colors
       const colors = ['#ff007f', '#ffd700', '#00bfff', '#ff4500', '#32cd32', '#ffffff'];
       petal.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
 
@@ -252,7 +285,24 @@
     }
 
     setInterval(createConfetti, 180);
+
+    function burstSparkles(event) {
+      const button = event.currentTarget;
+      const colors = ['#e1007b', '#748ec4', '#30997a', '#ffd700', '#8f9114'];
+      for (let i = 0; i < 12; i++) {
+        const sparkle = document.createElement('span');
+        sparkle.classList.add('sparkle');
+        sparkle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        sparkle.style.left = '50%';
+        sparkle.style.top = '50%';
+        sparkle.style.setProperty('--x', `${(Math.random() - 0.5) * 200}px`);
+        sparkle.style.setProperty('--y', `${(Math.random() - 0.5) * 200}px`);
+        button.appendChild(sparkle);
+        setTimeout(() => sparkle.remove(), 800);
+      }
+    }
   </script>
 
 </body>
 </html>
+
