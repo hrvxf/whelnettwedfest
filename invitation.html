@@ -18,7 +18,7 @@
     .background {
       display: flex;
       height: 100vh;
-      width: 100%;
+      width: 100vw;
       overflow: hidden;
     }
 
@@ -212,24 +212,28 @@
     @media (max-width: 768px) {
       .background {
         flex-direction: column;
+        width: 100vw;
+        margin: 0;
+        padding: 0;
       }
 
       .left-bg, .right-bg {
         width: 100vw;
-        height: 50vh;
-        background-size: contain;
+        height: auto;
+        background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
       }
 
       .right-bg {
-        height: auto;
-        min-height: 50vh;
-        padding: 20px;
+        padding: 0;
       }
 
       .right {
         padding: 20px;
+        margin: 0 auto;
+        width: 100%;
+        box-sizing: border-box;
       }
 
       h1 {
