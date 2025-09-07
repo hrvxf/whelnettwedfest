@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Whelnett Wedfest 2026 Invitation</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
   <style>
@@ -15,31 +16,38 @@
     }
 
     .background {
-      background-image: url('invitationBG.png');
-      background-position: center top;
-      background-size: auto 100%;
-      background-repeat: no-repeat;
-      background-attachment: scroll;
+      display: flex;
+      height: 100vh;
+      width: 100%;
+      overflow: hidden;
     }
 
-    .wrapper {
+    .left-bg, .right-bg {
+      width: 50vw;
+      height: 100vh;
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .left-bg {
+      background-image: url('EngagementPhoto.jpg');
+    }
+
+    .right-bg {
+      background-image: url('invitationBG.PNG');
+      position: relative;
       display: flex;
-      min-height: 100vh;
+      justify-content: center;
+      align-items: center;
     }
 
     .right {
-      margin-left: auto;
-      width: 50%;
-      transform: translateX(-8%);
-      padding-right: 40px;
-      padding-top: 108px;
-      margin-top: -1.5em;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: center;
+      width: 100%;
+      padding: 60px 40px;
       text-align: center;
       background: rgba(255, 255, 255, 0);
+      overflow: hidden;
     }
 
     h1 {
@@ -200,12 +208,55 @@
         transform: translateY(100vh) rotate(360deg);
       }
     }
+
+    @media (max-width: 768px) {
+      .background {
+        flex-direction: column;
+      }
+
+      .left-bg, .right-bg {
+        width: 100vw;
+        height: 50vh;
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+
+      .right-bg {
+        height: auto;
+        min-height: 50vh;
+        padding: 20px;
+      }
+
+      .right {
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 1.4em;
+      }
+
+      h2 {
+        font-size: 1.6em;
+      }
+
+      .rsvp-button {
+        width: 80%;
+        font-size: 1.1em;
+        padding: 14px 0;
+      }
+
+      footer img {
+        width: 50px;
+      }
+    }
   </style>
 </head>
 <body>
 
   <div class="background">
-    <div class="wrapper">
+    <div class="left-bg"></div>
+    <div class="right-bg">
       <div class="right">
         <h1>Hannah and Laurence</h1>
         <h2>
@@ -236,7 +287,6 @@
       </div>
     </div>
   </div>
-
   <footer>
     <p>Whelnett Wedfest Ltd.</p>
     <img src="whelnettwedfestlogo.png" alt="Whelnett Wedfest Logo">
@@ -305,4 +355,3 @@
 
 </body>
 </html>
-
