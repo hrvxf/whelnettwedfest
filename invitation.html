@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Whelnett Wedfest 2026 Invitation</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
   <style>
@@ -17,7 +18,7 @@
     .background {
       background-image: url('invitationBG.png');
       background-position: center top;
-      background-size: auto 100%;
+      background-size: cover;
       background-repeat: no-repeat;
       background-attachment: scroll;
     }
@@ -25,6 +26,7 @@
     .wrapper {
       display: flex;
       min-height: 100vh;
+      flex-direction: row;
     }
 
     .right {
@@ -40,6 +42,7 @@
       align-items: center;
       text-align: center;
       background: rgba(255, 255, 255, 0);
+      overflow: hidden;
     }
 
     h1 {
@@ -200,6 +203,38 @@
         transform: translateY(100vh) rotate(360deg);
       }
     }
+
+    @media (max-width: 768px) {
+      .wrapper {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .right {
+        width: 100%;
+        transform: none;
+        margin-left: 0;
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 1.3em;
+      }
+
+      h2 {
+        font-size: 1.4em;
+      }
+
+      .rsvp-button {
+        width: 80%;
+        padding: 14px 0;
+        font-size: 1.1em;
+      }
+
+      footer img {
+        width: 50px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -236,7 +271,6 @@
       </div>
     </div>
   </div>
-
   <footer>
     <p>Whelnett Wedfest Ltd.</p>
     <img src="whelnettwedfestlogo.png" alt="Whelnett Wedfest Logo">
@@ -305,4 +339,3 @@
 
 </body>
 </html>
-
