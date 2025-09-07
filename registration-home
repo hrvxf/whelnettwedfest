@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Whelnett Wedfest 2026 Invitation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background-color: #ffffff;
+    }
+
+    .top-section {
+      background-color: #748ec4;
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+		.top-section h1 {
+			font-family: Impact, sans-serif;
+			text-transform: uppercase;
+			font-size: 48px;
+			margin-bottom: 20px;
+			letter-spacing: 4px;
+		}
+
+    .top-section p {
+      font-size: 18px;
+      margin: 10px 0;
+    }
+
+    .bottom-section {
+      background-color: #fcdb92;
+      padding: 80px 20px 120px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo {
+      max-width: 300px;
+      height: auto;
+      margin-bottom: 50px;
+    }
+
+    .cta-button {
+      background-color: #30997a;
+      border-radius: 40px;
+      font-size: 1.2em;
+      font-family: Impact, sans-serif;
+			letter-spacing: 2px;
+      position: relative;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      box-shadow: 0 0 12px rgba(255, 182, 193, 0.5);
+      transition: all 0.4s ease;
+      overflow: hidden;
+      width: 120px;
+      padding: 16px 0;
+      text-align: center;
+      border: 4px solid transparent;
+      background-image:
+        linear-gradient(#30997a, #30997a),
+        linear-gradient(45deg, #8f9114, #748ec4, #30997a, #e1007b);
+      background-origin: border-box;
+      background-clip: padding-box, border-box;
+      color: white;
+      text-transform: uppercase;
+    }
+
+    .cta-button:hover {
+      width: 320px;
+      padding: 16px 32px;
+    }
+
+    .cta-button .label {
+      transition: opacity 0.3s ease;
+    }
+
+    .cta-button .alt-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 1.1em;
+      font-weight: bold;
+      opacity: 0;
+      color: white;
+      white-space: nowrap;
+    }
+
+    .cta-button:hover .label {
+      opacity: 0;
+    }
+
+    .cta-button:hover .alt-text {
+      opacity: 1;
+    }
+
+    footer {
+      background-color: #30997a;
+      text-align: center;
+      padding: 20px 10px;
+    }
+
+    footer p {
+      color: #fff;
+      font-size: 0.9em;
+      margin: 0 0 10px;
+    }
+
+    footer img {
+      width: 60px;
+      height: auto;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+
+  <section class="top-section">
+    <h1>WHELNETT WEDFEST 2026</h1>
+		<br>
+    <p>Hannah Wheldon and Laurence Bennett invite you to Whelnett Wedfest 2026.</p>
+		<br>
+    <p>Please register (RSVP) ahead of ticket release. All those who hope to attend Whelnett Wedfest must individually queue online for tickets.</p>
+		<br>
+    <p>For more information, please visit the FAQs section.</p>
+  </section>
+
+  <section class="bottom-section">
+    <img src="whelnettwedfestlogo.png" alt="Whelnett Wedfest Logo" class="logo" />
+    <a href="https://hannahwh05.github.io/whelnettwedfest/" target="_blank" class="cta-button" title="Register for Whelnett Wedfest Tickets">
+      <span class="label">RSVP</span>
+      <span class="alt-text">Whelnett Wedfest Registration</span>
+    </a>
+  </section>
+
+  <footer>
+    <p>Whelnett Wedfest Ltd.</p>
+    <img src="whelnettwedfestlogo.png" alt="Whelnett Wedfest Logo">
+  </footer>
+
+</body>
+</html>
