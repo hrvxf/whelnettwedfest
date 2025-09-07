@@ -17,9 +17,8 @@
 
     .background {
       display: flex;
-      height: 100vh;
       width: 100vw;
-      overflow: hidden;
+      flex-direction: row;
     }
 
     .left-bg, .right-bg {
@@ -47,7 +46,6 @@
       padding: 60px 40px;
       text-align: center;
       background: rgba(255, 255, 255, 0);
-      overflow: hidden;
     }
 
     h1 {
@@ -210,22 +208,19 @@
     }
 
     @media (max-width: 768px) {
-			.background {
-				flex-direction: column;
-				width: 100vw;
-				margin: 0;
-				padding: 0;
-				height: auto; /* allow full scrollable height */
-			}
-
+      .background {
+        flex-direction: column;
+        width: 100vw;
+        height: auto;
+      }
 
       .left-bg {
         width: 100vw;
-        height: 100vh;
+        background-image: url('EngagementPhoto.jpg');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
-        flex-shrink: 0;
+        aspect-ratio: 3 / 4;
       }
 
       .right-bg {
@@ -234,7 +229,6 @@
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
-        display: block;
         padding: 0;
       }
 
@@ -243,8 +237,6 @@
         margin: 0 auto;
         width: 100%;
         box-sizing: border-box;
-        min-height: 100vh;
-        background-color: rgba(255, 255, 255, 0);
       }
 
       h1 {
@@ -297,8 +289,13 @@
           <span class="label">
             <span class="r">R</span><span class="s">S</span><span class="v">V</span><span class="p">P</span>
           </span>
-          <span class="alt-text">
-					  <footer>
+          <span class="alt-text">Whelnett Wedfest Registration</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
     <p>Whelnett Wedfest Ltd.</p>
     <img src="whelnettwedfestlogo.png" alt="Whelnett Wedfest Logo">
   </footer>
