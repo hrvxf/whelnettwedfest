@@ -2,20 +2,22 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Whelnett Wedfest 2026 Invitation</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <title>Whelnett Wedfest 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
   <style>
     html, body {
       margin: 0;
       padding: 0;
+      height: 100%;
       font-family: 'Montserrat', sans-serif;
       color: #000;
-      background-color: #fcdb92;
+      background-color: #fcdb92; /* plain colour background */
       overflow-x: hidden;
+      overflow-y: auto;
     }
-		
-	header {
+
+    /* Header styles */
+    header {
       position: sticky;
       top: 0;
       z-index: 1000;
@@ -26,168 +28,142 @@
       justify-content: space-between;
       flex-wrap: wrap;
       padding: 10px 20px;
-      font-family: 'Montserrat', sans-serif;
-    }
-		
-    .background {
-      display: flex;
-      width: 100vw;
-      flex-direction: row;
-    }
-
-    .left-bg, .right-bg {
-      width: 50vw;
-      height: 100vh;
-      background-size: contain;
-      background-position: center;
-      background-repeat: no-repeat;
-    }
-
-    .left-bg {
-      background-image: url('EngagementPhoto.jpg');
-    }
-
-    .right-bg {
-      background-image: url('InvitationBG.png');
       position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
     }
 
-    .right {
+    .header-left img {
+      height: 50px;
+      width: auto;
+      max-width: 180px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav li a {
+      color: white;
+      font-weight: bold;
+      padding: 8px 12px;
+      text-decoration: none;
+      letter-spacing: 1px;
+      transition: color 0.3s ease;
+    }
+
+    nav li a:hover,
+    nav li a:active {
+      color: #fcdb92;
+    }
+
+    .header-right img {
+      height: 30px;
+      width: auto;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      nav ul {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      nav li {
+        margin: 5px 0;
+      }
+      .header-right {
+        align-self: flex-end;
+        margin-top: 10px;
+      }
+    }
+
+    /* Bunting */
+    .bunting-curve {
+      position: absolute;
+      bottom: -28px;
+      left: 0;
       width: 100%;
-      padding: 60px 40px;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 10px;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .flag {
+      width: 0;
+      height: 0;
+      border-left: 18px solid transparent;
+      border-right: 18px solid transparent;
+      border-bottom: 28px solid;
+      transform: rotate(-10deg);
+      border-radius: 0 0 50% 50%;
+      animation: sway 4s ease-in-out infinite;
+    }
+
+    .flag:nth-child(1)  { border-bottom-color: #e1007b; }
+    .flag:nth-child(2)  { border-bottom-color: #30997a; }
+    .flag:nth-child(3)  { border-bottom-color: #748ec4; }
+    .flag:nth-child(4)  { border-bottom-color: #8f9114; }
+    .flag:nth-child(5)  { border-bottom-color: #ff69b4; }
+    .flag:nth-child(6)  { border-bottom-color: #ffd700; }
+    .flag:nth-child(7)  { border-bottom-color: #00bfff; }
+    .flag:nth-child(8)  { border-bottom-color: #ff4500; }
+    .flag:nth-child(9)  { border-bottom-color: #e1007b; }
+    .flag:nth-child(10) { border-bottom-color: #30997a; }
+    .flag:nth-child(11) { border-bottom-color: #748ec4; }
+    .flag:nth-child(12) { border-bottom-color: #8f9114; }
+
+    @keyframes sway {
+      0%, 100% { transform: rotate(-10deg); }
+      50%      { transform: rotate(-5deg); }
+    }
+
+    /* Content */
+    .content {
+      background-color: rgba(255, 255, 255, 0.85);
+      padding: 2em;
+      margin: 6em auto 3em;
+      border-radius: 15px;
+      max-width: 900px;
       text-align: center;
-      background: rgba(255, 255, 255, 0);
     }
 
     h1 {
-      font-family: Impact, sans-serif;
-      text-transform: uppercase;
-      font-size: 1.6em;
-      font-weight: normal;
-      margin-bottom: 0.3em;
+      font-family: Impact, Charcoal, sans-serif;
+      font-size: 2.5em;
+      letter-spacing: 4px;
+      color: #30997a;
+      margin: 0 0 20px;
     }
 
-    h2 {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 2em;
-      font-weight: normal;
-      margin: 10px 0;
-      text-transform: none;
-      line-height: 1.5;
+    iframe {
+      border: 0;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      margin-top: 20px;
+      width: 100%;
+      max-width: 800px;
+      height: 450px;
     }
 
-    h2 span {
-      display: block;
-    }
-
-    a {
-      font-weight: normal;
-      color: #000;
-      text-decoration: underline;
-    }
-
-    a:hover {
-      color: #4f7bd9;
-    }
-
-		.rsvp-button {
-			margin-top: 20px;
-			background-color: #fcdb92;
-			border-radius: 40px;
-			font-size: 1.2em;
-			font-weight: bold;
-			font-family: 'Montserrat', sans-serif;
-			position: relative;
-			cursor: pointer;
-			text-decoration: none;
-			display: inline-block;
-			box-shadow: 0 0 12px rgba(255, 182, 193, 0.5); /* pink shimmer only */
-			transition: all 0.4s ease;
-			overflow: hidden;
-			width: 120px;
-			padding: 16px 0;
-			text-align: center;
-			border: 4px solid transparent;
-			background-image:
-				linear-gradient(#fcdb92, #fcdb92),
-				linear-gradient(45deg, #8f9114, #748ec4, #30997a, #e1007b);
-			background-origin: border-box;
-			background-clip: padding-box, border-box;
-		}
-
-
-    .rsvp-button:hover {
-      width: 320px;
-      padding: 16px 32px;
-    }
-
-    .rsvp-button .label {
-      transition: opacity 0.3s ease;
-    }
-
-    .rsvp-button .alt-text {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+    .map-note {
+      margin-top: 20px;
       font-size: 1.1em;
-      font-weight: bold;
-      opacity: 0;
-      background: linear-gradient(90deg, #8f9114, #748ec4, #30997a, #e1007b);
-      background-clip: text;
-      -webkit-background-clip: text;
-      color: transparent;
-      animation: shimmer 2s infinite ease-in-out;
-      white-space: nowrap;
-    }
-
-    .rsvp-button:hover .label {
-      opacity: 0;
-    }
-
-    .rsvp-button:hover .alt-text {
-      opacity: 1;
-    }
-
-    @keyframes shimmer {
-      0% { background-position: -100% 0; }
-      50% { background-position: 100% 0; }
-      100% { background-position: -100% 0; }
-    }
-
-    .rsvp-button span {
+      line-height: 1.5;
+      color: #333;
+      background: rgba(255, 255, 255, 0.7);
+      padding: 1em;
+      border-radius: 10px;
       display: inline-block;
     }
 
-    .rsvp-button .r { color: #8f9114; }
-    .rsvp-button .s { color: #748ec4; }
-    .rsvp-button .v { color: #30997a; }
-    .rsvp-button .p { color: #e1007b; }
-
-    .sparkle {
-      position: absolute;
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      opacity: 0.9;
-      pointer-events: none;
-      animation: sparkleFly 0.8s ease-out forwards;
-    }
-
-    @keyframes sparkleFly {
-      0% {
-        transform: translate(0, 0) scale(1);
-        opacity: 1;
-      }
-      100% {
-        transform: translate(var(--x), var(--y)) scale(0.5);
-        opacity: 0;
-      }
-    }
-
+    /* Footer */
     footer {
       background-color: #30997a;
       text-align: center;
@@ -206,7 +182,7 @@
       display: inline-block;
     }
 
-		.attribution {
+    .attribution {
       font-size: 0.6em;
       margin-top: 5px;
     }
@@ -219,314 +195,75 @@
     .attribution a:hover {
       text-decoration: underline;
     }
-
-    .petal {
-      position: fixed;
-      top: -20px;
-      pointer-events: none;
-      opacity: 0.85;
-      z-index: 9999;
-      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-      animation: petalFall linear;
-    }
-
-    @keyframes petalFall {
-      to {
-        transform: translateY(100vh) rotate(360deg);
-      }
-    }
-
-    @media (max-width: 768px) {
-      .background {
-        flex-direction: column;
-        width: 100vw;
-        height: auto;
-      }
-
-      .left-bg {
-        width: 100vw;
-        background-image: url('EngagementPhoto.jpg');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        aspect-ratio: 3 / 4;
-      }
-
-      .right-bg {
-				width: 100vw;
-				background-image: url('InvitationBG.png');
-				background-size: 100% 100%; /* stretch to fill container */
-				background-position: center;
-				background-repeat: no-repeat;
-				padding: 0;
-			}
-
-
-      .right {
-        padding: 20px;
-        margin: 0 auto;
-        width: 100%;
-        box-sizing: border-box;
-      }
-
-      h1 {
-        font-size: 1.4em;
-      }
-
-      h2 {
-        font-size: 1.6em;
-      }
-
-      .rsvp-button {
-        width: 80%;
-        font-size: 1.1em;
-        padding: 14px 0;
-      }
-
-      footer img {
-        width: 50px;
-      }
-		
-		
-    }
-		header {
-			position: sticky;
-			top: 0;
-			z-index: 1000;
-			background-color: #e1007b;
-			border-bottom: 2px solid #eee;
-			display: flex;
-			align-items: center;
-			justify-content: space-between;
-			flex-wrap: wrap;
-			padding: 10px 20px;
-			font-family: 'Montserrat', sans-serif;
-			position: relative; /* enables absolute positioning inside */
-			background-color: #e1007b;
-			z-index: 1000;
-		}
-
-		nav li a:hover,
-		nav li a:active {
-			color: #fcdb92;
-		}
-
-		.header-right {
-			flex: 0 0 auto;
-		}
-
-		@media (max-width: 768px) {
-			header {
-				flex-direction: column;
-				align-items: flex-start;
-			}
-
-			nav ul {
-				flex-direction: column;
-				align-items: flex-start;
-			}
-
-			nav li {
-				margin: 5px 0;
-			}
-
-			.header-right {
-				align-self: flex-end;
-				margin-top: 10px;
-			}
-		}
-
-		.bunting-curve {
-			position: absolute;
-			bottom: -28px;
-			left: 0;
-			width: 100%;
-			display: flex;
-			justify-content: space-between;
-			padding: 0 10px;
-			pointer-events: none;
-			z-index: 10;
-		}
-
-		.flag {
-			width: 0;
-			height: 0;
-			border-left: 18px solid transparent;
-			border-right: 18px solid transparent;
-			border-bottom: 28px solid;
-			transform: rotate(-10deg);
-			border-radius: 0 0 50% 50%;
-			animation: sway 4s ease-in-out infinite;
-		}
-
-		.flag:nth-child(1)  { border-bottom-color: #e1007b; }
-		.flag:nth-child(2)  { border-bottom-color: #30997a; }
-		.flag:nth-child(3)  { border-bottom-color: #748ec4; }
-		.flag:nth-child(4)  { border-bottom-color: #8f9114; }
-		.flag:nth-child(5)  { border-bottom-color: #ff69b4; }
-		.flag:nth-child(6)  { border-bottom-color: #ffd700; }
-		.flag:nth-child(7)  { border-bottom-color: #00bfff; }
-		.flag:nth-child(8)  { border-bottom-color: #ff4500; }
-		.flag:nth-child(9)  { border-bottom-color: #e1007b; }
-		.flag:nth-child(10) { border-bottom-color: #30997a; }
-		.flag:nth-child(11) { border-bottom-color: #748ec4; }
-		.flag:nth-child(12) { border-bottom-color: #8f9114; }
-
-		@keyframes sway {
-			0%, 100% { transform: rotate(-10deg); }
-			50%      { transform: rotate(-5deg); }
-		}
-
-
   </style>
 </head>
 <body>
 
-<header>
-  <div class="header-left">
-    <a href="https://hannahwh05.github.io/whelnettwedfest/">
-      <img src="whelnettwedfestlogo.png" alt="Whelnett Wedfest Logo" style="height: 50px; width: auto; max-width: 180px;">
-    </a>
-  </div>
-
-  <nav>
-    <ul style="list-style: none; display: flex; flex-wrap: wrap; justify-content: center; margin: 0; padding: 0;">
-      <li><a href="https://hannahwh05.github.io/whelnettwedfest/ticket-info.html" style="color: white; font-weight: bold; font-family: 'Montserrat', sans-serif; padding: 8px 12px; text-decoration: none; letter-spacing: 1px;">Ticket Info</a></li>
-      <li><a href="https://hannahwh05.github.io/whelnettwedfest/festival-info.html" style="color: white; font-weight: bold; font-family: 'Montserrat', sans-serif; padding: 8px 12px; text-decoration: none; letter-spacing: 1px;">Festival Info/FAQs</a></li>
-      <li><a href="https://hannahwh05.github.io/whelnettwedfest/coming-soon.html" style="color: white; font-weight: bold; font-family: 'Montserrat', sans-serif; padding: 8px 12px; text-decoration: none; letter-spacing: 1px;">Lineup</a></li>
-      <li><a href="https://hannahwh05.github.io/whelnettwedfest/location.html" style="color: white; font-weight: bold; font-family: 'Montserrat', sans-serif; padding: 8px 12px; text-decoration: none; letter-spacing: 1px;">Location</a></li>
-      <li><a href="https://hannahwh05.github.io/whelnettwedfest/coming-soon.html" style="color: white; font-weight: bold; font-family: 'Montserrat', sans-serif; padding: 8px 12px; text-decoration: none; letter-spacing: 1px;">Site Map</a></li>
-      <!-- New Presents link -->
-      <li><a href="https://hannahwh05.github.io/whelnettwedfest/presents.html" style="color: white; font-weight: bold; font-family: 'Montserrat', sans-serif; padding: 8px 12px; text-decoration: none; letter-spacing: 1px;">Presents</a></li>
-    </ul>
-  </nav>
-
-  <div class="header-right">
-    <a href="https://www.instagram.com/whelnettwedfest/#" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" style="height: 30px; width: auto;">
-    </a>
-  </div>
-
-  <!-- bunting flags -->
-  <div class="bunting-curve">
-    <div class="flag"></div>
-    <div class="flag"></div>
-    <div class="flag"></div>
-    <div class="flag"></div>
-    <div class="flag"></div>
-    <div class="flag"></div>
-    <div class="flag"></div>
-    <div class="flag"></div>
-    <div class="flag"></div>
-    <div class="flag"></div>
-    <div class="flag"></div>
-    <div class="flag"></div>
-  </div>
-</header>
-
-	
-  <div class="background">
-    <div class="left-bg"></div>
-    <div class="right-bg">
-      <div class="right">
-        <h1>Hannah and Laurence</h1>
-        <h2>
-          <span>are tying</span>
-          <span>the knot!</span>
-        </h2>
-
-        <br>
-
-        <h1>Saturday 8th August 2026</h1>
-
-        <h2><span id="timer">Loading...</span></h2>
-
-        <br><br>
-
-        <h1>
-					<a href="https://hannahwh05.github.io/whelnettwedfest/location.html" target="_blank" title="View location in Google Maps">
-						Poplar Farm, Clevedon<br>BS21 6UN
-					</a>
-        </h1>
-
-        <a href="https://hannahwh05.github.io/whelnettwedfest/registration-home.html" target="_blank" class="rsvp-button" title="Register for Whelnett Wedfest Tickets" onmouseenter="burstSparkles(event)">
-          <span class="label">
-            <span class="r">R</span><span class="s">S</span><span class="v">V</span><span class="p">P</span>
-          </span>
-          <span class="alt-text">Whelnett Wedfest Registration</span>
-        </a>
-      </div>
+  <!-- Festival Header -->
+  <header>
+    <div class="header-left">
+      <a href="https://hannahwh05.github.io/whelnettwedfest/">
+        <img src="whelnettwedfestlogo.png" alt="Whelnett Wedfest Logo">
+      </a>
     </div>
+
+    <nav>
+      <ul>
+        <li><a href="ticket-info.html">Ticket Info</a></li>
+        <li><a href="festival-info.html">Festival Info/FAQs</a></li>
+        <li><a href="coming-soon.html">Lineup</a></li>
+        <li><a href="location.html">Location</a></li>
+        <li><a href="coming-soon.html">Site Map</a></li>
+        <li><a href="presents.html">Presents</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-right">
+      <a href="https://www.instagram.com/whelnettwedfest/#" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
+      </a>
+    </div>
+
+    <div class="bunting-curve">
+      <div class="flag"></div><div class="flag"></div><div class="flag"></div><div class="flag"></div>
+      <div class="flag"></div><div class="flag"></div><div class="flag"></div><div class="flag"></div>
+      <div class="flag"></div><div class="flag"></div><div class="flag"></div><div class="flag"></div>
+    </div>
+  </header>
+
+  <!-- Page Content -->
+  <div class="content">
+    <h1>Whelnett Wedfest 2026 at Poplar Farm</h1>
+    <iframe 
+      src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d2488.544211312899!2d-2.874093!3d51.411429!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNTHCsDI0JzQxLjEiTiAywrA1MicyNi43Ilc!5e0!3m2!1sen!2suk!4v1757270630467!5m2!1sen!2suk" 
+      allowfullscreen="" 
+      loading="lazy" 
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+
+    <!-- New text below the map -->
+    <p class="map-note">
+        Poplar Farm, Clevedon, Somerset BS21 6UN
+
+      <h3>Travel</h3>
+      <p><strong>Car:</strong> Poplar Farm is just 10 minutes from Junction 20 M5. Please be weary of cyclists and pedestrians along the country roads near the Farm.</p>
+			<p><strong>Parking:</strong> There is plenty of parking available at Poplar Farm but please note that this is not immediately next to camping and bell tent areas. There will be clear signage when you arrive.</p>
+      <p><strong>Train:</strong> The closest train station is Yatton. Either pre-book a taxi or ask a friend to collect you – it is about a 10 minute drive.</p>
+      <p><strong>Cycle:</strong> If you are feeling adventurous, Poplar Farm is along National Cycle Route 33. North Somerset has some beautiful countryside to explore along the cycle routes.</p>
+      <p><strong>Taxis:</strong> We would advise to book a taxi or Uber in advance as they are not frequent in the area. Local Companies: North Somerset Taxis, Streets Ahead Taxis, Triangle Cars Clevedon</p>
+    </p>
   </div>
 
+  <!-- Festival Footer -->
   <footer>
     <p>Whelnett Wedfest Ltd.</p>
     <img src="whelnettwedfestlogo.png" alt="Whelnett Wedfest Logo">
     <p class="attribution">
-      <a href="https://www.flaticon.com/free-icons/instagram" title="instagram icons">Instagram icons created by Grow studio - Flaticon</a>
+      <a href="https://www.flaticon.com/free-icons/instagram" title="instagram icons">
+        Instagram icons created by Grow studio - Flaticon
+      </a>
     </p>
   </footer>
-
-  <script>
-    const targetDate = new Date("2026-08-08T12:00:00+01:00").getTime();
-
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const distance = targetDate - now;
-
-      if (distance < 0) {
-        document.getElementById("timer").innerHTML = "It's festival time!";
-        return;
-      }
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      document.getElementById("timer").innerHTML =
-        `${days}d ${hours}h ${minutes}m ${seconds}s`;
-    }
-
-    setInterval(updateCountdown, 1000);
-
-    function createConfetti() {
-      const petal = document.createElement('div');
-      petal.classList.add('petal');
-
-      const size = Math.random() * 12 + 8;
-      petal.style.left = Math.random() * window.innerWidth + 'px';
-      petal.style.width = `${size}px`;
-      petal.style.height = `${size * 1.2}px`;
-
-      const colors = ['#ff007f', '#ffd700', '#00bfff', '#ff4500', '#32cd32', '#ffffff'];
-      petal.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-
-      const duration = Math.random() * 4 + 3;
-      petal.style.animationDuration = `${duration}s`;
-
-      document.body.appendChild(petal);
-      setTimeout(() => petal.remove(), duration * 1000);
-    }
-
-    setInterval(createConfetti, 180);
-
-    function burstSparkles(event) {
-      const button = event.currentTarget;
-      const colors = ['#e1007b', '#748ec4', '#30997a', '#ffd700', '#8f9114'];
-      for (let i = 0; i < 12; i++) {
-        const sparkle = document.createElement('span');
-        sparkle.classList.add('sparkle');
-        sparkle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-        sparkle.style.left = '50%';
-        sparkle.style.top = '50%';
-        sparkle.style.setProperty('--x', `${(Math.random() - 0.5) * 200}px`);
-        sparkle.style.setProperty('--y', `${(Math.random() - 0.5) * 200}px`);
-        button.appendChild(sparkle);
-        setTimeout(() => sparkle.remove(), 800);
-      }
-    }
-  </script>
 
 </body>
 </html>
