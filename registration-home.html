@@ -19,34 +19,33 @@
       background-color: #e1007b;
       border-bottom: 2px solid #eee;
       display: flex;
-      flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
+      flex-wrap: wrap;
       padding: 10px 20px;
       font-family: 'Montserrat', sans-serif;
+      position: relative; /* needed for bunting absolute positioning */
     }
 
     .header-left {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex: 1 1 100%;
-      max-width: 33%;
+      flex: 0 0 auto;
     }
 
     .header-left img {
       height: 50px;
+      width: auto;
+      max-width: 180px;
     }
 
     nav {
-      flex: 1 1 100%;
-      max-width: 66%;
+      flex: 1 1 auto;
+      text-align: center;
     }
 
     nav ul {
       display: flex;
       flex-wrap: wrap;
-      justify-content: space-around;
+      justify-content: center;
       list-style: none;
       margin: 0;
       padding: 0;
@@ -67,14 +66,19 @@
       color: #fcdb92;
     }
 
+    .header-right {
+      flex: 0 0 auto;
+    }
+
+    .header-right img {
+      height: 30px;
+      width: auto;
+    }
+
     @media (max-width: 768px) {
       header {
         flex-direction: column;
         align-items: flex-start;
-      }
-
-      .header-left, nav {
-        max-width: 100%;
       }
 
       nav ul {
@@ -85,8 +89,56 @@
       nav li {
         margin: 5px 0;
       }
+
+      .header-right {
+        align-self: flex-end;
+        margin-top: 10px;
+      }
     }
 
+    /* --- Bunting curve styles merged in --- */
+    .bunting-curve {
+      position: absolute;
+      bottom: -28px;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 10px;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .flag {
+      width: 0;
+      height: 0;
+      border-left: 18px solid transparent;
+      border-right: 18px solid transparent;
+      border-bottom: 28px solid;
+      transform: rotate(-10deg);
+      border-radius: 0 0 50% 50%;
+      animation: sway 4s ease-in-out infinite;
+    }
+
+    .flag:nth-child(1)  { border-bottom-color: #e1007b; }
+    .flag:nth-child(2)  { border-bottom-color: #30997a; }
+    .flag:nth-child(3)  { border-bottom-color: #748ec4; }
+    .flag:nth-child(4)  { border-bottom-color: #8f9114; }
+    .flag:nth-child(5)  { border-bottom-color: #ff69b4; }
+    .flag:nth-child(6)  { border-bottom-color: #ffd700; }
+    .flag:nth-child(7)  { border-bottom-color: #00bfff; }
+    .flag:nth-child(8)  { border-bottom-color: #ff4500; }
+    .flag:nth-child(9)  { border-bottom-color: #e1007b; }
+    .flag:nth-child(10) { border-bottom-color: #30997a; }
+    .flag:nth-child(11) { border-bottom-color: #748ec4; }
+    .flag:nth-child(12) { border-bottom-color: #8f9114; }
+
+    @keyframes sway {
+      0%, 100% { transform: rotate(-10deg); }
+      50%      { transform: rotate(-5deg); }
+    }
+
+    /* --- Your existing section styles remain unchanged --- */
     .top-section {
       background-color: #748ec4;
       color: white;
@@ -195,38 +247,79 @@
       height: auto;
       display: inline-block;
     }
+
+		.attribution {
+      font-size: 0.6em;
+      margin-top: 5px;
+    }
+
+    .attribution a {
+      color: #30997a;
+      text-decoration: none;
+    }
+
+    .attribution a:hover {
+      text-decoration: underline;
+    }
+		
   </style>
 </head>
+
 <body>
 
-  <header>
-    <div class="header-left">
-      <a href="https://hannahwh05.github.io/whelnettwedfest/">
-        <img src="whelnettwedfestlogo.png" alt="Whelnett Wedfest Logo">
-      </a>
-      <a href="https://www.instagram.com/whelnettwedfest/#" target="_blank">
-        <img src="instagram-logo.png" alt="Instagram" style="height: 30px;">
-      </a>
-    </div>
-    <nav>
-      <ul>
-        <li><a href="https://hannahwh05.github.io/whelnettwedfest/ticket-info.html">Ticket Info</a></li>
-        <li><a href="https://hannahwh05.github.io/whelnettwedfest/festival-info.html">Festival Info/FAQs</a></li>
-        <li><a href="https://hannahwh05.github.io/whelnettwedfest/coming-soon.html">Lineup</a></li>
-        <li><a href="https://hannahwh05.github.io/whelnettwedfest/location.html">Location</a></li>
-        <li><a href="https://hannahwh05.github.io/whelnettwedfest/coming-soon.html">Site Map</a></li>
-      </ul>
-    </nav>
-  </header>
+<header>
+  <div class="header-left">
+    <a href="https://hannahwh05.github.io/whelnettwedfest/">
+      <img src="whelnettwedfestlogo.png" alt="Whelnett Wedfest Logo" style="height: 50px; width: auto; max-width: 180px;">
+    </a>
+  </div>
+
+  <nav>
+    <ul style="list-style: none; display: flex; flex-wrap: wrap; justify-content: center; margin: 0; padding: 0;">
+      <li><a href="https://hannahwh05.github.io/whelnettwedfest/ticket-info.html" style="color: white; font-weight: bold; font-family: 'Montserrat', sans-serif; padding: 8px 12px; text-decoration: none; letter-spacing: 1px;">Ticket Info</a></li>
+      <li><a href="https://hannahwh05.github.io/whelnettwedfest/festival-info.html" style="color: white; font-weight: bold; font-family: 'Montserrat', sans-serif; padding: 8px 12px; text-decoration: none; letter-spacing: 1px;">Festival Info/FAQs</a></li>
+      <li><a href="https://hannahwh05.github.io/whelnettwedfest/coming-soon.html" style="color: white; font-weight: bold; font-family: 'Montserrat', sans-serif; padding: 8px 12px; text-decoration: none; letter-spacing: 1px;">Lineup</a></li>
+      <li><a href="https://hannahwh05.github.io/whelnettwedfest/location.html" style="color: white; font-weight: bold; font-family: 'Montserrat', sans-serif; padding: 8px 12px; text-decoration: none; letter-spacing: 1px;">Location</a></li>
+      <li><a href="https://hannahwh05.github.io/whelnettwedfest/coming-soon.html" style="color: white; font-weight: bold; font-family: 'Montserrat', sans-serif; padding: 8px 12px; text-decoration: none; letter-spacing: 1px;">Site Map</a></li>
+      <!-- New Presents link -->
+      <li><a href="https://hannahwh05.github.io/whelnettwedfest/presents.html" style="color: white; font-weight: bold; font-family: 'Montserrat', sans-serif; padding: 8px 12px; text-decoration: none; letter-spacing: 1px;">Presents</a></li>
+    </ul>
+  </nav>
+
+  <div class="header-right">
+    <a href="https://www.instagram.com/whelnettwedfest/#" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" style="height: 30px; width: auto;">
+    </a>
+  </div>
+
+  <!-- bunting flags -->
+  <div class="bunting-curve">
+    <div class="flag"></div>
+    <div class="flag"></div>
+    <div class="flag"></div>
+    <div class="flag"></div>
+    <div class="flag"></div>
+    <div class="flag"></div>
+    <div class="flag"></div>
+    <div class="flag"></div>
+    <div class="flag"></div>
+    <div class="flag"></div>
+    <div class="flag"></div>
+    <div class="flag"></div>
+  </div>
+</header>
+
 
   <section class="top-section">
     <h1>WHELNETT WEDFEST 2026</h1>
     <br>
-    <p>Hannah Wheldon and Laurence Bennett invite you to Whelnett Wedfest 2026.</p>
+    <p>Hannah Wheldon and Laurence Bennett invite you to Whelnett Wedfest 2026!</p>
     <br>
-    <p>Please register (RSVP) ahead of ticket release. All those who hope to attend Whelnett Wedfest must individually queue online for tickets.</p>
+    <p>To get your hands on these exclusive tickets, please register (RSVP) ahead of ticket release. All those who hope to attend Whelnett Wedfest must individually register for tickets.</p>
     <br>
-    <p>For more information, please visit the FAQs section.</p>
+    <p>To learn more about ticket types, visit our <a href="https://hannahwh05.github.io/whelnettwedfest/ticket-info.html" style="color: #fcdb92; text-decoration: underline;">Ticket Info</a> page.</p>
+    <br>
+    <p>For more details on Whelnett Wedfest, including, location, travel, accomodation and dress code, please visit the <a href="https://hannahwh05.github.io/whelnettwedfest/festival-info.html" style="color: #fcdb92; text-decoration: underline;">Festival Info/FAQs</a> section.</p>
   </section>
 
   <section class="bottom-section">
@@ -240,6 +333,9 @@
   <footer>
     <p>Whelnett Wedfest Ltd.</p>
     <img src="whelnettwedfestlogo.png" alt="Whelnett Wedfest Logo">
+    <p class="attribution">
+      <a href="https://www.flaticon.com/free-icons/instagram" title="instagram icons">Instagram icons created by Grow studio - Flaticon</a>
+    </p>
   </footer>
 
 </body>
