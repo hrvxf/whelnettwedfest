@@ -17,10 +17,122 @@
       overflow-y: auto;
     }
 
+    /* Header styles */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background-color: #e1007b;
+      border-bottom: 2px solid #eee;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 10px 20px;
+      font-family: 'Montserrat', sans-serif;
+      position: relative;
+    }
+
+    .header-left img {
+      height: 50px;
+      width: auto;
+      max-width: 180px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav li a {
+      color: white;
+      font-weight: bold;
+      font-family: 'Montserrat', sans-serif;
+      padding: 8px 12px;
+      text-decoration: none;
+      letter-spacing: 1px;
+      transition: color 0.3s ease;
+    }
+
+    nav li a:hover,
+    nav li a:active {
+      color: #fcdb92;
+    }
+
+    .header-right img {
+      height: 30px;
+      width: auto;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      nav ul {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      nav li {
+        margin: 5px 0;
+      }
+      .header-right {
+        align-self: flex-end;
+        margin-top: 10px;
+      }
+    }
+
+    /* Bunting */
+    .bunting-curve {
+      position: absolute;
+      bottom: -28px;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 10px;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .flag {
+      width: 0;
+      height: 0;
+      border-left: 18px solid transparent;
+      border-right: 18px solid transparent;
+      border-bottom: 28px solid;
+      transform: rotate(-10deg);
+      border-radius: 0 0 50% 50%;
+      animation: sway 4s ease-in-out infinite;
+    }
+
+    .flag:nth-child(1)  { border-bottom-color: #e1007b; }
+    .flag:nth-child(2)  { border-bottom-color: #30997a; }
+    .flag:nth-child(3)  { border-bottom-color: #748ec4; }
+    .flag:nth-child(4)  { border-bottom-color: #8f9114; }
+    .flag:nth-child(5)  { border-bottom-color: #ff69b4; }
+    .flag:nth-child(6)  { border-bottom-color: #ffd700; }
+    .flag:nth-child(7)  { border-bottom-color: #00bfff; }
+    .flag:nth-child(8)  { border-bottom-color: #ff4500; }
+    .flag:nth-child(9)  { border-bottom-color: #e1007b; }
+    .flag:nth-child(10) { border-bottom-color: #30997a; }
+    .flag:nth-child(11) { border-bottom-color: #748ec4; }
+    .flag:nth-child(12) { border-bottom-color: #8f9114; }
+
+    @keyframes sway {
+      0%, 100% { transform: rotate(-10deg); }
+      50%      { transform: rotate(-5deg); }
+    }
+
+    /* Content */
     .content {
       background-color: rgba(255, 255, 255, 0.85);
       padding: 2em;
-      margin: 3em auto;
+      margin: 6em auto 3em; /* extra top margin so content clears header+bunting */
       border-radius: 15px;
       max-width: 800px;
       text-align: center;
@@ -47,9 +159,77 @@
       margin: 0.3em 0;
       line-height: 1.6;
     }
+
+    /* Footer */
+    footer {
+      background-color: #30997a;
+      text-align: center;
+      padding: 20px 10px;
+    }
+
+    footer p {
+      color: #fff;
+      font-size: 0.9em;
+      margin: 0 0 10px;
+    }
+
+    footer img {
+      width: 60px;
+      height: auto;
+      display: inline-block;
+    }
+
+		.attribution {
+      font-size: 0.6em;
+      margin-top: 5px;
+    }
+
+    .attribution a {
+      color: #30997a;
+      text-decoration: none;
+    }
+
+    .attribution a:hover {
+      text-decoration: underline;
+    }
+		
   </style>
 </head>
 <body>
+
+  <!-- Festival Header -->
+  <header>
+    <div class="header-left">
+      <a href="https://hannahwh05.github.io/whelnettwedfest/">
+        <img src="whelnettwedfestlogo.png" alt="Whelnett Wedfest Logo">
+      </a>
+    </div>
+
+    <nav>
+      <ul>
+        <li><a href="https://hannahwh05.github.io/whelnettwedfest/ticket-info.html">Ticket Info</a></li>
+        <li><a href="https://hannahwh05.github.io/whelnettwedfest/festival-info.html">Festival Info/FAQs</a></li>
+        <li><a href="https://hannahwh05.github.io/whelnettwedfest/coming-soon.html">Lineup</a></li>
+        <li><a href="https://hannahwh05.github.io/whelnettwedfest/location.html">Location</a></li>
+        <li><a href="https://hannahwh05.github.io/whelnettwedfest/coming-soon.html">Site Map</a></li>
+        <li><a href="https://hannahwh05.github.io/whelnettwedfest/presents.html">Presents</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-right">
+      <a href="https://www.instagram.com/whelnettwedfest/#" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
+      </a>
+    </div>
+
+    <div class="bunting-curve">
+      <div class="flag"></div><div class="flag"></div><div class="flag"></div><div class="flag"></div>
+      <div class="flag"></div><div class="flag"></div><div class="flag"></div><div class="flag"></div>
+      <div class="flag"></div><div class="flag"></div><div class="flag"></div><div class="flag"></div>
+    </div>
+  </header>
+
+  <!-- Page Content -->
   <div class="content">
     <h3>Presents</h3>
     <p>As we prepare to say “I do,”<br>
@@ -78,5 +258,15 @@
     And think of you with grateful hearts, <br>
     For playing one of the biggest parts.</p>
   </div>
+
+
+  <footer>
+    <p>Whelnett Wedfest Ltd.</p>
+    <img src="whelnettwedfestlogo.png" alt="Whelnett Wedfest Logo">
+    <p class="attribution">
+      <a href="https://www.flaticon.com/free-icons/instagram" title="instagram icons">Instagram icons created by Grow studio - Flaticon</a>
+    </p>
+  </footer>
+
 </body>
 </html>
