@@ -3,15 +3,136 @@
 <head>
   <meta charset="UTF-8">
   <title>Whelnett Wedfest 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
   <style>
-    body {
+    html, body {
       margin: 0;
-      background-color: #fcdb92;
+      padding: 0;
+      height: 100%;
+      font-family: 'Montserrat', sans-serif;
+      color: #000;
+      background-color: #fcdb92; /* plain colour background */
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+
+    /* Header styles */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background-color: #e1007b;
+      border-bottom: 2px solid #eee;
       display: flex;
-      flex-direction: column;
       align-items: center;
-      min-height: 100vh;
-      font-family: 'Segoe UI', sans-serif;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 10px 20px;
+      position: relative;
+    }
+
+    .header-left img {
+      height: 50px;
+      width: auto;
+      max-width: 180px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav li a {
+      color: white;
+      font-weight: bold;
+      padding: 8px 12px;
+      text-decoration: none;
+      letter-spacing: 1px;
+      transition: color 0.3s ease;
+    }
+
+    nav li a:hover,
+    nav li a:active {
+      color: #fcdb92;
+    }
+
+    .header-right img {
+      height: 30px;
+      width: auto;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      nav ul {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      nav li {
+        margin: 5px 0;
+      }
+      .header-right {
+        align-self: flex-end;
+        margin-top: 10px;
+      }
+    }
+
+    /* Bunting */
+    .bunting-curve {
+      position: absolute;
+      bottom: -28px;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 10px;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .flag {
+      width: 0;
+      height: 0;
+      border-left: 18px solid transparent;
+      border-right: 18px solid transparent;
+      border-bottom: 28px solid;
+      transform: rotate(-10deg);
+      border-radius: 0 0 50% 50%;
+      animation: sway 4s ease-in-out infinite;
+    }
+
+    .flag:nth-child(1)  { border-bottom-color: #e1007b; }
+    .flag:nth-child(2)  { border-bottom-color: #30997a; }
+    .flag:nth-child(3)  { border-bottom-color: #748ec4; }
+    .flag:nth-child(4)  { border-bottom-color: #8f9114; }
+    .flag:nth-child(5)  { border-bottom-color: #ff69b4; }
+    .flag:nth-child(6)  { border-bottom-color: #ffd700; }
+    .flag:nth-child(7)  { border-bottom-color: #00bfff; }
+    .flag:nth-child(8)  { border-bottom-color: #ff4500; }
+    .flag:nth-child(9)  { border-bottom-color: #e1007b; }
+    .flag:nth-child(10) { border-bottom-color: #30997a; }
+    .flag:nth-child(11) { border-bottom-color: #748ec4; }
+    .flag:nth-child(12) { border-bottom-color: #8f9114; }
+
+    @keyframes sway {
+      0%, 100% { transform: rotate(-10deg); }
+      50%      { transform: rotate(-5deg); }
+    }
+
+    /* Content */
+    .content {
+      background-color: rgba(255, 255, 255, 0.85);
+      padding: 2em;
+      margin: 6em auto 3em;
+      border-radius: 15px;
+      max-width: 900px;
+      text-align: center;
     }
 
     h1 {
@@ -19,22 +140,34 @@
       font-size: 2.5em;
       letter-spacing: 4px;
       color: #30997a;
-      margin: 40px 0 20px;
-      text-align: center;
+      margin: 0 0 20px;
     }
 
     iframe {
       border: 0;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-      margin-bottom: 20px;
+      margin-top: 20px;
+      width: 100%;
+      max-width: 800px;
+      height: 450px;
     }
 
+    .map-note {
+      margin-top: 20px;
+      font-size: 1.1em;
+      line-height: 1.5;
+      color: #333;
+      background: rgba(255, 255, 255, 0.7);
+      padding: 1em;
+      border-radius: 10px;
+      display: inline-block;
+    }
+
+    /* Footer */
     footer {
       background-color: #30997a;
       text-align: center;
       padding: 20px 10px;
-      width: 100%;
-      margin-top: auto;
     }
 
     footer p {
@@ -48,23 +181,89 @@
       height: auto;
       display: inline-block;
     }
+
+    .attribution {
+      font-size: 0.6em;
+      margin-top: 5px;
+    }
+
+    .attribution a {
+      color: #30997a;
+      text-decoration: none;
+    }
+
+    .attribution a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
-  <h1>Whelnett Wedfest 2026 at Poplar Farm</h1>
 
-  <iframe 
-    src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d2488.544211312899!2d-2.874093!3d51.411429!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNTHCsDI0JzQxLjEiTiAywrA1MicyNi43Ilc!5e0!3m2!1sen!2suk!4v1757270630467!5m2!1sen!2suk" 
-    width="600" 
-    height="450" 
-    allowfullscreen="" 
-    loading="lazy" 
-    referrerpolicy="no-referrer-when-downgrade">
-  </iframe>
+  <!-- Festival Header -->
+  <header>
+    <div class="header-left">
+      <a href="https://hannahwh05.github.io/whelnettwedfest/">
+        <img src="whelnettwedfestlogo.png" alt="Whelnett Wedfest Logo">
+      </a>
+    </div>
 
+    <nav>
+      <ul>
+        <li><a href="ticket-info.html">Ticket Info</a></li>
+        <li><a href="festival-info.html">Festival Info/FAQs</a></li>
+        <li><a href="coming-soon.html">Lineup</a></li>
+        <li><a href="location.html">Location</a></li>
+        <li><a href="coming-soon.html">Site Map</a></li>
+        <li><a href="presents.html">Presents</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-right">
+      <a href="https://www.instagram.com/whelnettwedfest/#" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
+      </a>
+    </div>
+
+    <div class="bunting-curve">
+      <div class="flag"></div><div class="flag"></div><div class="flag"></div><div class="flag"></div>
+      <div class="flag"></div><div class="flag"></div><div class="flag"></div><div class="flag"></div>
+      <div class="flag"></div><div class="flag"></div><div class="flag"></div><div class="flag"></div>
+    </div>
+  </header>
+
+  <!-- Page Content -->
+  <div class="content">
+    <h1>Whelnett Wedfest 2026 at Poplar Farm</h1>
+    <iframe 
+      src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d2488.544211312899!2d-2.874093!3d51.411429!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNTHCsDI0JzQxLjEiTiAywrA1MicyNi43Ilc!5e0!3m2!1sen!2suk!4v1757270630467!5m2!1sen!2suk" 
+      allowfullscreen="" 
+      loading="lazy" 
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+
+    <!-- New text below the map -->
+    <p class="map-note">
+        Poplar Farm, Clevedon, Somerset BS21 6UN
+
+      <h3>Travel</h3>
+      <p><strong>Car:</strong> Poplar Farm is just 10 minutes from Junction 20 M5. Please be weary of cyclists and pedestrians along the country roads near the Farm.</p>
+			<p><strong>Parking:</strong> There is plenty of parking available at Poplar Farm but please note that this is not immediately next to camping and bell tent areas. There will be clear signage when you arrive.</p>
+      <p><strong>Train:</strong> The closest train station is Yatton. Either pre-book a taxi or ask a friend to collect you – it is about a 10 minute drive.</p>
+      <p><strong>Cycle:</strong> If you are feeling adventurous, Poplar Farm is along National Cycle Route 33. North Somerset has some beautiful countryside to explore along the cycle routes.</p>
+      <p><strong>Taxis:</strong> We would advise to book a taxi or Uber in advance as they are not frequent in the area. Local Companies: North Somerset Taxis, Streets Ahead Taxis, Triangle Cars Clevedon</p>
+    </p>
+  </div>
+
+  <!-- Festival Footer -->
   <footer>
     <p>Whelnett Wedfest Ltd.</p>
     <img src="whelnettwedfestlogo.png" alt="Whelnett Wedfest Logo">
+    <p class="attribution">
+      <a href="https://www.flaticon.com/free-icons/instagram" title="instagram icons">
+        Instagram icons created by Grow studio - Flaticon
+      </a>
+    </p>
   </footer>
+
 </body>
 </html>
