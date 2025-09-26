@@ -11,19 +11,27 @@
       font-style: normal;
     }
 
+    @font-face {
+      font-family: 'Joyline Notes Fallback';
+      src: local('Arial');
+      unicode-range: U+0021, U+002F, U+0028-0029; /* ! / ( ) */
+    }
+
     body {
       margin: 0;
       padding: 0;
-      background: url('notepaper.jpg') no-repeat center center fixed;
-      background-size: 60%;
-      font-family: 'Joyline Notes', cursive;
+      font-family: 'Joyline Notes', 'Joyline Notes Fallback', cursive, sans-serif;
       color: #333;
     }
 
     .container {
       max-width: 600px;
       margin: 3em auto;
-      padding: 2em;
+      padding: 2em 2em 2em 4em;
+      background: url('notepaper.jpg') no-repeat;
+      background-size: 100%;
+      background-position: -30px center;
+      background-attachment: local;
     }
 
     h1 {
@@ -39,22 +47,24 @@
     }
 
     li {
-      margin-bottom: 0.3em;
-      line-height: 1.2;
+      margin-bottom: 0.1em;
+      line-height: 1.0;
       font-size: 2em;
       position: relative;
-      top: 4px;
+      top: 2px;
     }
 
     @media (max-width: 700px) {
       .container {
         margin: 1em;
-        padding: 1.5em;
+        padding: 1.5em 1.5em 1.5em 3em;
       }
 
       li {
         font-size: 1.7em;
-        top: 2px;
+        top: -7px;
+        margin-bottom: 0.1em;
+        line-height: 1.0;
       }
     }
   </style>
@@ -73,7 +83,7 @@
       <li>Waterproof coat and over trousers</li>
       <li>Umbrella</li>
       <li>Change of weather appropriate clothing (in case you get wet!)</li>
-			<li>Warm clothing as it can get chilly at night</li>
+      <li>Warm clothing as it can get chilly at night</li>
       <li>Toiletries including towel/soap</li>
       <li>Medication if required</li>
       <li>Medical info (allergies etc)</li>
