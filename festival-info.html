@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <title>Whelnett Wedfest Info</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
   <style>
     html, body {
@@ -12,11 +11,12 @@
       background-color: #ffffff;
       font-family: 'Montserrat', sans-serif;
       color: #000;
+      cursor: pointer;
       height: 100%;
       overflow-x: hidden;
     }
 
-    /* Header */
+    /* Header styles */
     header {
       position: sticky;
       top: 0;
@@ -132,7 +132,6 @@
     }
 
     .image-wrapper {
-      position: relative; /* anchor text to image */
       transition: transform 0.6s ease;
     }
 
@@ -146,30 +145,35 @@
       display: block;
     }
 
-    .text-front, .text-back {
-      position: absolute;
-      top: 36%;
-      left: 0;
-      right: 0;
-      max-width: 1250px;
-      margin: 0 auto;
-      padding: 0 30px;
-      box-sizing: border-box;
-      transition: opacity 0.6s ease;
-      background: none;
-      color: #000;
-    }
+		.text-front, .text-back {
+			position: absolute;
+			top: 36%;
+			left: 0;
+			right: 0;
+			max-width: 1250px;   /* controls how wide the text block can get */
+			margin: 0 auto;     /* centers it horizontally */
+			padding: 0 30px;    /* fixed side padding instead of percentages */
+			box-sizing: border-box;
+			transition: opacity 0.6s ease;
+			background: none;
+			color: #000;
+		}
 
     .text-back {
       opacity: 0;
     }
 
-    .flipped .text-front { opacity: 0; }
-    .flipped .text-back { opacity: 1; }
+    .flipped .text-front {
+      opacity: 0;
+    }
+
+    .flipped .text-back {
+      opacity: 1;
+    }
 
     h2 {
       font-family: Impact, sans-serif;
-      font-size: clamp(1.5rem, 4vw, 3em);
+      font-size: 3em;
       text-transform: uppercase;
       margin-top: 0;
       margin-bottom: 0.5em;
@@ -177,18 +181,20 @@
 
     h3 {
       font-family: Impact, sans-serif;
-      font-size: clamp(1.2rem, 3vw, 2.5em);
+      font-size: 2.5em;
       text-transform: uppercase;
       margin-top: 1em;
       margin-bottom: 0.3em;
     }
 
     p {
-      font-size: clamp(1rem, 2.5vw, 2em);
+      font-size: 2em;
       margin: 0.3em 0;
     }
 
-    strong { font-weight: bold; }
+    strong {
+      font-weight: bold;
+    }
 
     .maps-icon {
       width: 30px;
@@ -197,12 +203,25 @@
       margin-left: 10px;
     }
 
-    /* Mobile overlay refinements */
+    /* Responsive text adjustments */
     @media (max-width: 768px) {
       .text-front, .text-back {
-        top: 32%;       /* overlay stays on image, slightly lower */
-        padding: 0 8%;  /* proportional side margins */
-        max-width: 100%;
+        left: 8%;
+        right: 8%;
+        top: 25%;
+        font-size: 1.2em;
+      }
+
+      h2 {
+        font-size: 2em;
+      }
+
+      h3 {
+        font-size: 1.5em;
+      }
+
+      p {
+        font-size: 1em;
       }
     }
 
@@ -222,7 +241,7 @@
     footer img {
       width: 60px;
       height: auto;
-      display: inline-block; /* small and centred */
+      display: inline-block;
     }
 
     .attribution {
@@ -246,7 +265,7 @@
   <header>
     <div class="header-left">
       <a href="https://hannahwh05.github.io/whelnettwedfest/">
-        <img src="whelnettwedfestlogo.png" alt="Whelnett Wedfest Logo" loading="lazy">
+        <img src="whelnettwedfestlogo.png" alt="Whelnett Wedfest Logo">
       </a>
     </div>
 
@@ -263,56 +282,57 @@
 
     <div class="header-right">
       <a href="https://www.instagram.com/whelnettwedfest/#" target="_blank">
-        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" loading="lazy">
+        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
       </a>
     </div>
 
     <div class="bunting-curve">
       <div class="flag"></div><div class="flag"></div><div class="flag"></div><div class="flag"></div>
       <div class="flag"></div><div class="flag"></div><div class="flag"></div><div class="flag"></div>
-      <div class="flag"></div><div class="flag"></div><div class="flag"></div><div class="    </div>
+      <div class="flag"></div><div class="flag"></div><div class="flag"></div><div class="flag"></div>
+    </div>
   </header>
 
   <!-- Page Content -->
   <div class="container" id="flipContainer">
     <div class="image-wrapper">
-      <img src="FestivalInfo.png" alt="Badge Illustration" loading="lazy">
+      <img src="FestivalInfo.png" alt="Badge Illustration">
+    </div>
+
+    <div class="text-front">
+      <h2>Festival Information</h2>
+      <p>The sections below aim to give you all the information you need about Whelnett Wedfest: from ticket
+			   information and travel advice to suggestions for what to bring.</p>
+
+      <h3>Location</h3>
+      <p>
+        Poplar Farm, Clevedon, Somerset BS21 6UN
+        <a href="https://hannahwh05.github.io/whelnettwedfest/Poplar-Farm-Google-Maps.html" target="_blank"></a>
+      </p>
+
+      <h3>Travel</h3>
+      <p><strong>Car:</strong> Poplar Farm is just 10 minutes from Junction 20 M5. Please be weary of cyclists and pedestrians along the country roads near the Farm.</p>
+      <p><strong>Parking:</strong> There is plenty of parking available at Poplar Farm but please note that this is not immediately next to camping and bell tent areas. There will be clear signage when you arrive.</p>
+      <p><strong>Train:</strong> The closest train station is Yatton. Either pre-book a taxi or ask a friend to collect you – it is about a 10 minute drive.</p>
+      <p><strong>Cycle:</strong> If you are feeling adventurous, Poplar Farm is along National Cycle Route 33. North Somerset has some beautiful countryside to explore along the cycle routes.</p>
+      <p><strong>Taxis:</strong> We would advise to book a taxi or Uber in advance as they are not frequent in the area. Local Companies: North Somerset Taxis, Streets Ahead Taxis, Triangle Cars Clevedon</p>
+    </div>
+
+    <div class="text-back">
+      <h3>Accommodation</h3>
+      <p>If camping or even glamping isn’t your style, Poplar Farm is not far from Clevedon or Yatton for hotels and AirBnBs. 
+      <br>
+      We highly encourage you to bring the festival vibes though and rent a bell tent! <br>
+      See our glamping options page for more information on what to expect. </p>
       
-      <div class="text-front">
-        <h2>Festival Information</h2>
-        <p>The sections below aim to give you all the information you need about Whelnett Wedfest: from ticket
-           information and travel advice to suggestions for what to bring.</p>
-
-        <h3>Location</h3>
-        <p>
-          Poplar Farm, Clevedon, Somerset BS21 6UN
-          <a href="https://hannahwh05.github.io/whelnettwedfest/Poplar-Farm-Google-Maps.html" target="_blank"></a>
-        </p>
-
-        <h3>Travel</h3>
-        <p><strong>Car:</strong> Poplar Farm is just 10 minutes from Junction 20 M5. Please be weary of cyclists and pedestrians along the country roads near the Farm.</p>
-        <p><strong>Parking:</strong> There is plenty of parking available at Poplar Farm but please note that this is not immediately next to camping and bell tent areas. There will be clear signage when you arrive.</p>
-        <p><strong>Train:</strong> The closest train station is Yatton. Either pre-book a taxi or ask a friend to collect you – it is about a 10 minute drive.</p>
-        <p><strong>Cycle:</strong> If you are feeling adventurous, Poplar Farm is along National Cycle Route 33. North Somerset has some beautiful countryside to explore along the cycle routes.</p>
-        <p><strong>Taxis:</strong> We would advise to book a taxi or Uber in advance as they are not frequent in the area. Local Companies: North Somerset Taxis, Streets Ahead Taxis, Triangle Cars Clevedon</p>
-      </div>
-
-      <div class="text-back">
-        <h3>Accommodation</h3>
-        <p>If camping or even glamping isn’t your style, Poplar Farm is not far from Clevedon or Yatton for hotels and AirBnBs. 
-        <br>
-        We highly encourage you to bring the festival vibes though and rent a bell tent! <br>
-        See our glamping options page for more information on what to expect. </p>
-        
-        <h3>Dress Code</h3>
-        <p>We encourage earthy tones and bright colours for the handfasting ceremony as it is thought to bring positive energy to the occasion. We suggest more relaxed suits and flowy, comfortable dresses. Shoes with thin heels, such as stilettos, are not advised as we will be on grass for much of the day.<br>
-        <br>
-        Bring vibrant, festival themed clothing for the rest of the day and be prepared for whatever the weather may bring!
-        </p>
-        
-        <h3>Contacts</h3>
-        <p>Any queries, whatsapp Hannah or Laurie.</p>
-      </div>
+      <h3>Dress Code</h3>
+      <p>We encourage earthy tones and bright colours for the handfasting ceremony as it is thought to bring positive energy to the occasion. We suggest more relaxed suits and flowy, comfortable dresses. Shoes with thin heels, such as stilettos, are not advised as we will be on grass for much of the day.<br>
+      <br>
+      Bring vibrant, festival themed clothing for the rest of the day and be prepared for whatever the weather may bring!
+      </p>
+      
+      <h3>Contacts</h3>
+      <p>Any queries, whatsapp Hannah or Laurie.</p>
     </div>
   </div>
 
@@ -326,7 +346,7 @@
   <!-- Festival Footer -->
   <footer>
     <p>Whelnett Wedfest Ltd.</p>
-    <img src="whelnettwedfestlogo.png" alt="Whelnett Wedfest Logo" loading="lazy">
+    <img src="whelnettwedfestlogo.png" alt="Whelnett Wedfest Logo">
     <p class="attribution">
       <a href="https://www.flaticon.com/free-icons/instagram" title="instagram icons">
         Instagram icons created by Grow studio - Flaticon
