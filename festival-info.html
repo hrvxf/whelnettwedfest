@@ -226,11 +226,15 @@
       p  { font-size: 0.65em; }
     }
 
-    @media (max-width: 360px) {
-  .container img {
-    height: 300%;
-    object-fit: cover;
-  }
+		@media (max-width: 360px) {
+			body {
+				background-image: url('your-image.jpg'); /* Replace with your actual image path */
+				background-size: cover;
+				background-repeat: no-repeat;
+				background-position: center center;
+			}
+		}
+
   }
     /* Extra padding for wide screens (~1521px) */
     @media (min-width: 1500px) and (max-width: 1600px) {
@@ -371,7 +375,3 @@
 
 </body>
 </html>
-
-
-
-
