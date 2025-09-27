@@ -146,7 +146,7 @@
       display: block;
     }
 
-    /* ✅ Unified proportional margins */
+    /* Unified proportional margins */
     .text-front, .text-back {
       position: absolute;
       top: 36%;
@@ -195,27 +195,39 @@
       margin-left: 10px;
     }
 
-/* Responsive text adjustments */
-@media (max-width: 768px) {
-  .text-front, .text-back {
-    top: 25%;
-    font-size: 1.4em;   /* smaller base text */
-    line-height: 1.3;    /* keeps it readable */
-  }
-  h2 { font-size: 1em; }
-  h3 { font-size: 0.8em; }
-  p  { font-size: 0.6em; }
-}
+    /* Responsive text and mobile layout adjustments */
+    @media (max-width: 768px) {
+      .container img {
+        height: 140%;       /* taller background */
+        object-fit: cover;  /* avoid distortion, crop gracefully */
+      }
+      .text-front, .text-back {
+        top: 35%;           /* shift text down */
+        left: 15%;          /* more side padding */
+        right: 15%;
+        font-size: 1.4em;   /* keep your chosen base size */
+        line-height: 1.4;
+      }
+      h2 { font-size: 1em; }
+      h3 { font-size: 0.8em; }
+      p  { font-size: 0.6em; }
+    }
 
-/* Extra small screens */
-@media (max-width: 480px) {
-  .text-front, .text-back {
-    font-size: 0.65em;   /* even smaller for narrow phones */
-  }
-  h2 { font-size: 1em; }
-  h3 { font-size: 0.9em; }
-  p  { font-size: 0.65em; }
-}
+    @media (max-width: 480px) {
+      .container img {
+        height: 150%;       /* even taller on very small screens */
+        object-fit: cover;
+      }
+      .text-front, .text-back {
+        top: 38%;           /* push text further down */
+        left: 18%;          /* extra side padding */
+        right: 18%;
+        font-size: 0.65em;  /* your chosen tiny size */
+      }
+      h2 { font-size: 1em; }
+      h3 { font-size: 0.9em; }
+      p  { font-size: 0.65em; }
+    }
 
     /* Footer */
     footer {
@@ -284,6 +296,7 @@
       <div class="flag"></div><div class="flag"></div><div class="flag"></div><div class="flag"></div>
     </div>
   </header>
+
   <!-- Page Content -->
   <div class="container" id="flipContainer">
     <div class="image-wrapper">
@@ -347,12 +360,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
