@@ -2,357 +2,43 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Whelnett Wedfest Info</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proportional Margin Example</title>
   <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      background-color: #ffffff;
-      font-family: 'Montserrat', sans-serif;
-      color: #000;
-      cursor: pointer;
-      height: 100%;
-      overflow-x: hidden;
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      background: #fafafa;
+      color: #333;
     }
 
-    /* Header styles */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background-color: #e1007b;
-      border-bottom: 2px solid #eee;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      padding: 10px 20px;
-      position: relative;
+    /* Content block with proportional margins */
+    .content {
+      margin-left: 10%;
+      margin-right: 10%;
     }
 
-    .header-left img {
-      height: 50px;
-      width: auto;
-      max-width: 180px;
-    }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin: 0;
-      padding: 0;
-    }
-
-    nav li a {
-      color: white;
-      font-weight: bold;
-      padding: 8px 12px;
-      text-decoration: none;
-      letter-spacing: 1px;
-      transition: color 0.3s ease;
-    }
-
-    nav li a:hover,
-    nav li a:active {
-      color: #fcdb92;
-    }
-
-    .header-right img {
-      height: 30px;
-      width: auto;
-    }
-
-    @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      nav ul {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      nav li {
-        margin: 5px 0;
-      }
-      .header-right {
-        align-self: flex-end;
-        margin-top: 10px;
-      }
-    }
-
-    /* Bunting */
-    .bunting-curve {
-      position: absolute;
-      bottom: -28px;
-      left: 0;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      padding: 0 10px;
-      pointer-events: none;
-      z-index: 10;
-    }
-
-    .flag {
-      width: 0;
-      height: 0;
-      border-left: 18px solid transparent;
-      border-right: 18px solid transparent;
-      border-bottom: 28px solid;
-      transform: rotate(-10deg);
-      border-radius: 0 0 50% 50%;
-      animation: sway 4s ease-in-out infinite;
-    }
-
-    .flag:nth-child(1)  { border-bottom-color: #e1007b; }
-    .flag:nth-child(2)  { border-bottom-color: #30997a; }
-    .flag:nth-child(3)  { border-bottom-color: #748ec4; }
-    .flag:nth-child(4)  { border-bottom-color: #8f9114; }
-    .flag:nth-child(5)  { border-bottom-color: #ff69b4; }
-    .flag:nth-child(6)  { border-bottom-color: #ffd700; }
-    .flag:nth-child(7)  { border-bottom-color: #00bfff; }
-    .flag:nth-child(8)  { border-bottom-color: #ff4500; }
-    .flag:nth-child(9)  { border-bottom-color: #e1007b; }
-    .flag:nth-child(10) { border-bottom-color: #30997a; }
-    .flag:nth-child(11) { border-bottom-color: #748ec4; }
-    .flag:nth-child(12) { border-bottom-color: #8f9114; }
-
-    @keyframes sway {
-      0%, 100% { transform: rotate(-10deg); }
-      50%      { transform: rotate(-5deg); }
-    }
-
-    /* Flip card content */
-    .container {
-      position: relative;
-      width: 100%;
-    }
-
-    .image-wrapper {
-      transition: transform 0.6s ease;
-    }
-
-    .flipped .image-wrapper {
-      transform: scaleX(-1);
-    }
-
-    .container img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-		.text-front, .text-back {
-			position: absolute;
-			top: 36%;
-			left: 0;
-			right: 0;
-			max-width: 1250px;   /* controls how wide the text block can get */
-			margin: 0 auto;     /* centers it horizontally */
-			padding: 0 30px;    /* fixed side padding instead of percentages */
-			box-sizing: border-box;
-			transition: opacity 0.6s ease;
-			background: none;
-			color: #000;
-		}
-
-    .text-back {
-      opacity: 0;
-    }
-
-    .flipped .text-front {
-      opacity: 0;
-    }
-
-    .flipped .text-back {
-      opacity: 1;
-    }
-
-    h2 {
-      font-family: Impact, sans-serif;
-      font-size: 3em;
-      text-transform: uppercase;
-      margin-top: 0;
-      margin-bottom: 0.5em;
-    }
-
-    h3 {
-      font-family: Impact, sans-serif;
-      font-size: 2.5em;
-      text-transform: uppercase;
-      margin-top: 1em;
-      margin-bottom: 0.3em;
-    }
-
-    p {
-      font-size: 2em;
-      margin: 0.3em 0;
-    }
-
-    strong {
-      font-weight: bold;
-    }
-
-    .maps-icon {
-      width: 30px;
-      height: 30px;
-      vertical-align: middle;
-      margin-left: 10px;
-    }
-
-    /* Responsive text adjustments */
-    @media (max-width: 768px) {
-      .text-front, .text-back {
-        left: 8%;
-        right: 8%;
-        top: 25%;
-        font-size: 1.2em;
-      }
-
-      h2 {
-        font-size: 2em;
-      }
-
-      h3 {
-        font-size: 1.5em;
-      }
-
-      p {
-        font-size: 1em;
-      }
-    }
-
-    /* Footer */
-    footer {
-      background-color: #30997a;
+    h1, h2 {
       text-align: center;
-      padding: 20px 10px;
-    }
-
-    footer p {
-      color: #fff;
-      font-size: 0.9em;
-      margin: 0 0 10px;
-    }
-
-    footer img {
-      width: 60px;
-      height: auto;
-      display: inline-block;
-    }
-
-    .attribution {
-      font-size: 0.6em;
-      margin-top: 5px;
-    }
-
-    .attribution a {
-      color: #30997a;
-      text-decoration: none;
-    }
-
-    .attribution a:hover {
-      text-decoration: underline;
+      color: #444;
     }
   </style>
 </head>
 <body>
-
-  <!-- Festival Header -->
-  <header>
-    <div class="header-left">
-      <a href="https://hannahwh05.github.io/whelnettwedfest/">
-        <img src="whelnettwedfestlogo.png" alt="Whelnett Wedfest Logo">
-      </a>
-    </div>
-
-    <nav>
-      <ul>
-        <li><a href="ticket-info.html">Ticket Info</a></li>
-        <li><a href="festival-info.html">Festival Info/FAQs</a></li>
-        <li><a href="coming-soon.html">Lineup</a></li>
-        <li><a href="location.html">Location</a></li>
-        <li><a href="coming-soon.html">Site Map</a></li>
-        <li><a href="presents.html">Presents</a></li>
-      </ul>
-    </nav>
-
-    <div class="header-right">
-      <a href="https://www.instagram.com/whelnettwedfest/#" target="_blank">
-        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
-      </a>
-    </div>
-
-    <div class="bunting-curve">
-      <div class="flag"></div><div class="flag"></div><div class="flag"></div><div class="flag"></div>
-      <div class="flag"></div><div class="flag"></div><div class="flag"></div><div class="flag"></div>
-      <div class="flag"></div><div class="flag"></div><div class="flag"></div><div class="flag"></div>
-    </div>
-  </header>
-
-  <!-- Page Content -->
-  <div class="container" id="flipContainer">
-    <div class="image-wrapper">
-      <img src="FestivalInfo.png" alt="Badge Illustration">
-    </div>
-
-    <div class="text-front">
-      <h2>Festival Information</h2>
-      <p>The sections below aim to give you all the information you need about Whelnett Wedfest: from ticket
-			   information and travel advice to suggestions for what to bring.</p>
-
-      <h3>Location</h3>
-      <p>
-        Poplar Farm, Clevedon, Somerset BS21 6UN
-        <a href="https://hannahwh05.github.io/whelnettwedfest/Poplar-Farm-Google-Maps.html" target="_blank"></a>
-      </p>
-
-      <h3>Travel</h3>
-      <p><strong>Car:</strong> Poplar Farm is just 10 minutes from Junction 20 M5. Please be weary of cyclists and pedestrians along the country roads near the Farm.</p>
-      <p><strong>Parking:</strong> There is plenty of parking available at Poplar Farm but please note that this is not immediately next to camping and bell tent areas. There will be clear signage when you arrive.</p>
-      <p><strong>Train:</strong> The closest train station is Yatton. Either pre-book a taxi or ask a friend to collect you – it is about a 10 minute drive.</p>
-      <p><strong>Cycle:</strong> If you are feeling adventurous, Poplar Farm is along National Cycle Route 33. North Somerset has some beautiful countryside to explore along the cycle routes.</p>
-      <p><strong>Taxis:</strong> We would advise to book a taxi or Uber in advance as they are not frequent in the area. Local Companies: North Somerset Taxis, Streets Ahead Taxis, Triangle Cars Clevedon</p>
-    </div>
-
-    <div class="text-back">
-      <h3>Accommodation</h3>
-      <p>If camping or even glamping isn’t your style, Poplar Farm is not far from Clevedon or Yatton for hotels and AirBnBs. 
-      <br>
-      We highly encourage you to bring the festival vibes though and rent a bell tent! <br>
-      See our glamping options page for more information on what to expect. </p>
-      
-      <h3>Dress Code</h3>
-      <p>We encourage earthy tones and bright colours for the handfasting ceremony as it is thought to bring positive energy to the occasion. We suggest more relaxed suits and flowy, comfortable dresses. Shoes with thin heels, such as stilettos, are not advised as we will be on grass for much of the day.<br>
-      <br>
-      Bring vibrant, festival themed clothing for the rest of the day and be prepared for whatever the weather may bring!
-      </p>
-      
-      <h3>Contacts</h3>
-      <p>Any queries, whatsapp Hannah or Laurie.</p>
-    </div>
-  </div>
-
-  <script>
-    const flipContainer = document.getElementById('flipContainer');
-    document.body.addEventListener('click', () => {
-      flipContainer.classList.toggle('flipped');
-    });
-  </script>
-
-  <!-- Festival Footer -->
-  <footer>
-    <p>Whelnett Wedfest Ltd.</p>
-    <img src="whelnettwedfestlogo.png" alt="Whelnett Wedfest Logo">
-    <p class="attribution">
-      <a href="https://www.flaticon.com/free-icons/instagram" title="instagram icons">
-        Instagram icons created by Grow studio - Flaticon
-      </a>
+  <div class="content">
+    <h1>Welcome to Whelnett Wedfest 2026</h1>
+    <p>
+      We’re so excited to celebrate with you! This page is styled so that the
+      text margins remain proportional across all devices — desktop, tablet,
+      and mobile. That way, the layout always feels balanced and guest‑friendly.
     </p>
-  </footer>
 
+    <h2>Event Details</h2>
+    <p>
+      Expect wildflowers, bunting, music, and plenty of joy. The margins you see
+      here are set at 10% on both sides, so whether you’re reading on a large
+      screen or a small phone, the proportions stay consistent.
+    </p>
+  </div>
 </body>
 </html>
