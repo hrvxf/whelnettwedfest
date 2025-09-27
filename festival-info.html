@@ -17,7 +17,7 @@
       overflow-x: hidden;
     }
 
-    /* Header styles (restored) */
+    /* Header styles */
     header {
       position: sticky;
       top: 0;
@@ -133,6 +133,7 @@
     }
 
     .image-wrapper {
+      position: relative; /* anchor text to image */
       transition: transform 0.6s ease;
     }
 
@@ -207,13 +208,13 @@
     /* Mobile overlay refinements */
     @media (max-width: 768px) {
       .text-front, .text-back {
-        top: 30%;       /* not too low */
-        padding: 0 10%; /* wider side margins */
+        top: 28%;       /* keep overlay on image, not too low */
+        padding: 0 12%; /* wider side margins */
         max-width: 100%;
       }
     }
 
-    /* Footer (restored) */
+    /* Footer */
     footer {
       background-color: #30997a;
       text-align: center;
@@ -229,7 +230,7 @@
     footer img {
       width: 60px;
       height: auto;
-      display: inline-block; /* restored */
+      display: inline-block; /* small and centred */
     }
 
     .attribution {
@@ -278,14 +279,8 @@
       <div class="flag"></div><div class="flag"></div><div class="flag"></div><div class="flag"></div>
       <div class="flag"></div><div class="flag"></div><div class="flag"></div><div class="flag"></div>
       <div class="flag"></div><div class="flag"></div><div class="flag"></div><div class="flag"></div>
+    </div      <img src="FestivalInfo.png" alt="Badge Illustration" loading="lazy">
     </div>
-  </header>
-
-  <!-- Page Content -->
-  <div class="container" id="flipContainer">
-    <div class="image-wrapper">
-      <img src="FestivalInfo.png" alt="Badge Illustration" loading="
-			    </div>
 
     <div class="text-front">
       <h2>Festival Information</h2>
