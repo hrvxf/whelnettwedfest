@@ -195,17 +195,18 @@
       margin-left: 10px;
     }
 
-    /* Responsive text and mobile layout adjustments */
-    @media (max-width: 768px) {
+    /* Progressive background stretch + responsive text */
+    @media (max-width: 1024px) {
       .container img {
-        height: 140%;       /* taller background */
-        object-fit: cover;  /* avoid distortion, crop gracefully */
+        /* smoothly scale height from 110% at 1024px to 180% at 320px */
+        height: calc(110% + (180 - 110) * ((1024px - 100vw) / (1024 - 320)));
+        object-fit: cover;
       }
       .text-front, .text-back {
-        top: 35%;           /* shift text down */
-        left: 15%;          /* more side padding */
+        top: 35%;
+        left: 15%;
         right: 15%;
-        font-size: 1.4em;   /* keep your chosen base size */
+        font-size: 1.4em;
         line-height: 1.4;
       }
       h2 { font-size: 1em; }
@@ -214,19 +215,23 @@
     }
 
     @media (max-width: 480px) {
-      .container img {
-        height: 150%;       /* even taller on very small screens */
-        object-fit: cover;
-      }
       .text-front, .text-back {
-        top: 38%;           /* push text further down */
-        left: 18%;          /* extra side padding */
+        top: 38%;
+        left: 18%;
         right: 18%;
-        font-size: 0.65em;  /* your chosen tiny size */
+        font-size: 0.65em;
       }
       h2 { font-size: 1em; }
       h3 { font-size: 0.9em; }
       p  { font-size: 0.65em; }
+    }
+
+    /* Extra padding for wide screens (~1521px) */
+    @media (min-width: 1500px) and (max-width: 1600px) {
+      .text-front, .text-back {
+        left: 14%;
+        right: 14%;
+      }
     }
 
     /* Footer */
@@ -284,10 +289,10 @@
       </ul>
     </nav>
 
-    <div class="header-right">
-      <a href="https://www.instagram.com/whelnettwedfest/#" target="_blank">
-        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
-      </a>
+<div class="header-right">
+  <a href="https://www.instagram.com/whelnettwedfest/" target="_blank">
+    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
+        </a>
     </div>
 
     <div class="bunting-curve">
@@ -360,3 +365,4 @@
 
 </body>
 </html>
+
