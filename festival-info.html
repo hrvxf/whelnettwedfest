@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Whelnett Wedfest Info</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
   <style>
     html, body {
@@ -145,19 +146,19 @@
       display: block;
     }
 
-		.text-front, .text-back {
-			position: absolute;
-			top: 36%;
-			left: 0;
-			right: 0;
-			max-width: 1250px;   /* controls how wide the text block can get */
-			margin: 0 auto;     /* centers it horizontally */
-			padding: 0 30px;    /* fixed side padding instead of percentages */
-			box-sizing: border-box;
-			transition: opacity 0.6s ease;
-			background: none;
-			color: #000;
-		}
+    .text-front, .text-back {
+      position: absolute;
+      top: 36%;
+      left: 0;
+      right: 0;
+      max-width: 1250px;
+      margin: 0 auto;
+      padding: 0 30px;
+      box-sizing: border-box;
+      transition: opacity 0.6s ease;
+      background: none;
+      color: #000;
+    }
 
     .text-back {
       opacity: 0;
@@ -173,7 +174,7 @@
 
     h2 {
       font-family: Impact, sans-serif;
-      font-size: 3em;
+      font-size: clamp(1.5rem, 4vw, 3em);
       text-transform: uppercase;
       margin-top: 0;
       margin-bottom: 0.5em;
@@ -181,14 +182,14 @@
 
     h3 {
       font-family: Impact, sans-serif;
-      font-size: 2.5em;
+      font-size: clamp(1.2rem, 3vw, 2.5em);
       text-transform: uppercase;
       margin-top: 1em;
       margin-bottom: 0.3em;
     }
 
     p {
-      font-size: 2em;
+      font-size: clamp(1rem, 2.5vw, 2em);
       margin: 0.3em 0;
     }
 
@@ -203,25 +204,20 @@
       margin-left: 10px;
     }
 
-    /* Responsive text adjustments */
+    /* Responsive text adjustments & positioning fix */
     @media (max-width: 768px) {
       .text-front, .text-back {
-        left: 8%;
-        right: 8%;
-        top: 25%;
-        font-size: 1.2em;
+        position: static;
+        max-width: 100%;
+        padding: 15px;
+        background: #fff;
+        box-sizing: border-box;
+        text-align: left;
       }
 
-      h2 {
-        font-size: 2em;
-      }
-
-      h3 {
-        font-size: 1.5em;
-      }
-
-      p {
-        font-size: 1em;
+      .container img {
+        max-height: 40vh;
+        object-fit: cover;
       }
     }
 
@@ -265,7 +261,7 @@
   <header>
     <div class="header-left">
       <a href="https://hannahwh05.github.io/whelnettwedfest/">
-        <img src="whelnettwedfestlogo.png" alt="Whelnett Wedfest Logo">
+        <img src="whelnettwedfestlogo.png" alt="Whelnett Wedfest Logo" loading="lazy">
       </a>
     </div>
 
@@ -282,7 +278,7 @@
 
     <div class="header-right">
       <a href="https://www.instagram.com/whelnettwedfest/#" target="_blank">
-        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
+        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" loading="lazy">
       </a>
     </div>
 
@@ -295,14 +291,14 @@
 
   <!-- Page Content -->
   <div class="container" id="flipContainer">
-    <div class="image-wrapper">
-      <img src="FestivalInfo.png" alt="Badge Illustration">
+       <div class="image-wrapper">
+      <img src="FestivalInfo.png" alt="Badge Illustration" loading="lazy">
     </div>
 
     <div class="text-front">
       <h2>Festival Information</h2>
       <p>The sections below aim to give you all the information you need about Whelnett Wedfest: from ticket
-			   information and travel advice to suggestions for what to bring.</p>
+         information and travel advice to suggestions for what to bring.</p>
 
       <h3>Location</h3>
       <p>
@@ -346,7 +342,7 @@
   <!-- Festival Footer -->
   <footer>
     <p>Whelnett Wedfest Ltd.</p>
-    <img src="whelnettwedfestlogo.png" alt="Whelnett Wedfest Logo">
+    <img src="whelnettwedfestlogo.png" alt="Whelnett Wedfest Logo" loading="lazy">
     <p class="attribution">
       <a href="https://www.flaticon.com/free-icons/instagram" title="instagram icons">
         Instagram icons created by Grow studio - Flaticon
@@ -356,3 +352,4 @@
 
 </body>
 </html>
+
