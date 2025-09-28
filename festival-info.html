@@ -226,16 +226,16 @@
       p  { font-size: 0.65em; }
     }
 
-		@media (max-width: 360px) {
-			body {
-				background-image: url('your-image.jpg'); /* Replace with your actual image path */
-				background-size: cover;
-				background-repeat: no-repeat;
-				background-position: center center;
-			}
-		}
+    /* Refined 360px background stretch */
+    @media (max-width: 360px) {
+      body {
+        background-image: url('FestivalInfo.png'); /* Replace with your actual image path */
+        background-size: 200% 200%; /* force stretch */
+        background-repeat: no-repeat;
+        background-position: center center;
+      }
+    }
 
-  }
     /* Extra padding for wide screens (~1521px) */
     @media (min-width: 1500px) and (max-width: 1600px) {
       .text-front, .text-back {
@@ -292,17 +292,16 @@
       <ul>
         <li><a href="ticket-info.html">Ticket Info</a></li>
         <li><a href="festival-info.html">Festival Info/FAQs</a></li>
-        <li><a href="coming-soon.html">Lineup</a></li>
-        <li><a href="location.html">Location</a></li>
+				        <li><a href="location.html">Location</a></li>
         <li><a href="coming-soon.html">Site Map</a></li>
         <li><a href="presents.html">Presents</a></li>
       </ul>
     </nav>
 
-<div class="header-right">
-  <a href="https://www.instagram.com/whelnettwedfest/" target="_blank">
-    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
-        </a>
+    <div class="header-right">
+      <a href="https://www.instagram.com/whelnettwedfest/" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
+      </a>
     </div>
 
     <div class="bunting-curve">
