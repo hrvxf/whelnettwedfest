@@ -1,319 +1,185 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Festival Info Test - Ticket Background</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --bg:#fff;
-      --magenta:#e1007b;        /* outer border */
-      --pink:#ffd1e6;           /* inner panel */
-      --strap:#ffd500;          /* yellow strap */
-      --clip:#ff8fb4;           /* plastic clip pink */
-      --ring:#cfcfcf;           /* metal ring */
-      --accent:#5fc0b4;         /* greenish-blue strip */
-      --ticket-radius:18px;
-    }
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Stylized ID Badge Background</title>
+<style>
+  :root{
+    --bg:#f7f3ff;
+    --badge-main:#ff6fb3;      /* bright pink */
+    --badge-frame:#e24b8f;     /* darker pink frame */
+    --strap:#ffd94a;          /* yellow strap */
+    --hook:#ff7fb0;           /* pink hook */
+    --ring:#c7ccd1;           /* metallic ring */
+    --name-strip:#7fe0d3;     /* greenish-blue strip */
+    --shadow: 0 18px 35px rgba(0,0,0,0.12);
+  }
 
-    /* Page layout */
-    html,body{height:100%;margin:0;background:var(--bg);font-family:Montserrat,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;}
-    .page{
-      min-height:100vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:32px;
-      box-sizing:border-box;
-    }
+  html,body{
+    height:100%;
+    margin:0;
+    background:
+      radial-gradient(1200px 800px at 10% 10%, rgba(255,111,179,0.06), transparent 8%),
+      linear-gradient(180deg, #fff 0%, #fbfbff 30%, #f2f6ff 100%);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:40px;
+  }
 
-    /* Ticket wrapper */
-    .ticket-wrap{
-      width:100%;
-      max-width:960px;
-      transform-origin:center;
-      /* keep some breathing room on very small screens */
-      padding:12px;
-    }
+  /* container to hold the badge, keeps it responsive */
+  .badge-scene{
+    width: min(420px, 70vw);
+    aspect-ratio: 3/4;
+    display:grid;
+    place-items:center;
+  }
 
-    /* Ticket board (scales) */
-    .ticket{
-      position:relative;
-      background:linear-gradient(to bottom, rgba(255,255,255,0.06), rgba(0,0,0,0)) ;
-      border-radius:calc(var(--ticket-radius));
-      box-shadow: 0 8px 28px rgba(0,0,0,0.15);
-      overflow:visible;
-      padding: clamp(18px, 3.6vw, 40px); /* inner padding scales */
-      box-sizing:border-box;
-      border: 12px solid var(--magenta); /* bold outer border like PNG */
-      background-color: var(--pink); /* inner pink panel color */
-    }
+  /* the lanyard strap above the badge */
+  .strap{
+    position:relative;
+    width:44%;
+    height:10%;
+    min-height:24px;
+    background: linear-gradient(180deg, var(--strap), #f0c53a);
+    border-radius:999px;
+    transform:translateY(-22%);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.06) inset;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:3;
+  }
 
-    /* Decorative perforation notch (left + right) */
-    .ticket::before,
-    .ticket::after{
-      content:"";
-      position:absolute;
-      top:50%;
-      width:26px;
-      height:54px;
-      margin-top:-27px;
-      background:var(--bg);
-      border-radius:50%;
-      box-shadow: 0 0 0 6px var(--magenta); /* ring against bg to match border cutout */
-      transform:translateY(-50%);
-      pointer-events:none;
-      z-index:5;
-    }
-    .ticket::before{ left:-42px; }
-    .ticket::after{ right:-42px; }
+  /* the small vertical connector between strap and ring */
+  .strap::after{
+    content:"";
+    position:absolute;
+    bottom:-12px;
+    width:14px;
+    height:14px;
+    background:var(--hook);
+    border-radius:4px 4px 2px 2px;
+    transform:translateY(50%);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+  }
 
-    /* Inner layout area */
-    .ticket-grid{
-      display:grid;
-      grid-template-columns: 1fr 260px;
-      gap: clamp(12px, 2.6vw, 28px);
-      align-items:start;
-    }
+  /* metallic ring */
+  .ring{
+    position:relative;
+    width:34px;
+    height:34px;
+    border-radius:50%;
+    background: conic-gradient(from 200deg, #f7fafc, #d1d6db);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:4;
+    transform:translateY(-8%);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+  }
 
-    /* Left main content */
-    .ticket-left{
-      min-height:160px;
-      display:flex;
-      flex-direction:column;
-      gap:12px;
-    }
+  .ring::after{
+    content:"";
+    width:20px;
+    height:20px;
+    border-radius:50%;
+    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9), rgba(255,255,255,0) 30%), #f3f5f7;
+    box-shadow: inset -2px -2px 0 rgba(0,0,0,0.02);
+  }
 
-    /* Right badge column */
-    .ticket-badge{
-      background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(0,0,0,0.02));
-      border-radius:12px;
-      padding:12px;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      box-sizing:border-box;
-      justify-content:flex-start;
-    }
+  /* badge body */
+  .badge{
+    width:100%;
+    height:84%;
+    background: linear-gradient(180deg, var(--badge-main) 0%, color-mix(in srgb, var(--badge-main) 88%, white 12%) 100%);
+    border-radius:18px;
+    padding:20px;
+    box-sizing:border-box;
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    align-items:center;
+    gap:12px;
+    border:10px solid var(--badge-frame);
+    box-shadow: var(--shadow);
+    z-index:2;
+    overflow:hidden;
+  }
 
-    /* Strap + clip + ring - positioned above ticket */
-    .strap{
-      position:absolute;
-      left:50%;
-      transform:translateX(-50%);
-      top: -44px; /* pull above border */
-      display:flex;
-      align-items:center;
-      gap:8px;
-      z-index:12;
-    }
+  /* subtle decoration: top clip shadow */
+  .badge::before{
+    content:"";
+    position:absolute;
+    top:-6px;
+    left:50%;
+    transform:translateX(-50%);
+    width:60%;
+    height:18px;
+    background: linear-gradient(180deg, rgba(0,0,0,0.06), rgba(0,0,0,0));
+    border-radius:10px;
+    filter: blur(2px);
+    opacity:0.6;
+    z-index:1;
+  }
 
-    .strap-bar{
-      width:160px;
-      height:20px;
-      background:var(--strap);
-      border-radius:6px;
-      box-shadow: 0 2px 0 rgba(0,0,0,0.12) inset;
-      display:block;
-    }
+  /* greenish-blue name strip near bottom */
+  .name-strip{
+    width:68%;
+    height:12%;
+    min-height:28px;
+    background: linear-gradient(180deg, color-mix(in srgb, var(--name-strip) 82%, #ffffff 18%), var(--name-strip));
+    border-radius:8px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.06) inset;
+    border:2px solid rgba(255,255,255,0.25);
+  }
 
-    .clip{
-      width:26px;
-      height:34px;
-      background: linear-gradient(180deg, #ff9fbe, var(--clip));
-      border-radius:6px;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.18);
-      display:block;
-      position:relative;
-      transform:translateY(2px);
-    }
+  /* small rounded corner accent at lower-left to mirror design */
+  .accent{
+    position:absolute;
+    left:12%;
+    bottom:14%;
+    width:18%;
+    height:8%;
+    background: rgba(255,255,255,0.12);
+    border-radius:8px;
+    transform:rotate(-6deg);
+    z-index:1;
+  }
 
-    .ring{
-      width:18px;
-      height:18px;
-      border-radius:50%;
-      background:var(--ring);
-      box-shadow: 0 1px 2px rgba(0,0,0,0.25);
-      display:block;
-      margin-left:6px;
-    }
-
-    /* Title and body text sizing using clamp for responsiveness */
-    .ticket h1{
-      margin:0;
-      font-size:clamp(20px, 3.6vw, 34px);
-      line-height:1.05;
-      letter-spacing:1px;
-      color:#3b0d2b; /* darker magenta-ish for contrast */
-      text-transform:uppercase;
-    }
-
-    .ticket p{
-      margin:0;
-      color:#2b2b2b;
-      font-size:clamp(14px, 2.2vw, 18px);
-      line-height:1.35;
-    }
-
-    .meta{
-      margin-top:8px;
-      display:flex;
-      gap:12px;
-      flex-wrap:wrap;
-    }
-
-    .meta .pill{
-      background:rgba(0,0,0,0.04);
-      padding:6px 10px;
-      border-radius:999px;
-      font-size:clamp(12px,1.8vw,14px);
-      color:#1b1b1b;
-    }
-
-    /* Right badge artwork: simulating inner badge with colored strip */
-    .badge-illustration{
-      width:100%;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      gap:10px;
-    }
-
-    .badge-card{
-      width:100%;
-      border-radius:10px;
-      background:linear-gradient(180deg,#ffd6ea,#ffd1e6);
-      padding:12px;
-      box-sizing:border-box;
-      border:4px solid rgba(225,0,123,0.12);
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      gap:8px;
-    }
-
-    .badge-photo{
-      width:100%;
-      height:90px;
-      background:linear-gradient(180deg,#fff7fb,#ffe7f3);
-      border-radius:6px;
-      display:block;
-      box-shadow:0 4px 12px rgba(0,0,0,0.08) inset;
-      border:2px solid rgba(95,192,180,0.12);
-      box-sizing:border-box;
-    }
-
-    .badge-strip{
-      width:100%;
-      height:12px;
-      border-radius:6px;
-      background:var(--accent);
-      margin-top:6px;
-      box-shadow:0 2px 6px rgba(95,192,180,0.18);
-    }
-
-    .badge-title{
-      font-weight:700;
-      font-size:clamp(12px,1.8vw,14px);
-      color:#3b0d2b;
-      text-transform:uppercase;
-    }
-
-    /* Footer small print */
-    .ticket-foot{
-      margin-top:16px;
-      border-top:1px dashed rgba(59,13,43,0.12);
-      padding-top:12px;
-      display:flex;
-      justify-content:space-between;
-      gap:12px;
-      align-items:center;
-      flex-wrap:wrap;
-    }
-
-    .small{
-      font-size:clamp(11px,1.6vw,13px);
-      color:rgba(11,11,11,0.6);
-    }
-
-    /* Responsive collapse for narrow screens */
-    @media (max-width:720px){
-      .ticket-grid{
-        grid-template-columns: 1fr;
-      }
-      .ticket-badge{ order:-1; align-items:flex-start; padding-left:6px; padding-right:6px; }
-      .ticket{ padding: clamp(14px, 4.5vw, 28px); }
-    }
-
-    /* Very small screens: tighten paddings and ensure text fits */
-    @media (max-width:420px){
-      .ticket{ border-width:10px; padding:14px; border-radius:14px; }
-      .strap-bar{ width:120px; height:18px; }
-      .ticket h1{ font-size:clamp(18px,5.2vw,22px); }
-      .badge-photo{ height:64px; }
-      .ticket-grid{ gap:12px; }
-    }
-
-    /* Accessibility improvements */
-    .sr-only{
-      position:absolute!important;
-      width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;
-    }
-  </style>
+  /* scale nicely on small screens */
+  @media (max-width:420px){
+    :root{ --shadow: 0 12px 20px rgba(0,0,0,0.10); }
+    .badge{ border-radius:14px; padding:14px; border-width:8px; }
+    .strap{ height:12px; }
+  }
+</style>
 </head>
 <body>
-  <div class="page">
-    <main class="ticket-wrap" role="main" aria-labelledby="event-title">
-      <!-- strap and clip -->
+  <div class="badge-scene" role="img" aria-label="Stylized ID badge background">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:8px;width:100%;max-width:380px;">
       <div class="strap" aria-hidden="true">
-        <div class="strap-bar" role="presentation"></div>
-        <div class="clip" role="presentation">
-          <!-- subtle notch to mimic clip shape -->
-          <svg width="26" height="34" viewBox="0 0 26 34" style="display:block;position:absolute;left:0;top:0">
-            <rect x="0" y="0" width="26" height="34" rx="6" fill="url(#g)"></rect>
-            <defs>
-              <linearGradient id="g" x1="0" x2="0" y1="0" y2="1">
-                <stop offset="0" stop-color="#ff9fbe"/>
-                <stop offset="1" stop-color="#ff8fb4"/>
-              </linearGradient>
-            </defs>
-          </svg>
-        </div>
-        <div class="ring" role="presentation"></div>
+        <div class="ring" aria-hidden="true"></div>
       </div>
 
-      <!-- ticket card -->
-      <article class="ticket" aria-labelledby="event-title" aria-describedby="event-desc">
-        <div class="ticket-grid">
-          <section class="ticket-left">
-            <h1 id="event-title">Whelnett Wedfest</h1>
-            <p id="event-desc">Festival information, travel advice, ticketing and what to bring. A joyful, festival wedding celebration with music, food and camping.</p>
-
-            <div class="meta" aria-hidden="true">
-              <div class="pill">Poplar Farm</div>
-              <div class="pill">Clevedon</div>
-              <div class="pill">BS21 6UN</div>
-            </div>
-
-            <div class="ticket-foot" aria-hidden="true">
-              <div class="small">Date: TBC</div>
-              <div class="small">Gates open: TBC</div>
-            </div>
-          </section>
-
-          <aside class="ticket-badge" aria-label="badge preview">
-            <div class="badge-illustration">
-              <div class="badge-card" role="img" aria-label="ticket badge illustration">
-                <div class="badge-photo" aria-hidden="true"></div>
-                <div class="badge-strip" aria-hidden="true"></div>
-              </div>
-              <div class="badge-title">Guest Badge</div>
-            </div>
-          </aside>
+      <div class="badge" aria-hidden="true">
+        <div class="accent"></div>
+        <div style="flex:1;width:100%;display:flex;align-items:center;justify-content:center;">
+          <!-- optional icon area (keeps composition like the image) -->
+          <svg width="68" height="68" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <rect x="2" y="2" width="20" height="20" rx="4" fill="rgba(255,255,255,0.08)"/>
+            <circle cx="12" cy="9" r="3" fill="rgba(255,255,255,0.18)"/>
+            <rect x="7" y="14" width="10" height="2" rx="1" fill="rgba(255,255,255,0.13)"/>
+          </svg>
         </div>
-      </article>
-    </main>
+
+        <div class="name-strip" aria-hidden="true"></div>
+      </div>
+    </div>
   </div>
 </body>
 </html>
+```
