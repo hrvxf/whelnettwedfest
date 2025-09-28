@@ -6,277 +6,279 @@
   <title>Whelnett Wedfest Info</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
   <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      background-color: #ffffff;
-      font-family: 'Montserrat', sans-serif;
-      color: #000;
-      cursor: pointer;
-      height: 100%;
-      overflow-x: hidden;
-    }
+  html, body {
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+    color: #000;
+    cursor: pointer;
+    height: 100%;
+    overflow-x: hidden;
+  }
 
-    /* Header styles */
+  /* Header styles */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: #e1007b;
+    border-bottom: 2px solid #eee;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 10px 20px;
+    position: relative;
+  }
+
+  .header-left img {
+    height: 50px;
+    width: auto;
+    max-width: 180px;
+  }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+  }
+
+  nav li a {
+    color: white;
+    font-weight: bold;
+    padding: 8px 12px;
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+  }
+
+  nav li a:hover,
+  nav li a:active {
+    color: #fcdb92;
+  }
+
+  .header-right img {
+    height: 30px;
+    width: auto;
+  }
+
+  /* Bunting */
+  .bunting-curve {
+    position: absolute;
+    bottom: -28px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  .flag {
+    width: 0;
+    height: 0;
+    border-left: 18px solid transparent;
+    border-right: 18px solid transparent;
+    border-bottom: 28px solid;
+    transform: rotate(-10deg);
+    border-radius: 0 0 50% 50%;
+    animation: sway 4s ease-in-out infinite;
+  }
+
+  .flag:nth-child(1)  { border-bottom-color: #e1007b; }
+  .flag:nth-child(2)  { border-bottom-color: #30997a; }
+  .flag:nth-child(3)  { border-bottom-color: #748ec4; }
+  .flag:nth-child(4)  { border-bottom-color: #8f9114; }
+  .flag:nth-child(5)  { border-bottom-color: #ff69b4; }
+  .flag:nth-child(6)  { border-bottom-color: #ffd700; }
+  .flag:nth-child(7)  { border-bottom-color: #00bfff; }
+  .flag:nth-child(8)  { border-bottom-color: #ff4500; }
+  .flag:nth-child(9)  { border-bottom-color: #e1007b; }
+  .flag:nth-child(10) { border-bottom-color: #30997a; }
+  .flag:nth-child(11) { border-bottom-color: #748ec4; }
+  .flag:nth-child(12) { border-bottom-color: #8f9114; }
+
+  @keyframes sway {
+    0%, 100% { transform: rotate(-10deg); }
+    50%      { transform: rotate(-5deg); }
+  }
+
+  /* Flip card content */
+  .container {
+    position: relative;
+    width: 100%;
+    overflow: hidden; /* ensures stretched image doesn’t spill */
+  }
+
+  .image-wrapper {
+    transition: transform 0.6s ease;
+  }
+
+  .flipped .image-wrapper {
+    transform: scaleX(-1);
+  }
+
+  .container img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* Text overlay */
+  .text-front, .text-back {
+    position: absolute;
+    top: 36%;
+    left: 10%;
+    right: 10%;
+    max-width: 1250px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    transition: opacity 0.6s ease;
+    background: none;
+    color: #000;
+    padding: 0;
+    z-index: 20; /* keep text above image */
+  }
+
+  .text-back { opacity: 0; }
+  .flipped .text-front { opacity: 0; }
+  .flipped .text-back { opacity: 1; }
+
+  h2 {
+    font-family: Impact, sans-serif;
+    font-size: 3em;
+    text-transform: uppercase;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+  }
+
+  h3 {
+    font-family: Impact, sans-serif;
+    font-size: 2.5em;
+    text-transform: uppercase;
+    margin-top: 1em;
+    margin-bottom: 0.3em;
+  }
+
+  p {
+    font-size: 2em;
+    margin: 0.3em 0;
+  }
+
+  strong { font-weight: bold; }
+
+  .maps-icon {
+    width: 30px;
+    height: 30px;
+    vertical-align: middle;
+    margin-left: 10px;
+  }
+
+  /* Footer */
+  footer {
+    background-color: #30997a;
+    text-align: center;
+    padding: 20px 10px;
+  }
+
+  footer p {
+    color: #fff;
+    font-size: 0.9em;
+    margin: 0 0 10px;
+  }
+
+  footer img {
+    width: 60px;
+    height: auto;
+    display: inline-block;
+  }
+
+  .attribution {
+    font-size: 0.6em;
+    margin-top: 5px;
+  }
+
+  .attribution a {
+    color: #30997a;
+    text-decoration: none;
+  }
+
+  .attribution a:hover {
+    text-decoration: underline;
+  }
+
+  /* ---------------- MEDIA QUERIES ---------------- */
+
+  @media (max-width: 768px) {
     header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background-color: #e1007b;
-      border-bottom: 2px solid #eee;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      padding: 10px 20px;
-      position: relative;
+      flex-direction: column;
+      align-items: flex-start;
     }
-
-    .header-left img {
-      height: 50px;
-      width: auto;
-      max-width: 180px;
-    }
-
     nav ul {
-      list-style: none;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin: 0;
-      padding: 0;
+      flex-direction: column;
+      align-items: flex-start;
     }
-
-    nav li a {
-      color: white;
-      font-weight: bold;
-      padding: 8px 12px;
-      text-decoration: none;
-      letter-spacing: 1px;
-      transition: color 0.3s ease;
+    nav li {
+      margin: 5px 0;
     }
-
-    nav li a:hover,
-    nav li a:active {
-      color: #fcdb92;
+    .header-right {
+      align-self: flex-end;
+      margin-top: 10px;
     }
+  }
 
-    .header-right img {
-      height: 30px;
-      width: auto;
-    }
-
-    @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      nav ul {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      nav li {
-        margin: 5px 0;
-      }
-      .header-right {
-        align-self: flex-end;
-        margin-top: 10px;
-      }
-    }
-
-    /* Bunting */
-    .bunting-curve {
-      position: absolute;
-      bottom: -28px;
-      left: 0;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      padding: 0 10px;
-      pointer-events: none;
-      z-index: 10;
-    }
-
-    .flag {
-      width: 0;
-      height: 0;
-      border-left: 18px solid transparent;
-      border-right: 18px solid transparent;
-      border-bottom: 28px solid;
-      transform: rotate(-10deg);
-      border-radius: 0 0 50% 50%;
-      animation: sway 4s ease-in-out infinite;
-    }
-
-    .flag:nth-child(1)  { border-bottom-color: #e1007b; }
-    .flag:nth-child(2)  { border-bottom-color: #30997a; }
-    .flag:nth-child(3)  { border-bottom-color: #748ec4; }
-    .flag:nth-child(4)  { border-bottom-color: #8f9114; }
-    .flag:nth-child(5)  { border-bottom-color: #ff69b4; }
-    .flag:nth-child(6)  { border-bottom-color: #ffd700; }
-    .flag:nth-child(7)  { border-bottom-color: #00bfff; }
-    .flag:nth-child(8)  { border-bottom-color: #ff4500; }
-    .flag:nth-child(9)  { border-bottom-color: #e1007b; }
-    .flag:nth-child(10) { border-bottom-color: #30997a; }
-    .flag:nth-child(11) { border-bottom-color: #748ec4; }
-    .flag:nth-child(12) { border-bottom-color: #8f9114; }
-
-    @keyframes sway {
-      0%, 100% { transform: rotate(-10deg); }
-      50%      { transform: rotate(-5deg); }
-    }
-
-    /* Flip card content */
-    .container {
-      position: relative;
-      width: 100%;
-    }
-
-    .image-wrapper {
-      transition: transform 0.6s ease;
-    }
-
-    .flipped .image-wrapper {
-      transform: scaleX(-1);
-    }
-
+  @media (max-width: 1024px) {
     .container img {
-      width: 100%;
-      height: auto;
-      display: block;
+      height: calc(110% + (180 - 110) * ((1024px - 100vw) / (1024 - 320)));
+      object-fit: cover;
     }
-
-    /* Unified proportional margins */
     .text-front, .text-back {
-      position: absolute;
-      top: 36%;
-      left: 10%;
-      right: 10%;
-      max-width: 1250px;
-      margin: 0 auto;
-      box-sizing: border-box;
-      transition: opacity 0.6s ease;
-      background: none;
-      color: #000;
-      padding: 0;
+      top: 35%;
+      left: 15%;
+      right: 15%;
+      font-size: 1.4em;
+      line-height: 1.4;
     }
+    h2 { font-size: 1em; }
+    h3 { font-size: 0.8em; }
+    p  { font-size: 0.6em; }
+  }
 
-    .text-back { opacity: 0; }
-    .flipped .text-front { opacity: 0; }
-    .flipped .text-back { opacity: 1; }
-
-    h2 {
-      font-family: Impact, sans-serif;
-      font-size: 3em;
-      text-transform: uppercase;
-      margin-top: 0;
-      margin-bottom: 0.5em;
+  @media (max-width: 480px) {
+    .container img {
+      height: 200%; /* stretch more on small screens */
+      object-fit: cover;
     }
-
-    h3 {
-      font-family: Impact, sans-serif;
-      font-size: 2.5em;
-      text-transform: uppercase;
-      margin-top: 1em;
-      margin-bottom: 0.3em;
+    .text-front, .text-back {
+      top: 38%;
+      left: 18%;
+      right: 18%;
+      font-size: 0.65em;
     }
+    h2 { font-size: 1em; }
+    h3 { font-size: 0.9em; }
+    p  { font-size: 0.65em; }
+  }
 
-    p {
-      font-size: 2em;
-      margin: 0.3em 0;
+  @media (max-width: 430px) {
+    .container img {
+      height: 250%; /* even more dramatic stretch */
+      object-fit: cover;
     }
+  }
 
-    strong { font-weight: bold; }
-
-    .maps-icon {
-      width: 30px;
-      height: 30px;
-      vertical-align: middle;
-      margin-left: 10px;
+  @media (min-width: 1500px) and (max-width: 1600px) {
+    .text-front, .text-back {
+      left: 14%;
+      right: 14%;
     }
-
-    /* Progressive background stretch + responsive text */
-    @media (max-width: 1024px) {
-      .container img {
-        /* smoothly scale height from 110% at 1024px to 180% at 320px */
-        height: calc(110% + (180 - 110) * ((1024px - 100vw) / (1024 - 320)));
-        object-fit: cover;
-      }
-      .text-front, .text-back {
-        top: 35%;
-        left: 15%;
-        right: 15%;
-        font-size: 1.4em;
-        line-height: 1.4;
-      }
-      h2 { font-size: 1em; }
-      h3 { font-size: 0.8em; }
-      p  { font-size: 0.6em; }
-    }
-
-    @media (max-width: 480px) {
-      .text-front, .text-back {
-        top: 38%;
-        left: 18%;
-        right: 18%;
-        font-size: 0.65em;
-      }
-      h2 { font-size: 1em; }
-      h3 { font-size: 0.9em; }
-      p  { font-size: 0.65em; }
-    }
-
-    /* Refined 360px background stretch */
-    @media (max-width: 360px) {
-      body {
-        background-image: url('FestivalInfo.png'); /* Replace with your actual image path */
-        background-size: 200% 200%; /* force stretch */
-        background-repeat: no-repeat;
-        background-position: center center;
-      }
-    }
-
-    /* Extra padding for wide screens (~1521px) */
-    @media (min-width: 1500px) and (max-width: 1600px) {
-      .text-front, .text-back {
-        left: 14%;
-        right: 14%;
-      }
-    }
-
-    /* Footer */
-    footer {
-      background-color: #30997a;
-      text-align: center;
-      padding: 20px 10px;
-    }
-
-    footer p {
-      color: #fff;
-      font-size: 0.9em;
-      margin: 0 0 10px;
-    }
-
-    footer img {
-      width: 60px;
-      height: auto;
-      display: inline-block;
-    }
-
-    .attribution {
-      font-size: 0.6em;
-      margin-top: 5px;
-    }
-
-    .attribution a {
-      color: #30997a;
-      text-decoration: none;
-    }
-
-    .attribution a:hover {
-      text-decoration: underline;
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
 
@@ -292,7 +294,8 @@
       <ul>
         <li><a href="ticket-info.html">Ticket Info</a></li>
         <li><a href="festival-info.html">Festival Info/FAQs</a></li>
-				        <li><a href="location.html">Location</a></li>
+                <li><a href="coming-soon.html">Lineup</a></li>
+        <li><a href="location.html">Location</a></li>
         <li><a href="coming-soon.html">Site Map</a></li>
         <li><a href="presents.html">Presents</a></li>
       </ul>
