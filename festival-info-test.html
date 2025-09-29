@@ -1,185 +1,209 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Stylized ID Badge Background</title>
-<style>
-  :root{
-    --bg:#f7f3ff;
-    --badge-main:#ff6fb3;      /* bright pink */
-    --badge-frame:#e24b8f;     /* darker pink frame */
-    --strap:#ffd94a;          /* yellow strap */
-    --hook:#ff7fb0;           /* pink hook */
-    --ring:#c7ccd1;           /* metallic ring */
-    --name-strip:#7fe0d3;     /* greenish-blue strip */
-    --shadow: 0 18px 35px rgba(0,0,0,0.12);
-  }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Festival Information</title>
 
-  html,body{
-    height:100%;
-    margin:0;
-    background:
-      radial-gradient(1200px 800px at 10% 10%, rgba(255,111,179,0.06), transparent 8%),
-      linear-gradient(180deg, #fff 0%, #fbfbff 30%, #f2f6ff 100%);
-    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:40px;
-  }
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 
-  /* container to hold the badge, keeps it responsive */
-  .badge-scene{
-    width: min(420px, 70vw);
-    aspect-ratio: 3/4;
-    display:grid;
-    place-items:center;
-  }
+  <style>
+    :root{
+      --bg-url: url('FestivalInfo.png');
+      --accent-teal: #17b4ad;
+    }
 
-  /* the lanyard strap above the badge */
-  .strap{
-    position:relative;
-    width:44%;
-    height:10%;
-    min-height:24px;
-    background: linear-gradient(180deg, var(--strap), #f0c53a);
-    border-radius:999px;
-    transform:translateY(-22%);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.06) inset;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    z-index:3;
-  }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%;background:#0f7f78;font-family:Montserrat,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;}
+    body{display:flex;align-items:center;justify-content:center;padding:12px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
 
-  /* the small vertical connector between strap and ring */
-  .strap::after{
-    content:"";
-    position:absolute;
-    bottom:-12px;
-    width:14px;
-    height:14px;
-    background:var(--hook);
-    border-radius:4px 4px 2px 2px;
-    transform:translateY(50%);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.08);
-  }
+    .scene{
+      width:100%;
+      max-width:720px;
+      height:calc(min(90vh, 980px));
+      perspective:1200px;
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
 
-  /* metallic ring */
-  .ring{
-    position:relative;
-    width:34px;
-    height:34px;
-    border-radius:50%;
-    background: conic-gradient(from 200deg, #f7fafc, #d1d6db);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    z-index:4;
-    transform:translateY(-8%);
-    box-shadow: 0 6px 14px rgba(0,0,0,0.08);
-  }
+    .pass{
+      width:100%;
+      height:100%;
+      position:relative;
+      transform-style:preserve-3d;
+      transition: transform 700ms cubic-bezier(.2,.9,.3,1);
+      border-radius:12px;
+      box-shadow:0 8px 28px rgba(0,0,0,.35);
+      overflow:visible;
+      background-color:transparent;
+    }
 
-  .ring::after{
-    content:"";
-    width:20px;
-    height:20px;
-    border-radius:50%;
-    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9), rgba(255,255,255,0) 30%), #f3f5f7;
-    box-shadow: inset -2px -2px 0 rgba(0,0,0,0.02);
-  }
+    .scene.flipped .pass { transform: rotateY(180deg); }
 
-  /* badge body */
-  .badge{
-    width:100%;
-    height:84%;
-    background: linear-gradient(180deg, var(--badge-main) 0%, color-mix(in srgb, var(--badge-main) 88%, white 12%) 100%);
-    border-radius:18px;
-    padding:20px;
-    box-sizing:border-box;
-    position:relative;
-    display:flex;
-    flex-direction:column;
-    justify-content:flex-end;
-    align-items:center;
-    gap:12px;
-    border:10px solid var(--badge-frame);
-    box-shadow: var(--shadow);
-    z-index:2;
-    overflow:hidden;
-  }
+    .face{
+      position:absolute;
+      inset:0;
+      backface-visibility:hidden;
+      border-radius:12px;
+      display:flex;
+      align-items:flex-start;
+      justify-content:center;
+      overflow:visible;
+      background-repeat:no-repeat;
+      background-position: center top;
+      background-size: contain;
+      background-image: var(--bg-url);
+    }
 
-  /* subtle decoration: top clip shadow */
-  .badge::before{
-    content:"";
-    position:absolute;
-    top:-6px;
-    left:50%;
-    transform:translateX(-50%);
-    width:60%;
-    height:18px;
-    background: linear-gradient(180deg, rgba(0,0,0,0.06), rgba(0,0,0,0));
-    border-radius:10px;
-    filter: blur(2px);
-    opacity:0.6;
-    z-index:1;
-  }
+    .face.back { transform: rotateY(180deg); }
 
-  /* greenish-blue name strip near bottom */
-  .name-strip{
-    width:68%;
-    height:12%;
-    min-height:28px;
-    background: linear-gradient(180deg, color-mix(in srgb, var(--name-strip) 82%, #ffffff 18%), var(--name-strip));
-    border-radius:8px;
-    box-shadow: 0 6px 12px rgba(0,0,0,0.06) inset;
-    border:2px solid rgba(255,255,255,0.25);
-  }
+    .text-frame{
+			position:absolute;
+			left:20%;
+			right:20%;
+			top:33%;
+			bottom:10%;
+			overflow:auto;
+			background: transparent; /* removed translucent gradient so image is unblurred */
+			-webkit-backdrop-filter: none;
+			backdrop-filter: none;
+			padding: clamp(6px, 1.6vw, 12px);
+			border-radius:8px;
+			box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
+		}
 
-  /* small rounded corner accent at lower-left to mirror design */
-  .accent{
-    position:absolute;
-    left:12%;
-    bottom:14%;
-    width:18%;
-    height:8%;
-    background: rgba(255,255,255,0.12);
-    border-radius:8px;
-    transform:rotate(-6deg);
-    z-index:1;
-  }
+    /* Reduced by ~1.5pt (≈0.125rem) from previous sizes */
+    h2,h3{
+      margin-bottom:0.22rem;
+      line-height:1;
+      font-family: Impact, 'Haettenschweiler', 'Arial Black', sans-serif;
+      color:#1a0120;
+      text-shadow:0 1px 0 rgba(255,255,255,.6);
+    }
 
-  /* scale nicely on small screens */
-  @media (max-width:420px){
-    :root{ --shadow: 0 12px 20px rgba(0,0,0,0.10); }
-    .badge{ border-radius:14px; padding:14px; border-width:8px; }
-    .strap{ height:12px; }
-  }
-</style>
+    h2{ font-size: clamp(0.815rem, 2.70vw, 1.045rem); }
+    h3{ font-size: clamp(0.705rem, 2.20vw, 0.865rem); margin-top:0.44rem; }
+
+    p{ font-size: clamp(0.565rem, 1.75vw, 0.705rem); color:#12030f; margin-top:0.28rem; line-height:1.28; }
+    p a{ color:var(--accent-teal); text-decoration:underline; }
+    strong{ font-weight:600; color:#12030f; }
+
+    .text-frame::-webkit-scrollbar{ width:6px; }
+    .text-frame::-webkit-scrollbar-thumb{ background: rgba(0,0,0,0.10); border-radius:6px; }
+		
+				/* for just-above-phone widths */
+		@media (min-width: 431px) and (max-width: 679px) {
+			.text-frame { left: 22%; right: 22%; }
+		}
+
+		/* tablet / small desktop */
+		@media (min-width: 680px) and (max-width: 899px) {
+			.text-frame { left: 24%; right: 24%; }
+		}
+
+		/* larger desktops */
+		@media (min-width: 900px) {
+			.text-frame { left: 26%; right: 26%; }
+		}
+
+    .hint{ position:absolute; left:12px; top:12px; background: rgba(255,255,255,0.85); color:#2a1a1a; font-size:11px; padding:6px 10px; border-radius:999px; box-shadow:0 2px 6px rgba(0,0,0,0.12); user-select:none; display:none; }
+    @media(min-width:680px){ .hint{ display:block; } }
+		
+		/* show a matching hint on the back face; position on the right so they don't overlap visually */
+		.hint-back{
+			right:12px;
+			left:auto;
+			top:12px;
+			display:none;
+		}
+		
+		@media(min-width:680px){
+			.hint-back{ display:block; }
+		}
+
+    .pass, .text-frame, .face { -webkit-user-select:none; -ms-user-select:none; user-select:none; }
+    .text-frame * { user-select:text; }
+
+    @media (max-width:420px){
+      .text-frame{ left:10%; right:10%; top:36%; padding:8px; }
+      h2{ font-size:0.905rem; }
+      p{ font-size:0.575rem; }
+    }
+		
+		.face .text-frame h2 {
+			text-align: center;
+			text-transform: uppercase;
+			letter-spacing: 0.04em;
+			margin-left: 0;
+			margin-right: 0;
+		}
+
+  </style>
 </head>
 <body>
-  <div class="badge-scene" role="img" aria-label="Stylized ID badge background">
-    <div style="display:flex;flex-direction:column;align-items:center;gap:8px;width:100%;max-width:380px;">
-      <div class="strap" aria-hidden="true">
-        <div class="ring" aria-hidden="true"></div>
-      </div>
 
-      <div class="badge" aria-hidden="true">
-        <div class="accent"></div>
-        <div style="flex:1;width:100%;display:flex;align-items:center;justify-content:center;">
-          <!-- optional icon area (keeps composition like the image) -->
-          <svg width="68" height="68" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <rect x="2" y="2" width="20" height="20" rx="4" fill="rgba(255,255,255,0.08)"/>
-            <circle cx="12" cy="9" r="3" fill="rgba(255,255,255,0.18)"/>
-            <rect x="7" y="14" width="10" height="2" rx="1" fill="rgba(255,255,255,0.13)"/>
-          </svg>
+  <div class="scene" id="scene" tabindex="0" aria-label="Festival pass. Click to flip for more information.">
+    <div class="pass" id="pass">
+
+      <section class="face front" aria-hidden="false">
+        <div class="hint">Click to flip</div>
+        <div class="text-frame" id="frontText">
+          <h2>FESTIVAL INFORMATION</h2>
+          <p>The sections below aim to give you all the information you need about Whelnett Wedfest.</p>
+
+          <h3>Location</h3>
+          <p>Poplar Farm, Clevedon, Somerset BS21 6UN <a href="https://hannahwh05.github.io/whelnettwedfest/Poplar-Farm-Google-Maps.html" target="_blank" rel="noopener noreferrer">Map</a></p>
+
+          <h3>Travel</h3>
+          <p><strong>Car:</strong> Poplar Farm is just 10 minutes from Junction 20 M5. Please be weary of cyclists and pedestrians along the country roads near the Farm.</p>
+          <p><strong>Parking:</strong> There is plenty of parking available at Poplar Farm but please note that this is not immediately next to camping and bell tent areas. There will be clear signage when you arrive.</p>
+          <p><strong>Train:</strong> The closest train station is Yatton. Either pre-book a taxi or ask a friend to collect you – it is about a 10 minute drive.</p>
+          <p><strong>Cycle:</strong> If you are feeling adventurous, Poplar Farm is along National Cycle Route 33. North Somerset has some beautiful countryside to explore along the cycle routes.</p>
+          <p><strong>Taxis:</strong> We would advise to book a taxi or Uber in advance as they are not frequent in the area. Local Companies: North Somerset Taxis, Streets Ahead Taxis, Triangle Cars Clevedon</p>
+
         </div>
+      </section>
 
-        <div class="name-strip" aria-hidden="true"></div>
-      </div>
+			<!-- BACK FACE (holds the rest of the content) -->
+			<section class="face back" aria-hidden="true">
+				<div class="hint hint-back">Click to flip</div>
+				<div class="text-frame" id="backText">
+					<h3>Accommodation</h3>
+					<p>If camping or even glamping isn’t your style, Poplar Farm is not far from Clevedon or Yatton for hotels and AirBnBs. <br> We highly encourage you to bring the festival vibes though and rent a bell tent! <br> See our glamping options page for more information on what to expect.</p>
+
+					<h3>Dress Code</h3>
+					<p>We encourage earthy tones and bright colours for the handfasting ceremony as it is thought to bring positive energy to the occasion. We suggest more relaxed suits and flowy, comfortable dresses. Shoes with thin heels, such as stilettos, are not advised as we will be on grass for much of the day.<br><br> Bring vibrant, festival themed clothing for the rest of the day and be prepared for whatever the weather may bring!</p>
+
+					<h3>Contacts</h3>
+					<p>Any queries, whatsapp Hannah or Laurie.</p>
+				</div>
+			</section>
+
     </div>
   </div>
+
+  <script>
+    (function(){
+      const scene = document.getElementById('scene');
+      let flipped = false;
+      function toggleFlip(e){
+        const sel = window.getSelection();
+        if (sel && sel.toString().length) return;
+        flipped = !flipped;
+        scene.classList.toggle('flipped', flipped);
+      }
+      scene.addEventListener('click', toggleFlip);
+      scene.addEventListener('keydown', function(e){
+        if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') { e.preventDefault(); toggleFlip(); }
+      });
+      scene.addEventListener('transitionend', function(){
+        if (scene.classList.contains('flipped')) document.getElementById('backText').scrollTop = 0;
+        else document.getElementById('frontText').scrollTop = 0;
+      });
+    })();
+  </script>
+
 </body>
 </html>
-```
