@@ -76,7 +76,6 @@
       transition: transform 220ms ease, top 220ms ease;
     }
 
-    /* Reduced by ~1.5pt (≈0.125rem) from previous sizes */
     h2,h3{
       margin-bottom:0.22rem;
       line-height:1;
@@ -113,7 +112,6 @@
     .hint{ position:absolute; left:12px; top:12px; background: rgba(255,255,255,0.85); color:#2a1a1a; font-size:11px; padding:6px 10px; border-radius:999px; box-shadow:0 2px 6px rgba(0,0,0,0.12); user-select:none; display:none; }
     @media(min-width:680px){ .hint{ display:block; } }
         
-    /* show a matching hint on the back face; position on the right so they don't overlap visually */
     .hint-back{
       right:12px;
       left:auto;
@@ -142,16 +140,9 @@
       margin-right: 0;
     }
 
-    /* New: nudge text-frame up slightly for very small phones (320–430px) */
+    /* Increased nudge: shift up an additional amount (total -12%) for 320–430px */
     @media (min-width:320px) and (max-width:430px) {
-      /* two approaches included — uncomment the one you prefer */
-
-      /* 1) translateY: smooth, preserves layout geometry */
-      .text-frame { transform: translateY(-6%); }
-
-      /* 2) top adjustment: moves the box itself (use if you prefer moving top offset)
-      .text-frame { top: 30%; }
-      */
+      .text-frame { transform: translateY(-12%); }
     }
   </style>
 </head>
@@ -179,7 +170,6 @@
         </div>
       </section>
 
-      <!-- BACK FACE (holds the rest of the content) -->
       <section class="face back" aria-hidden="true">
         <div class="hint hint-back">Click to flip</div>
         <div class="text-frame" id="backText">
