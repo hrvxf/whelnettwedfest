@@ -1,120 +1,467 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Whelnett Wedfest 2026 – Ticket Info</title>
-  <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Handlee&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Whelnett Wedfest 2026 Invitation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
-      font-family: 'Handlee', cursive;
-      background: #fffaf3 url('your-festival-background.jpg') no-repeat center top;
-      background-size: cover;
-      color: #333;
-      text-align: center;
+      font-family: 'Montserrat', sans-serif;
+      background-color: #ffffff;
     }
 
     header {
-      background: rgba(255, 255, 255, 0.85);
-      padding: 1.5rem;
-      border-bottom: 4px solid #f7c948;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background-color: #e1007b;
+      border-bottom: 2px solid #eee;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 10px 20px;
+      font-family: 'Montserrat', sans-serif;
+      position: relative;
     }
 
-    header h1 {
-      font-family: 'Amatic SC', cursive;
-      font-size: 3rem;
-      margin: 0;
-      color: #e63946;
-      letter-spacing: 2px;
+    .header-left {
+      flex: 0 0 auto;
+    }
+
+    .header-left img {
+      height: 50px;
+      width: auto;
+      max-width: 180px;
     }
 
     nav {
-      margin-top: 0.5rem;
+      flex: 1 1 auto;
+      text-align: center;
     }
 
-    nav a {
-      margin: 0 1rem;
+    nav ul {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav li a {
       text-decoration: none;
-      color: #333;
+      color: white;
       font-weight: bold;
+      font-family: 'Montserrat', sans-serif;
+      padding: 8px 12px;
+      transition: color 0.3s ease;
+      letter-spacing: 1px;
     }
 
-    .ticket-section {
-      max-width: 800px;
-      margin: 2rem auto;
-      padding: 1.5rem;
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    nav li a:hover,
+    nav li a:active {
+      color: #fcdb92;
     }
 
-    .ticket-section h2 {
-      font-family: 'Amatic SC', cursive;
-      font-size: 2.2rem;
-      margin-bottom: 1rem;
-      color: #457b9d;
+    .header-right {
+      flex: 0 0 auto;
     }
 
-    .ticket-placeholder {
-      border: 2px dashed #ccc;
-      padding: 1rem;
-      margin: 1rem 0;
-      font-style: italic;
-      color: #666;
+    .header-right img {
+      height: 30px;
+      width: auto;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav ul {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav li {
+        margin: 5px 0;
+      }
+
+      .header-right {
+        align-self: flex-end;
+        margin-top: 10px;
+      }
+    }
+
+    /* --- Bunting curve styles merged in --- */
+    .bunting-curve {
+      position: absolute;
+      bottom: -28px;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 10px;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .flag {
+      width: 0;
+      height: 0;
+      border-left: 18px solid transparent;
+      border-right: 18px solid transparent;
+      border-bottom: 28px solid;
+      transform: rotate(-10deg);
+      border-radius: 0 0 50% 50%;
+      animation: sway 4s ease-in-out infinite;
+    }
+
+    .flag:nth-child(1)  { border-bottom-color: #e1007b; }
+    .flag:nth-child(2)  { border-bottom-color: #30997a; }
+    .flag:nth-child(3)  { border-bottom-color: #748ec4; }
+    .flag:nth-child(4)  { border-bottom-color: #8f9114; }
+    .flag:nth-child(5)  { border-bottom-color: #ff69b4; }
+    .flag:nth-child(6)  { border-bottom-color: #ffd700; }
+    .flag:nth-child(7)  { border-bottom-color: #00bfff; }
+    .flag:nth-child(8)  { border-bottom-color: #ff4500; }
+    .flag:nth-child(9)  { border-bottom-color: #e1007b; }
+    .flag:nth-child(10) { border-bottom-color: #30997a; }
+    .flag:nth-child(11) { border-bottom-color: #748ec4; }
+    .flag:nth-child(12) { border-bottom-color: #8f9114; }
+
+    @keyframes sway {
+      0%, 100% { transform: rotate(-10deg); }
+      50%      { transform: rotate(-5deg); }
+    }
+
+    /* --- Your existing section styles remain unchanged --- */
+    .top-section {
+      background-color: #748ec4;
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .top-section h1 {
+      font-family: Impact, sans-serif;
+      text-transform: uppercase;
+      font-size: 48px;
+      margin-bottom: 20px;
+      letter-spacing: 4px;
+    }
+
+    .top-section p {
+      font-size: 18px;
+      margin: 10px 0;
+    }
+
+    .middle-section {
+      background-color: #B5CB9E;
+      color: white;
+      padding: 60px 200px;
+      text-align: center;
+    }
+
+    .middle-section h1 {
+      font-family: Impact, sans-serif;
+      text-transform: uppercase;
+      font-size: 48px;
+      margin-bottom: 20px;
+      letter-spacing: 4px;
+    }
+
+    .middle-section h2 {
+      font-size: 25px;
+      margin-bottom: 20px;
+      letter-spacing: 4px;
+    }
+
+    .middle-section h3 {
+      font-size: 20px;
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    .middle-section p {
+      font-size: 18px;
+      margin: 10px 0;
+    }
+
+    li {
+      padding-left: 100px;
+      margin-left: 0;
+      display: inline;
+    }
+
+    .bottom-section {
+      background-color: #fcdb92;
+      padding: 80px 20px 120px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo {
+      max-width: 300px;
+      height: auto;
+      margin-bottom: 50px;
+    }
+
+    .cta-button {
+      background-color: #30997a;
+      border-radius: 40px;
+      font-size: 1.2em;
+      font-family: Impact, sans-serif;
+      letter-spacing: 2px;
+      position: relative;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      box-shadow: 0 0 12px rgba(255, 182, 193, 0.5);
+      transition: all 0.4s ease;
+      overflow: hidden;
+      width: 120px;
+      padding: 16px 0;
+      text-align: center;
+      border: 4px solid transparent;
+      background-image:
+        linear-gradient(#30997a, #30997a),
+        linear-gradient(45deg, #8f9114, #748ec4, #30997a, #e1007b);
+      background-origin: border-box;
+      background-clip: padding-box, border-box;
+      color: white;
+      text-transform: uppercase;
+    }
+
+    .cta-button:hover {
+      width: 320px;
+      padding: 16px 32px;
+    }
+
+    .cta-button .label {
+      transition: opacity 0.3s ease;
+    }
+
+    .cta-button .alt-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 1.1em;
+      font-weight: bold;
+      opacity: 0;
+      color: white;
+      white-space: nowrap;
+    }
+
+    .cta-button:hover .label {
+      opacity: 0;
+    }
+
+    .cta-button:hover .alt-text {
+      opacity: 1;
     }
 
     footer {
-      margin-top: 3rem;
-      padding: 1rem;
-      font-size: 0.9rem;
-      background: rgba(255, 255, 255, 0.85);
-      border-top: 3px solid #f7c948;
+      background-color: #30997a;
+      text-align: center;
+      padding: 20px 10px;
+    }
+
+    footer p {
+      color: #fff;
+      font-size: 0.9em;
+      margin: 0 0 10px;
+    }
+
+    footer img {
+      width: 60px;
+      height: auto;
+      display: inline-block;
+    }
+
+    .attribution {
+      font-size: 0.6em;
+      margin-top: 5px;
+    }
+
+    .attribution a {
+      color: #30997a;
+      text-decoration: none;
+    }
+
+    .attribution a:hover {
+      text-decoration: underline;
+    }
+
+    /* Bell tent gallery - three across, stack on small screens */
+    .bell-gallery {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      align-items: stretch;
+      margin-top: 18px;
+      flex-wrap: wrap;
+      padding: 0;
+      list-style: none;
+    }
+
+    .bell-gallery .bell-item {
+      flex: 1 1 30%;
+      max-width: 30%;
+      box-sizing: border-box;
+    }
+
+    .bell-gallery .bell-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 8px;
+      object-fit: cover;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+      border: 4px solid rgba(255,255,255,0.18);
+    }
+
+    /* Medium screens: 2 across */
+    @media (max-width: 900px) {
+      .middle-section {
+        padding-left: 40px;
+        padding-right: 40px;
+      }
+      .bell-gallery .bell-item {
+        flex: 1 1 45%;
+        max-width: 45%;
+      }
+    }
+
+    /* Small screens: stacked */
+    @media (max-width: 540px) {
+      .bell-gallery {
+        gap: 12px;
+        margin-top: 14px;
+      }
+      .bell-gallery .bell-item {
+        flex: 1 1 100%;
+        max-width: 100%;
+      }
     }
   </style>
 </head>
+
 <body>
 
-  <header>
-    <h1>🎟 Ticket Information 🎟</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="info.html">Info</a>
-      <a href="checklist.html">Checklist</a>
-      <a href="presents.html">Presents</a>
-      <a href="ticket-info.html">Tickets</a>
-    </nav>
-  </header>
+<header>
+  <div class="header-left">
+    <a href="https://hannahwh05.github.io/whelnettwedfest/">
+      <img src="whelnettwedfestlogo.png" alt="Whelnett Wedfest Logo" style="height: 50px; width: auto; max-width: 180px;">
+    </a>
+  </div>
 
-  <main>
-    <section class="ticket-section">
-      <h2>Day Tickets</h2>
-      <div class="ticket-placeholder">
-        <!-- Add your day ticket details here -->
-        <p>[Space reserved for your text on day tickets]</p>
-      </div>
-    </section>
+  <nav>
+    <ul style="list-style: none; display: flex; flex-wrap: wrap; justify-content: center; margin: 0; padding: 0;">
+      <li><a href="https://hannahwh05.github.io/whelnettwedfest/ticket-info.html" style="color: white; font-weight: bold; font-family: 'Montserrat', sans-serif; padding: 8px 12px; text-decoration: none; letter-spacing: 1px;">Ticket Info</a></li>
+      <li><a href="https://hannahwh05.github.io/whelnettwedfest/festival-info.html" style="color: white; font-weight: bold; font-family: 'Montserrat', sans-serif; padding: 8px 12px; text-decoration: none; letter-spacing: 1px;">Festival Info/FAQs</a></li>
+      <li><a href="https://hannahwh05.github.io/whelnettwedfest/coming-soon.html" style="color: white; font-weight: bold; font-family: 'Montserrat', sans-serif; padding: 8px 12px; text-decoration: none; letter-spacing: 1px;">Lineup</a></li>
+      <li><a href="https://hannahwh05.github.io/whelnettwedfest/location.html" style="color: white; font-weight: bold; font-family: 'Montserrat', sans-serif; padding: 8px 12px; text-decoration: none; letter-spacing: 1px;">Location</a></li>
+      <li><a href="https://hannahwh05.github.io/whelnettwedfest/coming-soon.html" style="color: white; font-weight: bold; font-family: 'Montserrat', sans-serif; padding: 8px 12px; text-decoration: none; letter-spacing: 1px;">Site Map</a></li>
+      <li><a href="https://hannahwh05.github.io/whelnettwedfest/presents.html" style="color: white; font-weight: bold; font-family: 'Montserrat', sans-serif; padding: 8px 12px; text-decoration: none; letter-spacing: 1px;">Presents</a></li>
+    </ul>
+  </nav>
 
-    <section class="ticket-section">
-      <h2>Camping Tickets</h2>
-      <div class="ticket-placeholder">
-        <!-- Add your camping ticket details here -->
-        <p>[Space reserved for your text on camping tickets]</p>
-      </div>
-    </section>
+  <div class="header-right">
+    <a href="https://www.instagram.com/whelnettwedfest/#" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" style="height: 30px; width: auto;">
+    </a>
+  </div>
 
-    <section class="ticket-section">
-      <h2>Glamping Tickets</h2>
-      <div class="ticket-placeholder">
-        <!-- Add your glamping ticket details here -->
-        <p>[Space reserved for your text on glamping tickets]</p>
-      </div>
-    </section>
-  </main>
+  <div class="bunting-curve">
+    <div class="flag"></div>
+    <div class="flag"></div>
+    <div class="flag"></div>
+    <div class="flag"></div>
+    <div class="flag"></div>
+    <div class="flag"></div>
+    <div class="flag"></div>
+    <div class="flag"></div>
+    <div class="flag"></div>
+    <div class="flag"></div>
+    <div class="flag"></div>
+    <div class="flag"></div>
+  </div>
+</header>
 
-  <footer>
-    <p>© Whelnett Wedfest 2026 · Designed with love, bunting, and confetti ✨</p>
-  </footer>
+<section class="top-section">
+  <h1>WHELNETT WEDFEST 2026</h1>
+  <br>
+  <p>Hannah Wheldon and Laurence Bennett invite you to Whelnett Wedfest 2026!</p>
+  <br>
+  <p>To get your hands on these exclusive tickets, please register (RSVP) ahead of ticket release. All those who hope to attend Whelnett Wedfest must individually register for tickets.</p>
+  <br>
+  <p>To learn more about ticket types, visit our <a href="https://hannahwh05.github.io/whelnettwedfest/ticket-info.html" style="color: #fcdb92; text-decoration: underline;">Ticket Info</a> page.</p>
+  <br>
+  <p>For more details on Whelnett Wedfest, including, location, travel, accomodation and dress code, please visit the <a href="https://hannahwh05.github.io/whelnettwedfest/festival-info.html" style="color: #fcdb92; text-decoration: underline;">Festival Info/FAQs</a> section.</p>
+</section>
+
+<section class="middle-section">
+  <h1>TICKET INFO</h1>
+  <br>
+  <h2>Day Ticket</h2>
+  <p>Join us for the ceremony, food and party. Stay as late as you like - head on home or find your own accomodation.</p>
+  <br>
+  <h2>Stay on Site</h2>
+  <p>Both campers and glampers are welcome to stay over on the Friday night before too. Prices quoted are for 2 nights (Friday and Saturday). There will be toilets and showers available. Breakfast on Sunday morning included. </p>
+  <br>
+  <h3>Camping</h3>
+  <p style="text-align:left;">Rock up and pitch up! Bring your own tent and bedding so you can crash whenever you like. £35 per person.</p>
+  <br>
+  <h3>Glamping</h3>
+  <p style="text-align:left;">Prefer to sleep in luxury and feel the full festival vibe?</p>
+
+  <!-- Bell tent gallery inserted directly below that line -->
+  <div class="bell-gallery" aria-label="Bell tent options">
+    <div class="bell-item">
+      <img src="BellTent1.png" alt="Bell tent 1">
+    </div>
+    <div class="bell-item">
+      <img src="BellTent3.png" alt="Bell tent 3">
+    </div>
+    <div class="bell-item">
+      <img src="BellTent2.png" alt="Bell tent 2">
+    </div>
+  </div>
+
+  <br>
+  <p style="text-align:left;">Rent a 5 or 4 metre furnished bell tent, including camp beds, mattresses and bedding. Prices range between £88 - £135 depending on how many people you share a bell tent with.</p>
+  <br>
+  <p style="text-align:left;">
+    <li style="text-align:left;">2 people: £135pp</li>
+    <li style="text-align:left;">3 people: £108pp</li>
+    <li style="text-align:left;">4 or 5 people: £95pp</li>
+    <li style="text-align:left;">6 people: £88pp</li>
+  </p>
+</section>
+
+<section class="bottom-section">
+  <img src="whelnettwedfestlogo.png" alt="Whelnett Wedfest Logo" class="logo" />
+  <a href="https://hannahwh05.github.io/whelnettwedfest/queue.html" target="_blank" class="cta-button" title="Register for Whelnett Wedfest Tickets">
+    <span class="label">RSVP</span>
+    <span class="alt-text">Whelnett Wedfest Registration</span>
+  </a>
+</section>
+
+<footer>
+  <p>Whelnett Wedfest Ltd.</p>
+  <img src="whelnettwedfestlogo.png" alt="Whelnett Wedfest Logo">
+  <p class="attribution">
+    <a href="https://www.flaticon.com/free-icons/instagram" title="instagram icons">Instagram icons created by Grow studio - Flaticon</a>
+  </p>
+</footer>
 
 </body>
 </html>
