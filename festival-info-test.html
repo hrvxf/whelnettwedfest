@@ -60,19 +60,21 @@
     .face.back { transform: rotateY(180deg); }
 
     .text-frame{
-			position:absolute;
-			left:20%;
-			right:20%;
-			top:33%;
-			bottom:10%;
-			overflow:auto;
-			background: transparent; /* removed translucent gradient so image is unblurred */
-			-webkit-backdrop-filter: none;
-			backdrop-filter: none;
-			padding: clamp(6px, 1.6vw, 12px);
-			border-radius:8px;
-			box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
-		}
+      position:absolute;
+      left:20%;
+      right:20%;
+      top:33%;
+      bottom:10%;
+      overflow:auto;
+      background: transparent;
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+      padding: clamp(6px, 1.6vw, 12px);
+      border-radius:8px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
+      transform: translateY(0);
+      transition: transform 220ms ease, top 220ms ease;
+    }
 
     /* Reduced by ~1.5pt (≈0.125rem) from previous sizes */
     h2,h3{
@@ -92,36 +94,36 @@
 
     .text-frame::-webkit-scrollbar{ width:6px; }
     .text-frame::-webkit-scrollbar-thumb{ background: rgba(0,0,0,0.10); border-radius:6px; }
-		
-				/* for just-above-phone widths */
-		@media (min-width: 431px) and (max-width: 679px) {
-			.text-frame { left: 22%; right: 22%; }
-		}
+        
+    /* for just-above-phone widths */
+    @media (min-width: 431px) and (max-width: 679px) {
+      .text-frame { left: 22%; right: 22%; }
+    }
 
-		/* tablet / small desktop */
-		@media (min-width: 680px) and (max-width: 899px) {
-			.text-frame { left: 24%; right: 24%; }
-		}
+    /* tablet / small desktop */
+    @media (min-width: 680px) and (max-width: 899px) {
+      .text-frame { left: 24%; right: 24%; }
+    }
 
-		/* larger desktops */
-		@media (min-width: 900px) {
-			.text-frame { left: 26%; right: 26%; }
-		}
+    /* larger desktops */
+    @media (min-width: 900px) {
+      .text-frame { left: 26%; right: 26%; }
+    }
 
     .hint{ position:absolute; left:12px; top:12px; background: rgba(255,255,255,0.85); color:#2a1a1a; font-size:11px; padding:6px 10px; border-radius:999px; box-shadow:0 2px 6px rgba(0,0,0,0.12); user-select:none; display:none; }
     @media(min-width:680px){ .hint{ display:block; } }
-		
-		/* show a matching hint on the back face; position on the right so they don't overlap visually */
-		.hint-back{
-			right:12px;
-			left:auto;
-			top:12px;
-			display:none;
-		}
-		
-		@media(min-width:680px){
-			.hint-back{ display:block; }
-		}
+        
+    /* show a matching hint on the back face; position on the right so they don't overlap visually */
+    .hint-back{
+      right:12px;
+      left:auto;
+      top:12px;
+      display:none;
+    }
+        
+    @media(min-width:680px){
+      .hint-back{ display:block; }
+    }
 
     .pass, .text-frame, .face { -webkit-user-select:none; -ms-user-select:none; user-select:none; }
     .text-frame * { user-select:text; }
@@ -131,15 +133,26 @@
       h2{ font-size:0.905rem; }
       p{ font-size:0.575rem; }
     }
-		
-		.face .text-frame h2 {
-			text-align: center;
-			text-transform: uppercase;
-			letter-spacing: 0.04em;
-			margin-left: 0;
-			margin-right: 0;
-		}
 
+    .face .text-frame h2 {
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    /* New: nudge text-frame up slightly for very small phones (320–430px) */
+    @media (min-width:320px) and (max-width:430px) {
+      /* two approaches included — uncomment the one you prefer */
+
+      /* 1) translateY: smooth, preserves layout geometry */
+      .text-frame { transform: translateY(-6%); }
+
+      /* 2) top adjustment: moves the box itself (use if you prefer moving top offset)
+      .text-frame { top: 30%; }
+      */
+    }
   </style>
 </head>
 <body>
@@ -166,20 +179,20 @@
         </div>
       </section>
 
-			<!-- BACK FACE (holds the rest of the content) -->
-			<section class="face back" aria-hidden="true">
-				<div class="hint hint-back">Click to flip</div>
-				<div class="text-frame" id="backText">
-					<h3>Accommodation</h3>
-					<p>If camping or even glamping isn’t your style, Poplar Farm is not far from Clevedon or Yatton for hotels and AirBnBs. <br> We highly encourage you to bring the festival vibes though and rent a bell tent! <br> See our glamping options page for more information on what to expect.</p>
+      <!-- BACK FACE (holds the rest of the content) -->
+      <section class="face back" aria-hidden="true">
+        <div class="hint hint-back">Click to flip</div>
+        <div class="text-frame" id="backText">
+          <h3>Accommodation</h3>
+          <p>If camping or even glamping isn’t your style, Poplar Farm is not far from Clevedon or Yatton for hotels and AirBnBs. <br> We highly encourage you to bring the festival vibes though and rent a bell tent! <br> See our glamping options page for more information on what to expect.</p>
 
-					<h3>Dress Code</h3>
-					<p>We encourage earthy tones and bright colours for the handfasting ceremony as it is thought to bring positive energy to the occasion. We suggest more relaxed suits and flowy, comfortable dresses. Shoes with thin heels, such as stilettos, are not advised as we will be on grass for much of the day.<br><br> Bring vibrant, festival themed clothing for the rest of the day and be prepared for whatever the weather may bring!</p>
+          <h3>Dress Code</h3>
+          <p>We encourage earthy tones and bright colours for the handfasting ceremony as it is thought to bring positive energy to the occasion. We suggest more relaxed suits and flowy, comfortable dresses. Shoes with thin heels, such as stilettos, are not advised as we will be on grass for much of the day.<br><br> Bring vibrant, festival themed clothing for the rest of the day and be prepared for whatever the weather may bring!</p>
 
-					<h3>Contacts</h3>
-					<p>Any queries, whatsapp Hannah or Laurie.</p>
-				</div>
-			</section>
+          <h3>Contacts</h3>
+          <p>Any queries, whatsapp Hannah or Laurie.</p>
+        </div>
+      </section>
 
     </div>
   </div>
