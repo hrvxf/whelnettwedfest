@@ -3,8 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <title>Whelnett Wedfest Info</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
   <style>
+    :root{
+      --brand:#e1007b;
+      --accent:#fcdb92;
+      --nav-text:#ffffff;
+      --overlay-bg: rgba(225,0,123,0.98);
+    }
+
     html, body {
       margin: 0;
       padding: 0;
@@ -17,118 +25,106 @@
       overflow-y: auto;
     }
 
-    /* Header styles */
+    /* ---------- Header / Nav ---------- */
     header {
       position: sticky;
       top: 0;
-      z-index: 1000;
-      background-color: #e1007b;
+      z-index: 1200;
+      background: var(--brand);
       border-bottom: 2px solid #eee;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      flex-wrap: wrap;
+      gap: 12px;
       padding: 10px 20px;
-      font-family: 'Montserrat', sans-serif;
       position: relative;
-    }
-
-    .header-left img {
-      height: 50px;
-      width: auto;
-      max-width: 180px;
-    }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin: 0;
-      padding: 0;
-    }
-
-    nav li a {
-      color: white;
-      font-weight: bold;
       font-family: 'Montserrat', sans-serif;
-      padding: 8px 12px;
-      text-decoration: none;
-      letter-spacing: 1px;
-      transition: color 0.3s ease;
     }
 
-    nav li a:hover,
-    nav li a:active {
-      color: #fcdb92;
-    }
+    .header-left { display:flex; align-items:center; }
+    .header-left img { height:50px; width:auto; max-width:180px; display:block; }
 
-    .header-right img {
-      height: 30px;
-      width: auto;
-    }
+    /* Desktop nav (preserved) */
+    nav.desktop-nav { display:block; }
+    nav.desktop-nav ul { display:flex; flex-wrap:wrap; justify-content:center; gap:0; margin:0; padding:0; list-style:none; }
+    nav.desktop-nav a { display:inline-block; padding:8px 12px; color:var(--nav-text); text-decoration:none; font-weight:700; letter-spacing:1px; font-family:'Montserrat',sans-serif; }
+    nav.desktop-nav a:hover { color:var(--accent); }
 
-    @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      nav ul {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      nav li {
-        margin: 5px 0;
-      }
-      .header-right {
-        align-self: flex-end;
-        margin-top: 10px;
-      }
+    /* Mobile menu toggle */
+    .menu-toggle{
+      display:none;
+      align-items:center;
+      gap:8px;
+      background:transparent;
+      border:0;
+      color:var(--nav-text);
+      cursor:pointer;
+      padding:6px 8px;
+      border-radius:10px;
+      font-weight:700;
+      font-size:15px;
     }
+    .menu-toggle:focus { outline: 3px solid rgba(255,255,255,0.25); outline-offset: 2px; }
+    .icon-box { display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; background: rgba(255,255,255,0.5); border-radius:8px; padding:4px; flex:0 0 auto; }
+    .confetti-svg{width:28px;height:28px;display:block;}
+    .menu-label { display:inline-block; font-size:14px; font-family: 'Montserrat', sans-serif; line-height:1; color:#ffffff; letter-spacing:0.6px; }
 
     /* Bunting */
-    .bunting-curve {
-      position: absolute;
-      bottom: -28px;
-      left: 0;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      padding: 0 10px;
-      pointer-events: none;
-      z-index: 10;
+    .bunting-curve{position:absolute;bottom:-28px;left:0;width:100%;display:flex;justify-content:space-between;padding:0 10px;pointer-events:none;z-index:10}
+    .flag{width:0;height:0;border-left:18px solid transparent;border-right:18px solid transparent;border-bottom:28px solid;transform:rotate(-10deg);border-radius:0 0 50% 50%;animation:sway 4s ease-in-out infinite}
+    .flag:nth-child(1){border-bottom-color:#e1007b}.flag:nth-child(2){border-bottom-color:#30997a}.flag:nth-child(3){border-bottom-color:#748ec4}
+    .flag:nth-child(4){border-bottom-color:#8f9114}.flag:nth-child(5){border-bottom-color:#ff69b4}.flag:nth-child(6){border-bottom-color:#ffd700}
+    .flag:nth-child(7){border-bottom-color:#00bfff}.flag:nth-child(8){border-bottom-color:#ff4500}.flag:nth-child(9){border-bottom-color:#e1007b}
+    .flag:nth-child(10){border-bottom-color:#30997a}.flag:nth-child(11){border-bottom-color:#748ec4}.flag:nth-child(12){border-bottom-color:#8f9114}
+    @keyframes sway{0%,100%{transform:rotate(-10deg)}50%{transform:rotate(-5deg)}}
+
+    /* Overlay nav/backdrop (restored to sit under header) — no internal scroll */
+    #nav-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.35);z-index:1100;opacity:0;pointer-events:none;transition:opacity .28s ease}
+    #nav-backdrop.open{opacity:1;pointer-events:auto}
+
+    nav.overlay{
+      position:fixed;
+      inset:0;
+      z-index:1150;
+      background:var(--overlay-bg);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      padding-top:86px;
+      box-sizing:border-box;
+      transform:translateY(-6%);
+      opacity:0;
+      pointer-events:none;
+      transition:transform .28s ease,opacity .28s ease;
+      /* prevent internal scrolling by making overlay expand visually but not scroll */
+      overflow: visible;
+      -webkit-overflow-scrolling: auto;
+      max-height: none;
+      margin:0 auto;
+      left:0;
+      right:0;
+    }
+    nav.overlay.open{transform:translateY(0);opacity:1;pointer-events:auto}
+    nav.overlay .nav-wrap{width:100%;max-width:520px;margin:6px 16px}
+    nav.overlay ul{display:flex;flex-direction:column;gap:10px;padding:6px;margin:0;align-items:stretch;list-style:none}
+    nav.overlay a{padding:14px 16px;display:block;border-radius:10px;background:rgba(255,255,255,0.04);color:#fff;font-size:18px;text-decoration:none}
+    nav.overlay a:hover{background:rgba(255,255,255,0.07);color:var(--accent)}
+
+    /* Prevent touch scrolling inside the overlay area on mobile */
+    nav.overlay.open, nav.overlay.open * {
+      touch-action: manipulation;
+      overscroll-behavior: contain;
     }
 
-    .flag {
-      width: 0;
-      height: 0;
-      border-left: 18px solid transparent;
-      border-right: 18px solid transparent;
-      border-bottom: 28px solid;
-      transform: rotate(-10deg);
-      border-radius: 0 0 50% 50%;
-      animation: sway 4s ease-in-out infinite;
-    }
+    /* Confetti burst animation pieces */
+    .confetti-animate .burst-piece{ transform-origin:50% 50%; opacity:1; animation: burst 520ms cubic-bezier(.2,.85,.32,1) forwards; }
+    .confetti-animate .burst-piece:nth-child(1){ animation-delay:0ms } .confetti-animate .burst-piece:nth-child(2){ animation-delay:20ms }
+    .confetti-animate .burst-piece:nth-child(3){ animation-delay:40ms } .confetti-animate .burst-piece:nth-child(4){ animation-delay:60ms }
+    .confetti-animate .burst-piece:nth-child(5){ animation-delay:80ms } .confetti-animate .burst-piece:nth-child(6){ animation-delay:100ms }
+    .confetti-animate .burst-piece:nth-child(7){ animation-delay:120ms } .confetti-animate .burst-piece:nth-child(8){ animation-delay:140ms }
+    @keyframes burst{0%{transform:translate(0,0) scale(.95) rotate(0);opacity:1}35%{transform:translate(var(--tx),var(--ty)) scale(1.05) rotate(var(--r));opacity:1}100%{transform:translate(calc(var(--tx)*1.25),calc(var(--ty)*1.25)) scale(.9) rotate(calc(var(--r)*1.2));opacity:0}}
 
-    .flag:nth-child(1)  { border-bottom-color: #e1007b; }
-    .flag:nth-child(2)  { border-bottom-color: #30997a; }
-    .flag:nth-child(3)  { border-bottom-color: #748ec4; }
-    .flag:nth-child(4)  { border-bottom-color: #8f9114; }
-    .flag:nth-child(5)  { border-bottom-color: #ff69b4; }
-    .flag:nth-child(6)  { border-bottom-color: #ffd700; }
-    .flag:nth-child(7)  { border-bottom-color: #00bfff; }
-    .flag:nth-child(8)  { border-bottom-color: #ff4500; }
-    .flag:nth-child(9)  { border-bottom-color: #e1007b; }
-    .flag:nth-child(10) { border-bottom-color: #30997a; }
-    .flag:nth-child(11) { border-bottom-color: #748ec4; }
-    .flag:nth-child(12) { border-bottom-color: #8f9114; }
-
-    @keyframes sway {
-      0%, 100% { transform: rotate(-10deg); }
-      50%      { transform: rotate(-5deg); }
-    }
-
-    /* Content */
+    /* ---------- Page layout and content styles ---------- */
     .content {
       background-color: rgba(255, 255, 255, 0.85);
       padding: 2em;
@@ -179,7 +175,7 @@
       display: inline-block;
     }
 
-		.attribution {
+    .attribution {
       font-size: 0.6em;
       margin-top: 5px;
     }
@@ -192,20 +188,55 @@
     .attribution a:hover {
       text-decoration: underline;
     }
-		
+
+    /* Center the mobile toggle exactly under the header center */
+    @media (max-width:768px){
+      header { position:relative; }
+      .menu-toggle{
+        display:flex;
+        position:absolute;
+        left:50%;
+        top:50%;
+        transform:translate(-50%,-50%);
+        margin:0;
+        z-index:1250;
+      }
+      /* keep logo left and social right while the toggle sits centered */
+      .header-left{ position:relative; z-index:1260; }
+      .header-right{ position:relative; z-index:1260; }
+      /* hide desktop nav on mobile */
+      nav.desktop-nav{ display:none; }
+      /* small layout tweaks for content */
+      .content { margin: 5.5em 1em 2em; padding:1.25em; }
+      h2 { font-size: 2em; }
+      h3 { font-size: 1.6em; }
+      p { font-size:1.05em; }
+    }
+
+    /* Ensure the instagram icon stays small across viewports */
+    .header-right img {
+      height: 30px !important;
+      width: auto !important;
+      max-width: none !important;
+      display: block;
+    }
+
+    /* small utility */
+    .sr-only { position: absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0; }
   </style>
 </head>
 <body>
 
-  <!-- Festival Header -->
+  <!-- Header with mobile menu toggle integrated -->
   <header>
     <div class="header-left">
-      <a href="https://hannahwh05.github.io/whelnettwedfest/">
+      <a href="https://hannahwh05.github.io/whelnettwedfest/" aria-label="Home">
         <img src="whelnettwedfestlogo.png" alt="Whelnett Wedfest Logo">
       </a>
     </div>
 
-    <nav>
+    <!-- Desktop inline nav preserved for larger viewports -->
+    <nav class="desktop-nav" aria-label="Primary navigation" role="navigation">
       <ul>
         <li><a href="https://hannahwh05.github.io/whelnettwedfest/ticket-info.html">Ticket Info</a></li>
         <li><a href="https://hannahwh05.github.io/whelnettwedfest/festival-info.html">Festival Info/FAQs</a></li>
@@ -216,18 +247,54 @@
       </ul>
     </nav>
 
+    <!-- Mobile toggle using confetti SVG (centered via CSS on mobile) -->
+    <button class="menu-toggle" aria-controls="main-nav" aria-expanded="false" aria-label="Open menu" title="Menu">
+      <span class="icon-box" aria-hidden="true">
+        <svg class="confetti-svg" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+          <g fill="none" stroke-linecap="round" stroke-width="1.6">
+            <path class="burst-piece" d="M16 5 L16 11" stroke="#ffd700" style="--tx:0; --ty:-18px; --r: -18deg;" />
+            <path class="burst-piece" d="M16 21 L16 27" stroke="#ff69b4" style="--tx:0; --ty:18px; --r: 22deg;" />
+            <path class="burst-piece" d="M5 16 L11 16" stroke="#30997a" style="--tx:-18px; --ty:0; --r: -8deg;" />
+            <path class="burst-piece" d="M21 16 L27 16" stroke="#748ec4" style="--tx:18px; --ty:0; --r: 10deg;" />
+            <circle class="burst-piece" cx="10" cy="8" r="1.6" fill="#ff4500" style="--tx:-8px; --ty:-12px; --r: 6deg;" />
+            <circle class="burst-piece" cx="22" cy="8" r="1.6" fill="#e1007b" style="--tx:8px; --ty:-12px; --r: -6deg;" />
+            <circle class="burst-piece" cx="8" cy="24" r="1.6" fill="#00bfff" style="--tx:-10px; --ty:14px; --r: 12deg;" />
+            <circle class="burst-piece" cx="24" cy="24" r="1.6" fill="#ffd700" style="--tx:10px; --ty:14px; --r: -12deg;" />
+          </g>
+        </svg>
+      </span>
+      <span class="menu-label">Menu</span>
+    </button>
+
     <div class="header-right">
-      <a href="https://www.instagram.com/whelnettwedfest/#" target="_blank">
+      <a href="https://www.instagram.com/whelnettwedfest/#" target="_blank" rel="noopener noreferrer">
         <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
       </a>
     </div>
 
-    <div class="bunting-curve">
+    <div class="bunting-curve" aria-hidden="true">
       <div class="flag"></div><div class="flag"></div><div class="flag"></div><div class="flag"></div>
       <div class="flag"></div><div class="flag"></div><div class="flag"></div><div class="flag"></div>
       <div class="flag"></div><div class="flag"></div><div class="flag"></div><div class="flag"></div>
     </div>
   </header>
+
+  <!-- Backdrop -->
+  <div id="nav-backdrop" aria-hidden="true"></div>
+
+  <!-- Overlay nav (mobile) -->
+  <nav id="main-nav" class="overlay" aria-label="Primary navigation overlay" role="navigation">
+    <div class="nav-wrap" role="group" aria-label="Navigation links">
+      <ul>
+        <li><a href="https://hannahwh05.github.io/whelnettwedfest/ticket-info.html">Ticket Info</a></li>
+        <li><a href="https://hannahwh05.github.io/whelnettwedfest/festival-info.html">Festival Info/FAQs</a></li>
+        <li><a href="https://hannahwh05.github.io/whelnettwedfest/coming-soon.html">Lineup</a></li>
+        <li><a href="https://hannahwh05.github.io/whelnettwedfest/location.html">Location</a></li>
+        <li><a href="https://hannahwh05.github.io/whelnettwedfest/coming-soon.html">Site Map</a></li>
+        <li><a href="https://hannahwh05.github.io/whelnettwedfest/presents.html">Presents</a></li>
+      </ul>
+    </div>
+  </nav>
 
   <!-- Page Content -->
   <div class="content">
@@ -259,7 +326,7 @@
     For playing one of the biggest parts.</p>
   </div>
 
-
+  <!-- Footer -->
   <footer>
     <p>Whelnett Wedfest Ltd.</p>
     <img src="whelnettwedfestlogo.png" alt="Whelnett Wedfest Logo">
@@ -268,5 +335,74 @@
     </p>
   </footer>
 
+  <!-- Scripts -->
+  <script>
+    (function(){
+      var toggle = document.querySelector('.menu-toggle');
+      var overlayNav = document.getElementById('main-nav');
+      var backdrop = document.getElementById('nav-backdrop');
+      var desktopNav = document.querySelector('.desktop-nav');
+      var confettiSvg = document.querySelector('.confetti-svg');
+
+      if (!toggle || !overlayNav) return;
+
+      function setOpen(open){
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        if (open){
+          overlayNav.classList.add('open');
+          backdrop.classList.add('open');
+          document.documentElement.style.overflow = 'hidden';
+          document.body.style.overflow = 'hidden';
+          toggle.setAttribute('aria-label','Close menu');
+          triggerConfetti();
+        } else {
+          overlayNav.classList.remove('open');
+          backdrop.classList.remove('open');
+          document.documentElement.style.overflow = '';
+          document.body.style.overflow = '';
+          toggle.setAttribute('aria-label','Open menu');
+        }
+      }
+
+      toggle.addEventListener('click', function(){
+        var expanded = toggle.getAttribute('aria-expanded') === 'true';
+        setOpen(!expanded);
+      });
+
+      backdrop.addEventListener('click', function(){ setOpen(false); });
+
+      overlayNav.addEventListener('click', function(e){
+        if (e.target.tagName.toLowerCase() === 'a' && window.matchMedia('(max-width:768px)').matches){
+          setOpen(false);
+        }
+      });
+
+      document.addEventListener('keydown', function(e){
+        if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true'){
+          setOpen(false);
+          toggle.focus();
+        }
+      });
+
+      function updateNavDisplay(){
+        if (window.matchMedia('(max-width:768px)').matches){
+          if (desktopNav) desktopNav.style.display = 'none';
+        } else {
+          if (desktopNav) desktopNav.style.display = '';
+          setOpen(false);
+        }
+      }
+      updateNavDisplay();
+      window.addEventListener('resize', updateNavDisplay);
+
+      function triggerConfetti(){
+        if (!confettiSvg) return;
+        confettiSvg.classList.remove('confetti-animate');
+        void confettiSvg.offsetWidth;
+        confettiSvg.classList.add('confetti-animate');
+        setTimeout(function(){ confettiSvg.classList.remove('confetti-animate'); }, 700);
+      }
+    })();
+  </script>
 </body>
 </html>
