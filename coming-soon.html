@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Whelnett Wedfest — Coming Soon</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --brand:#e1007b;
+      --accent:#fcdb92;
+      --nav-text:#ffffff;
+      --overlay-bg: rgba(225,0,123,0.98);
+    }
+
+    html,body{height:100%;margin:0;font-family:'Montserrat',sans-serif;background:#fcdb92;color:#000;overflow-x:hidden}
+    a{color:inherit}
+
+    /* Header */
+    header{
+      position:sticky;top:0;z-index:1200;background:var(--brand);border-bottom:2px solid #eee;
+      display:flex;align-items:center;justify-content:space-between;padding:10px 20px;gap:12px;position:relative;
+    }
+    .header-left{display:flex;align-items:center}
+    .header-left img{height:50px;width:auto;max-width:180px;display:block}
+    .header-right img{height:30px;width:auto;display:block}
+
+    /* Desktop nav */
+    nav.desktop-nav ul{display:flex;flex-wrap:wrap;justify-content:center;gap:0;margin:0;padding:0;list-style:none}
+    nav.desktop-nav a{display:inline-block;padding:8px 12px;color:var(--nav-text);text-decoration:none;font-weight:700;letter-spacing:1px}
+    nav.desktop-nav a:hover{color:var(--accent)}
+
+    /* Mobile toggle */
+    .menu-toggle{display:none;align-items:center;gap:8px;background:transparent;border:0;color:var(--nav-text);cursor:pointer;padding:6px 8px;border-radius:10px;font-weight:700;font-size:15px}
+    .menu-toggle:focus{outline:3px solid rgba(255,255,255,0.25);outline-offset:2px}
+    .icon-box{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;background:rgba(255,255,255,0.5);border-radius:8px;padding:4px;flex:0 0 auto}
+    .confetti-svg{width:28px;height:28px;display:block}
+    .menu-label{display:inline-block;font-size:14px;color:#fff;letter-spacing:0.6px}
+
+    /* Bunting */
+    .bunting-curve{position:absolute;bottom:-28px;left:0;width:100%;display:flex;justify-content:space-between;padding:0 10px;pointer-events:none;z-index:10}
+    .flag{width:0;height:0;border-left:18px solid transparent;border-right:18px solid transparent;border-bottom:28px solid;transform:rotate(-10deg);border-radius:0 0 50% 50%;animation:sway 4s ease-in-out infinite}
+    .flag:nth-child(1){border-bottom-color:#e1007b}.flag:nth-child(2){border-bottom-color:#30997a}.flag:nth-child(3){border-bottom-color:#748ec4}
+    .flag:nth-child(4){border-bottom-color:#8f9114}.flag:nth-child(5){border-bottom-color:#ff69b4}.flag:nth-child(6){border-bottom-color:#ffd700}
+    @keyframes sway{0%,100%{transform:rotate(-10deg)}50%{transform:rotate(-5deg)}}
+
+    /* Overlay/backdrop (mobile) */
+    #nav-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.35);z-index:1100;opacity:0;pointer-events:none;transition:opacity .28s ease}
+    #nav-backdrop.open{opacity:1;pointer-events:auto}
+    nav.overlay{position:fixed;inset:0;z-index:1150;background:var(--overlay-bg);display:flex;flex-direction:column;align-items:center;padding-top:86px;box-sizing:border-box;overflow:visible;transform:translateY(-6%);opacity:0;pointer-events:none;transition:transform .28s ease,opacity .28s ease;max-height:none;margin:0 auto;left:0;right:0}
+    nav.overlay.open{transform:translateY(0);opacity:1;pointer-events:auto}
+    nav.overlay .nav-wrap{width:100%;max-width:520px;margin:6px 16px}
+    nav.overlay ul{display:flex;flex-direction:column;gap:10px;padding:6px;margin:0;align-items:stretch;list-style:none}
+    nav.overlay a{padding:14px 16px;display:block;border-radius:10px;background:rgba(255,255,255,0.04);color:#fff;font-size:18px;text-decoration:none}
+    nav.overlay a:hover{background:rgba(255,255,255,0.07);color:var(--accent)}
+    nav.overlay.open, nav.overlay.open *{touch-action:manipulation;overscroll-behavior:contain}
+
+    /* Content */
+    .hero{
+      min-height:60vh;display:flex;align-items:center;justify-content:center;padding:48px 18px;box-sizing:border-box;
+      text-align:center;
+    }
+    .card{background:rgba(255,255,255,0.95);padding:36px 28px;border-radius:14px;max-width:780px;width:100%;box-shadow:0 8px 28px rgba(0,0,0,0.12)}
+    .kicker{font-weight:700;color:var(--brand);letter-spacing:1px;margin-bottom:8px}
+    h1{margin:6px 0 12px;font-family:Impact, sans-serif;font-size:2.2rem;color:#30997a}
+    p.lead{margin:0 0 18px;font-size:1.05rem;line-height:1.5;color:#333}
+    .countdown{display:flex;gap:12px;justify-content:center;margin:16px 0 20px}
+    .count-item{background:#fff;padding:12px 14px;border-radius:10px;min-width:72px;text-align:center;box-shadow:0 6px 16px rgba(0,0,0,0.06)}
+    .count-item strong{display:block;font-size:1.2rem;color:var(--brand)}
+    .actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+    .btn{background:var(--brand);color:#fff;padding:10px 16px;border-radius:10px;text-decoration:none;font-weight:700}
+    .btn.ghost{background:transparent;border:2px solid rgba(0,0,0,0.06);color:#333}
+
+    /* Footer */
+    footer{background:#30997a;text-align:center;padding:20px 10px;color:#fff}
+    footer p, footer .attribution{margin:0 0 8px;color:#fff}
+    footer img{width:60px;height:auto;display:inline-block}
+
+    /* Responsive */
+    @media (max-width:768px){
+      .menu-toggle{display:flex}
+      nav.desktop-nav{display:none}
+      header{position:relative}
+      .menu-toggle{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:1250}
+      .card{padding:22px}
+      h1{font-size:1.6rem}
+      .count-item{min-width:56px;padding:10px}
+    }
+
+    /* small helpers */
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="header-left">
+      <a href="https://hannahwh05.github.io/whelnettwedfest/" aria-label="Home">
+        <img src="whelnettwedfestlogo.png" alt="Whelnett Wedfest Logo">
+      </a>
+    </div>
+
+    <nav class="desktop-nav" aria-label="Primary navigation" role="navigation">
+      <ul>
+        <li><a href="ticket-info.html">Ticket Info</a></li>
+        <li><a href="festival-info.html">Festival Info/FAQs</a></li>
+        <li><a href="coming-soon.html">Lineup</a></li>
+        <li><a href="location.html">Location</a></li>
+        <li><a href="coming-soon.html">Site Map</a></li>
+        <li><a href="presents.html">Presents</a></li>
+      </ul>
+    </nav>
+
+    <button class="menu-toggle" aria-controls="main-nav" aria-expanded="false" aria-label="Open menu" title="Menu">
+      <span class="icon-box" aria-hidden="true">
+        <svg class="confetti-svg" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+          <g fill="none" stroke-linecap="round" stroke-width="1.6">
+            <path class="burst-piece" d="M16 5 L16 11" stroke="#ffd700" style="--tx:0; --ty:-18px; --r:-18deg;" />
+            <path class="burst-piece" d="M16 21 L16 27" stroke="#ff69b4" style="--tx:0; --ty:18px; --r:22deg;" />
+            <path class="burst-piece" d="M5 16 L11 16" stroke="#30997a" style="--tx:-18px; --ty:0; --r:-8deg;" />
+            <path class="burst-piece" d="M21 16 L27 16" stroke="#748ec4" style="--tx:18px; --ty:0; --r:10deg;" />
+            <circle class="burst-piece" cx="10" cy="8" r="1.6" fill="#ff4500" style="--tx:-8px; --ty:-12px; --r:6deg;" />
+            <circle class="burst-piece" cx="22" cy="8" r="1.6" fill="#e1007b" style="--tx:8px; --ty:-12px; --r:-6deg;" />
+            <circle class="burst-piece" cx="8" cy="24" r="1.6" fill="#00bfff" style="--tx:-10px; --ty:14px; --r:12deg;" />
+            <circle class="burst-piece" cx="24" cy="24" r="1.6" fill="#ffd700" style="--tx:10px; --ty:14px; --r:-12deg;" />
+          </g>
+        </svg>
+      </span>
+      <span class="menu-label">Menu</span>
+    </button>
+
+    <div class="header-right">
+      <a href="https://www.instagram.com/whelnettwedfest/#" target="_blank" rel="noopener noreferrer">
+        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
+      </a>
+    </div>
+
+    <div class="bunting-curve" aria-hidden="true">
+      <div class="flag"></div><div class="flag"></div><div class="flag"></div><div class="flag"></div><div class="flag"></div><div class="flag"></div>
+    </div>
+  </header>
+
+  <!-- Backdrop -->
+  <div id="nav-backdrop" aria-hidden="true"></div>
+
+  <!-- Overlay nav -->
+  <nav id="main-nav" class="overlay" aria-label="Primary navigation overlay" role="navigation">
+    <div class="nav-wrap" role="group" aria-label="Navigation links">
+      <ul>
+        <li><a href="ticket-info.html">Ticket Info</a></li>
+        <li><a href="festival-info.html">Festival Info/FAQs</a></li>
+        <li><a href="coming-soon.html">Lineup</a></li>
+        <li><a href="location.html">Location</a></li>
+        <li><a href="coming-soon.html">Site Map</a></li>
+        <li><a href="presents.html">Presents</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero / Coming soon -->
+  <main class="hero" role="main">
+    <div class="card" aria-live="polite">
+      <div class="kicker">Whelnett Wedfest</div>
+      <h1>Coming Soon</h1>
+      <p class="lead">We're tuning the lineup and polishing the bunting. Tickets and full details will be here soon — sign up to be first in the field.</p>
+
+      <div class="countdown" aria-hidden="false">
+        <div class="count-item"><strong id="cd-days">--</strong><span>Days</span></div>
+        <div class="count-item"><strong id="cd-hours">--</strong><span>Hours</span></div>
+        <div class="count-item"><strong id="cd-mins">--</strong><span>Minutes</span></div>
+        <div class="count-item"><strong id="cd-secs">--</strong><span>Seconds</span></div>
+      </div>
+
+      <div class="actions">
+        <a class="btn" href="ticket-info.html">Notify Me</a>
+        <a class="btn ghost" href="festival-info.html">Read FAQs</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>Whelnett Wedfest Ltd.</p>
+    <img src="whelnettwedfestlogo.png" alt="Whelnett Wedfest Logo">
+    <p class="attribution">
+      <a href="https://www.flaticon.com/free-icons/instagram" title="instagram icons">Instagram icons created by Grow studio - Flaticon</a>
+    </p>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    /* Mobile menu logic (same behaviour as your site) */
+    (function(){
+      var toggle = document.querySelector('.menu-toggle');
+      var overlayNav = document.getElementById('main-nav');
+      var backdrop = document.getElementById('nav-backdrop');
+      var desktopNav = document.querySelector('.desktop-nav');
+      var confettiSvg = document.querySelector('.confetti-svg');
+
+      if (!toggle || !overlayNav) return;
+
+      function setOpen(open){
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        if (open){
+          overlayNav.classList.add('open');
+          backdrop.classList.add('open');
+          document.documentElement.style.overflow = 'hidden';
+          document.body.style.overflow = 'hidden';
+          toggle.setAttribute('aria-label','Close menu');
+          // confetti pulse
+          if (confettiSvg){
+            confettiSvg.classList.remove('confetti-animate');
+            void confettiSvg.offsetWidth;
+            confettiSvg.classList.add('confetti-animate');
+            setTimeout(function(){ confettiSvg.classList.remove('confetti-animate'); }, 700);
+          }
+        } else {
+          overlayNav.classList.remove('open');
+          backdrop.classList.remove('open');
+          document.documentElement.style.overflow = '';
+          document.body.style.overflow = '';
+          toggle.setAttribute('aria-label','Open menu');
+        }
+      }
+
+      toggle.addEventListener('click', function(){ setOpen(toggle.getAttribute('aria-expanded') !== 'true'); });
+      backdrop.addEventListener('click', function(){ setOpen(false); });
+
+      overlayNav.addEventListener('click', function(e){
+        if (e.target.tagName.toLowerCase() === 'a' && window.matchMedia('(max-width:768px)').matches){
+          setOpen(false);
+        }
+      });
+
+      document.addEventListener('keydown', function(e){
+        if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true'){
+          setOpen(false);
+          toggle.focus();
+        }
+      });
+
+      function updateNavDisplay(){
+        if (window.matchMedia('(max-width:768px)').matches){
+          if (desktopNav) desktopNav.style.display = 'none';
+        } else {
+          if (desktopNav) desktopNav.style.display = '';
+          setOpen(false);
+        }
+      }
+      updateNavDisplay();
+      window.addEventListener('resize', updateNavDisplay);
+    })();
+
+    /* Countdown example (adjust targetDate as needed) */
+    (function(){
+      var targetDate = new Date();
+      targetDate.setDate(targetDate.getDate() + 60); // default: 60 days from now
+      function updateCountdown(){
+        var now = new Date().getTime();
+        var distance = targetDate.getTime() - now;
+        if (distance <= 0){
+          document.getElementById('cd-days').textContent = '0';
+          document.getElementById('cd-hours').textContent = '0';
+          document.getElementById('cd-mins').textContent = '0';
+          document.getElementById('cd-secs').textContent = '0';
+          return;
+        }
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var mins = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var secs = Math.floor((distance % (1000 * 60)) / 1000);
+        document.getElementById('cd-days').textContent = days;
+        document.getElementById('cd-hours').textContent = hours;
+        document.getElementById('cd-mins').textContent = mins;
+        document.getElementById('cd-secs').textContent = secs;
+      }
+      updateCountdown();
+      setInterval(updateCountdown,1000);
+    })();
+  </script>
+</body>
+</html>
