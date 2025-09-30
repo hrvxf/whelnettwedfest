@@ -11,12 +11,15 @@
       --accent:#fcdb92;
       --nav-text:#ffffff;
       --overlay-bg: rgba(225,0,123,0.98);
+      --footer-bg:#30997a;
+      --coming-text:#30997a; /* colour used for "Coming Soon" */
     }
 
+    /* Page shell: make footer sit at bottom */
     html,body{height:100%;margin:0;font-family:'Montserrat',sans-serif;background:#fcdb92;color:#000;overflow-x:hidden}
-    a{color:inherit}
+    body{display:flex;flex-direction:column;min-height:100vh}
 
-    /* Header */
+    /* ---------- Header / Nav ---------- */
     header{
       position:sticky;top:0;z-index:1200;background:var(--brand);border-bottom:2px solid #eee;
       display:flex;align-items:center;justify-content:space-between;padding:10px 20px;gap:12px;position:relative;
@@ -24,20 +27,16 @@
     .header-left{display:flex;align-items:center}
     .header-left img{height:50px;width:auto;max-width:180px;display:block}
     .header-right img{height:30px;width:auto;display:block}
-
-    /* Desktop nav */
     nav.desktop-nav ul{display:flex;flex-wrap:wrap;justify-content:center;gap:0;margin:0;padding:0;list-style:none}
     nav.desktop-nav a{display:inline-block;padding:8px 12px;color:var(--nav-text);text-decoration:none;font-weight:700;letter-spacing:1px}
     nav.desktop-nav a:hover{color:var(--accent)}
 
-    /* Mobile toggle */
     .menu-toggle{display:none;align-items:center;gap:8px;background:transparent;border:0;color:var(--nav-text);cursor:pointer;padding:6px 8px;border-radius:10px;font-weight:700;font-size:15px}
     .menu-toggle:focus{outline:3px solid rgba(255,255,255,0.25);outline-offset:2px}
     .icon-box{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;background:rgba(255,255,255,0.5);border-radius:8px;padding:4px;flex:0 0 auto}
     .confetti-svg{width:28px;height:28px;display:block}
     .menu-label{display:inline-block;font-size:14px;color:#fff;letter-spacing:0.6px}
 
-    /* Bunting */
     .bunting-curve{position:absolute;bottom:-28px;left:0;width:100%;display:flex;justify-content:space-between;padding:0 10px;pointer-events:none;z-index:10}
     .flag{width:0;height:0;border-left:18px solid transparent;border-right:18px solid transparent;border-bottom:28px solid;transform:rotate(-10deg);border-radius:0 0 50% 50%;animation:sway 4s ease-in-out infinite}
     .flag:nth-child(1){border-bottom-color:#e1007b}.flag:nth-child(2){border-bottom-color:#30997a}.flag:nth-child(3){border-bottom-color:#748ec4}
@@ -55,28 +54,40 @@
     nav.overlay a:hover{background:rgba(255,255,255,0.07);color:var(--accent)}
     nav.overlay.open, nav.overlay.open *{touch-action:manipulation;overscroll-behavior:contain}
 
-    /* Content */
-    .hero{
-      min-height:60vh;display:flex;align-items:center;justify-content:center;padding:48px 18px;box-sizing:border-box;
-      text-align:center;
+    /* ---------- Main content (flexes) ---------- */
+    main{flex:1;display:flex;align-items:center;justify-content:center;padding:48px 18px;box-sizing:border-box}
+    .card{background:rgba(255,255,255,0.95);padding:36px 28px;border-radius:14px;max-width:780px;width:100%;box-shadow:0 8px 28px rgba(0,0,0,0.12);text-align:center}
+
+    /* Make the festival name pink again (reverted) */
+    .brand-title {
+      font-family: Impact, sans-serif;
+      font-size:2.2rem;
+      color:var(--brand);
+      margin:0 0 8px;
+      line-height:1;
     }
-    .card{background:rgba(255,255,255,0.95);padding:36px 28px;border-radius:14px;max-width:780px;width:100%;box-shadow:0 8px 28px rgba(0,0,0,0.12)}
-    .kicker{font-weight:700;color:var(--brand);letter-spacing:1px;margin-bottom:8px}
-    h1{margin:6px 0 12px;font-family:Impact, sans-serif;font-size:2.2rem;color:#30997a}
+    h1{margin:6px 0 12px;font-family:Impact, sans-serif;font-size:2.2rem;color:var(--coming-text)}
     p.lead{margin:0 0 18px;font-size:1.05rem;line-height:1.5;color:#333}
     .countdown{display:flex;gap:12px;justify-content:center;margin:16px 0 20px}
     .count-item{background:#fff;padding:12px 14px;border-radius:10px;min-width:72px;text-align:center;box-shadow:0 6px 16px rgba(0,0,0,0.06)}
     .count-item strong{display:block;font-size:1.2rem;color:var(--brand)}
     .actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
-    .btn{background:var(--brand);color:#fff;padding:10px 16px;border-radius:10px;text-decoration:none;font-weight:700}
+
+    /* Buttons */
+    .btn{background:var(--brand);color:#fff;padding:10px 16px;border-radius:10px;text-decoration:none;font-weight:700;border:0}
     .btn.ghost{background:transparent;border:2px solid rgba(0,0,0,0.06);color:#333}
+    /* Register button same colour as Coming Soon text */
+    .btn.register{background:var(--coming-text);color:#fff;border:0}
 
-    /* Footer */
-    footer{background:#30997a;text-align:center;padding:20px 10px;color:#fff}
-    footer p, footer .attribution{margin:0 0 8px;color:#fff}
+    /* Footer: pinned to bottom by body flex; tiny attribution same colour as footer */
+    footer{background:var(--footer-bg);text-align:center;padding:20px 10px;color:#fff;flex-shrink:0}
+    footer p{margin:0 0 8px;color:#fff}
     footer img{width:60px;height:auto;display:inline-block}
+    .attribution{font-size:10px;margin-top:6px;color:var(--footer-bg)}
+    .attribution a{color:var(--footer-bg);text-decoration:none}
+    .attribution a:hover{text-decoration:underline}
 
-    /* Responsive */
+    /* Responsive tweaks */
     @media (max-width:768px){
       .menu-toggle{display:flex}
       nav.desktop-nav{display:none}
@@ -84,10 +95,10 @@
       .menu-toggle{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:1250}
       .card{padding:22px}
       h1{font-size:1.6rem}
+      .brand-title{font-size:1.6rem}
       .count-item{min-width:56px;padding:10px}
     }
 
-    /* small helpers */
     .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
   </style>
 </head>
@@ -161,9 +172,9 @@
   <!-- Hero / Coming soon -->
   <main class="hero" role="main">
     <div class="card" aria-live="polite">
-      <div class="kicker">Whelnett Wedfest</div>
+      <div class="brand-title">Whelnett Wedfest</div>
       <h1>Coming Soon</h1>
-      <p class="lead">We're tuning the lineup and polishing the bunting. Tickets and full details will be here soon — sign up to be first in the field.</p>
+      <p class="lead">We're tuning the lineup and polishing the bunting. Tickets and full details will be here soon — full site arriving shortly.</p>
 
       <div class="countdown" aria-hidden="false">
         <div class="count-item"><strong id="cd-days">--</strong><span>Days</span></div>
@@ -173,8 +184,8 @@
       </div>
 
       <div class="actions">
-        <a class="btn" href="ticket-info.html">Notify Me</a>
-        <a class="btn ghost" href="festival-info.html">Read FAQs</a>
+        <a class="btn" href="festival-info.html">Read Festival Info</a>
+        <a class="btn register" href="https://hannahwh05.github.io/whelnettwedfest/queue.html">Register</a>
       </div>
     </div>
   </main>
@@ -208,7 +219,6 @@
           document.documentElement.style.overflow = 'hidden';
           document.body.style.overflow = 'hidden';
           toggle.setAttribute('aria-label','Close menu');
-          // confetti pulse
           if (confettiSvg){
             confettiSvg.classList.remove('confetti-animate');
             void confettiSvg.offsetWidth;
