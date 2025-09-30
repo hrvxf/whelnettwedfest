@@ -1,430 +1,244 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Whelnett Wedfest 2026 Invitation</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Montserrat', sans-serif;
-      color: #000;
-      background-color: #fcdb92;
-      overflow-x: hidden;
-    }
-		
-	header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background-color: #e1007b;
-      border-bottom: 2px solid #eee;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      padding: 10px 20px;
-      font-family: 'Montserrat', sans-serif;
-    }
-		
-    .background {
-      display: flex;
-      width: 100vw;
-      flex-direction: row;
+    :root{
+      --brand:#e1007b;
+      --accent:#fcdb92;
+      --nav-text:#ffffff;
+      --overlay-bg: rgba(225,0,123,0.98);
     }
 
-    .left-bg, .right-bg {
-      width: 50vw;
-      height: 100vh;
-      background-size: contain;
-      background-position: center;
-      background-repeat: no-repeat;
+    html,body{height:100%;margin:0;font-family:'Montserrat',sans-serif;background:#fcdb92;color:#000;overflow-x:hidden}
+
+    /* ---------- Header / Nav (from updated header) ---------- */
+    header{
+      position:sticky;top:0;z-index:1200;
+      background:var(--brand);border-bottom:2px solid #eee;
+      display:flex;align-items:center;justify-content:space-between;padding:10px 20px;gap:12px;position:relative;
+    }
+    .header-left{display:flex;align-items:center}
+    .header-left img{height:50px;width:auto;max-width:180px;display:block}
+
+    /* Desktop nav */
+    .desktop-nav ul{display:flex;flex-wrap:wrap;justify-content:center;gap:0;margin:0;padding:0;list-style:none}
+    .desktop-nav a{display:inline-block;padding:8px 12px;color:var(--nav-text);text-decoration:none;font-weight:700;letter-spacing:1px}
+    .desktop-nav a:hover{color:var(--accent)}
+
+    /* Mobile menu toggle styles */
+    .menu-toggle{
+      display:none;align-items:center;gap:8px;background:transparent;border:0;color:var(--nav-text);cursor:pointer;padding:6px 8px;border-radius:10px;font-weight:700;font-size:15px;
+    }
+    .menu-toggle:focus { outline: 3px solid rgba(255,255,255,0.25); outline-offset: 2px; }
+    .icon-box { display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; background: rgba(255,255,255,0.5); border-radius:8px; padding:4px; flex:0 0 auto; }
+    .confetti-svg{width:28px;height:28px;display:block;}
+    .menu-label { display:inline-block; font-size:14px; font-family: 'Montserrat', sans-serif; line-height:1; color:#ffffff; letter-spacing:0.6px; }
+
+    /* Bunting */
+    .bunting-curve{position:absolute;bottom:-28px;left:0;width:100%;display:flex;justify-content:space-between;padding:0 10px;pointer-events:none;z-index:10}
+    .flag{width:0;height:0;border-left:18px solid transparent;border-right:18px solid transparent;border-bottom:28px solid;transform:rotate(-10deg);border-radius:0 0 50% 50%;animation:sway 4s ease-in-out infinite}
+    .flag:nth-child(1){border-bottom-color:#e1007b}.flag:nth-child(2){border-bottom-color:#30997a}.flag:nth-child(3){border-bottom-color:#748ec4}
+    .flag:nth-child(4){border-bottom-color:#8f9114}.flag:nth-child(5){border-bottom-color:#ff69b4}.flag:nth-child(6){border-bottom-color:#ffd700}
+    .flag:nth-child(7){border-bottom-color:#00bfff}.flag:nth-child(8){border-bottom-color:#ff4500}.flag:nth-child(9){border-bottom-color:#e1007b}
+    .flag:nth-child(10){border-bottom-color:#30997a}.flag:nth-child(11){border-bottom-color:#748ec4}.flag:nth-child(12){border-bottom-color:#8f9114}
+    @keyframes sway{0%,100%{transform:rotate(-10deg)}50%{transform:rotate(-5deg)}}
+
+    /* Overlay nav/backdrop */
+    #nav-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.35);z-index:1100;opacity:0;pointer-events:none;transition:opacity .28s ease}
+    #nav-backdrop.open{opacity:1;pointer-events:auto}
+
+    nav.overlay{
+      position:fixed;inset:0;z-index:1150;background:var(--overlay-bg);
+      display:flex;flex-direction:column;align-items:center;padding-top:86px;box-sizing:border-box;overflow-y:auto;
+      transform:translateY(-6%);opacity:0;pointer-events:none;transition:transform .28s ease,opacity .28s ease;
+      -webkit-overflow-scrolling:touch;max-height:80vh;margin:0 auto;left:0;right:0;
+    }
+    nav.overlay.open{transform:translateY(0);opacity:1;pointer-events:auto}
+    nav.overlay .nav-wrap{width:100%;max-width:520px;margin:6px 16px}
+    nav.overlay ul{display:flex;flex-direction:column;gap:10px;padding:6px;margin:0;align-items:stretch;list-style:none}
+    nav.overlay a{padding:14px 16px;display:block;border-radius:10px;background:rgba(255,255,255,0.04);color:#fff;font-size:18px;text-decoration:none}
+    nav.overlay a:hover{background:rgba(255,255,255,0.07);color:var(--accent)}
+
+    @media (max-width:768px){
+      .menu-toggle{display:flex}
+      .desktop-nav{display:none}
+      nav.overlay{max-height:80vh;top:10vh;bottom:10vh;border-radius:12px;overflow:visible}
+      nav.overlay.open{top:8vh;bottom:8vh}
     }
 
-    .left-bg {
-      background-image: url('EngagementPhoto.jpg');
+    /* Confetti burst animation pieces */
+    .confetti-animate .burst-piece{ transform-origin:50% 50%; opacity:1; animation: burst 520ms cubic-bezier(.2,.85,.32,1) forwards; }
+    .confetti-animate .burst-piece:nth-child(1){ animation-delay:0ms } .confetti-animate .burst-piece:nth-child(2){ animation-delay:20ms }
+    .confetti-animate .burst-piece:nth-child(3){ animation-delay:40ms } .confetti-animate .burst-piece:nth-child(4){ animation-delay:60ms }
+    .confetti-animate .burst-piece:nth-child(5){ animation-delay:80ms } .confetti-animate .burst-piece:nth-child(6){ animation-delay:100ms }
+    .confetti-animate .burst-piece:nth-child(7){ animation-delay:120ms } .confetti-animate .burst-piece:nth-child(8){ animation-delay:140ms }
+    @keyframes burst{0%{transform:translate(0,0) scale(.95) rotate(0);opacity:1}35%{transform:translate(var(--tx),var(--ty)) scale(1.05) rotate(var(--r));opacity:1}100%{transform:translate(calc(var(--tx)*1.25),calc(var(--ty)*1.25)) scale(.9) rotate(calc(var(--r)*1.2));opacity:0}}
+
+    /* ---------- Page specific styles (from user's page) ---------- */
+    .background { display:flex; width:100vw; flex-direction:row; }
+    .left-bg, .right-bg { width:50vw; height:100vh; background-size:contain; background-position:center; background-repeat:no-repeat; }
+    .left-bg { background-image:url('EngagementPhoto.jpg'); background-size:cover; background-position:center; }
+    .right-bg { background-image:url('InvitationBG.png'); position:relative; display:flex; justify-content:center; align-items:center; background-size:cover; }
+    .right { width:100%; padding:60px 40px; text-align:center; background:rgba(255,255,255,0); box-sizing:border-box; }
+
+    h1 { font-family:Impact,sans-serif; text-transform:uppercase; font-size:1.6em; font-weight:normal; margin-bottom:.3em; color:#000; }
+    h2 { font-family:'Montserrat',sans-serif; font-size:2em; font-weight:normal; margin:10px 0; line-height:1.5; color:#000; }
+    h2 span { display:block; }
+    a { font-weight:normal; color:#000; text-decoration:underline; }
+    a:hover { color:#4f7bd9; }
+
+    .rsvp-button{
+      margin-top:20px; background-color:#fcdb92; border-radius:40px; font-size:1.2em; font-weight:bold; font-family:'Montserrat',sans-serif;
+      position:relative; cursor:pointer; text-decoration:none; display:inline-block; box-shadow:0 0 12px rgba(255,182,193,0.5); transition:all .4s ease; overflow:hidden;
+      width:120px; padding:16px 0; text-align:center; border:4px solid transparent;
+      background-image: linear-gradient(#fcdb92,#fcdb92), linear-gradient(45deg,#8f9114,#748ec4,#30997a,#e1007b);
+      background-origin:border-box; background-clip:padding-box,border-box;
     }
-
-    .right-bg {
-      background-image: url('InvitationBG.png');
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .right {
-      width: 100%;
-      padding: 60px 40px;
-      text-align: center;
-      background: rgba(255, 255, 255, 0);
-    }
-
-    h1 {
-      font-family: Impact, sans-serif;
-      text-transform: uppercase;
-      font-size: 1.6em;
-      font-weight: normal;
-      margin-bottom: 0.3em;
-    }
-
-    h2 {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 2em;
-      font-weight: normal;
-      margin: 10px 0;
-      text-transform: none;
-      line-height: 1.5;
-    }
-
-    h2 span {
-      display: block;
-    }
-
-    a {
-      font-weight: normal;
-      color: #000;
-      text-decoration: underline;
-    }
-
-    a:hover {
-      color: #4f7bd9;
-    }
-
-		.rsvp-button {
-			margin-top: 20px;
-			background-color: #fcdb92;
-			border-radius: 40px;
-			font-size: 1.2em;
-			font-weight: bold;
-			font-family: 'Montserrat', sans-serif;
-			position: relative;
-			cursor: pointer;
-			text-decoration: none;
-			display: inline-block;
-			box-shadow: 0 0 12px rgba(255, 182, 193, 0.5); /* pink shimmer only */
-			transition: all 0.4s ease;
-			overflow: hidden;
-			width: 120px;
-			padding: 16px 0;
-			text-align: center;
-			border: 4px solid transparent;
-			background-image:
-				linear-gradient(#fcdb92, #fcdb92),
-				linear-gradient(45deg, #8f9114, #748ec4, #30997a, #e1007b);
-			background-origin: border-box;
-			background-clip: padding-box, border-box;
-		}
-
-
-    .rsvp-button:hover {
-      width: 320px;
-      padding: 16px 32px;
-    }
-
-    .rsvp-button .label {
-      transition: opacity 0.3s ease;
-    }
-
+    .rsvp-button:hover { width:320px; padding:16px 32px; }
+    .rsvp-button .label { transition:opacity .3s ease; }
     .rsvp-button .alt-text {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 1.1em;
-      font-weight: bold;
-      opacity: 0;
-      background: linear-gradient(90deg, #8f9114, #748ec4, #30997a, #e1007b);
-      background-clip: text;
-      -webkit-background-clip: text;
-      color: transparent;
-      animation: shimmer 2s infinite ease-in-out;
-      white-space: nowrap;
+      position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-size:1.1em; font-weight:bold; opacity:0;
+      background:linear-gradient(90deg,#8f9114,#748ec4,#30997a,#e1007b); background-clip:text; -webkit-background-clip:text; color:transparent; animation:shimmer 2s infinite ease-in-out; white-space:nowrap;
     }
+    .rsvp-button:hover .label { opacity:0; } .rsvp-button:hover .alt-text { opacity:1; }
+    @keyframes shimmer{0%{background-position:-100% 0}50%{background-position:100% 0}100%{background-position:-100% 0}}
 
-    .rsvp-button:hover .label {
-      opacity: 0;
-    }
+    .rsvp-button .r{color:#8f9114} .rsvp-button .s{color:#748ec4} .rsvp-button .v{color:#30997a} .rsvp-button .p{color:#e1007b}
 
-    .rsvp-button:hover .alt-text {
-      opacity: 1;
-    }
+    .sparkle{position:absolute;width:6px;height:6px;border-radius:50%;opacity:.9;pointer-events:none;animation:sparkleFly .8s ease-out forwards}
+    @keyframes sparkleFly{0%{transform:translate(0,0) scale(1);opacity:1}100%{transform:translate(var(--x),var(--y)) scale(.5);opacity:0}}
 
-    @keyframes shimmer {
-      0% { background-position: -100% 0; }
-      50% { background-position: 100% 0; }
-      100% { background-position: -100% 0; }
-    }
+    /* Petal confetti */
+    .petal{position:fixed;top:-20px;pointer-events:none;opacity:.85;z-index:9999;border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;animation:petalFall linear}
+    @keyframes petalFall{to{transform:translateY(100vh) rotate(360deg)}}
 
-    .rsvp-button span {
-      display: inline-block;
-    }
-
-    .rsvp-button .r { color: #8f9114; }
-    .rsvp-button .s { color: #748ec4; }
-    .rsvp-button .v { color: #30997a; }
-    .rsvp-button .p { color: #e1007b; }
-
-    .sparkle {
-      position: absolute;
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      opacity: 0.9;
-      pointer-events: none;
-      animation: sparkleFly 0.8s ease-out forwards;
-    }
-
-    @keyframes sparkleFly {
-      0% {
-        transform: translate(0, 0) scale(1);
-        opacity: 1;
-      }
-      100% {
-        transform: translate(var(--x), var(--y)) scale(0.5);
-        opacity: 0;
-      }
-    }
-
-    footer {
-      background-color: #30997a;
-      text-align: center;
-      padding: 20px 10px;
-    }
-
-    footer p {
-      color: #fff;
-      font-size: 0.9em;
-      margin: 0 0 10px;
-    }
-
-    footer img {
-      width: 60px;
-      height: auto;
-      display: inline-block;
-    }
-
-		.attribution {
-      font-size: 0.6em;
-      margin-top: 5px;
-    }
-
-    .attribution a {
-      color: #30997a;
-      text-decoration: none;
-    }
-
-    .attribution a:hover {
-      text-decoration: underline;
-    }
-
-    .petal {
-      position: fixed;
-      top: -20px;
-      pointer-events: none;
-      opacity: 0.85;
-      z-index: 9999;
-      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-      animation: petalFall linear;
-    }
-
-    @keyframes petalFall {
-      to {
-        transform: translateY(100vh) rotate(360deg);
-      }
-    }
-
-    @media (max-width: 768px) {
-      .background {
-        flex-direction: column;
-        width: 100vw;
-        height: auto;
-      }
-
-      .left-bg {
-        width: 100vw;
-        background-image: url('EngagementPhoto.jpg');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        aspect-ratio: 3 / 4;
-      }
-
-      .right-bg {
-				width: 100vw;
-				background-image: url('InvitationBG.png');
-				background-size: 100% 100%; /* stretch to fill container */
-				background-position: center;
-				background-repeat: no-repeat;
-				padding: 0;
-			}
-
-
-      .right {
-        padding: 20px;
-        margin: 0 auto;
-        width: 100%;
-        box-sizing: border-box;
-      }
-
-      h1 {
-        font-size: 1.4em;
-      }
-
-      h2 {
-        font-size: 1.6em;
-      }
-
-      .rsvp-button {
-        width: 80%;
-        font-size: 1.1em;
-        padding: 14px 0;
-      }
-
-      footer img {
-        width: 50px;
-      }
+    /* Footer (from updated footer) */
+    footer{background-color:var(--accent); text-align:center; padding:20px 10px; color:#fff}
+    footer p{color:#fff;font-size:.9em;margin:0 0 10px} footer img{width:60px;height:auto;display:inline-block}
+    .attribution{font-size:.6em;margin-top:5px} .attribution a{color:#30997a;text-decoration:none}
+    .attribution a:hover{text-decoration:underline}
 		
+		/* restore original footer colour and text */
+		footer {
+			background-color: #30997a !important;
+			color: #fff !important;
+		}
+		footer p,
+		footer .attribution,
+		footer .attribution a {
+			color: #fff !important;
+		}
+		footer img {
+			filter: none;
+		}
 		
+		/* make footer attribution the same colour as the footer background */
+		footer {
+			background-color: #30997a !important;
+		}
+		footer .attribution,
+		footer .attribution a {
+			color: #30997a !important;
+			text-decoration: none;
+		}
+		
+    /* Responsive adjustments */
+    @media (max-width:768px){
+      .background { flex-direction:column; width:100vw; height:auto }
+      .left-bg{width:100vw;background-image:url('EngagementPhoto.jpg');background-size:cover;background-position:center;aspect-ratio:3/4}
+      .right-bg{width:100vw;background-image:url('InvitationBG.png');background-size:100% 100%;background-position:center;padding:0}
+      .right{padding:20px;margin:0 auto;width:100%;box-sizing:border-box}
+      h1{font-size:1.4em} h2{font-size:1.6em}
+      .rsvp-button{width:80%;font-size:1.1em;padding:14px 0}
+      footer img{width:50px}
     }
-		header {
-			position: sticky;
-			top: 0;
-			z-index: 1000;
-			background-color: #e1007b;
-			border-bottom: 2px solid #eee;
-			display: flex;
-			align-items: center;
-			justify-content: space-between;
-			flex-wrap: wrap;
-			padding: 10px 20px;
-			font-family: 'Montserrat', sans-serif;
-			position: relative; /* enables absolute positioning inside */
-			background-color: #e1007b;
-			z-index: 1000;
+		
+		/* ensure header social icon stays small */
+		.header-right img {
+			height: 30px !important;
+			width: auto !important;
+			max-width: none;
+			display: block;
 		}
-
-		nav li a:hover,
-		nav li a:active {
-			color: #fcdb92;
-		}
-
-		.header-right {
-			flex: 0 0 auto;
-		}
-
-		@media (max-width: 768px) {
-			header {
-				flex-direction: column;
-				align-items: flex-start;
-			}
-
-			nav ul {
-				flex-direction: column;
-				align-items: flex-start;
-			}
-
-			nav li {
-				margin: 5px 0;
-			}
-
-			.header-right {
-				align-self: flex-end;
-				margin-top: 10px;
-			}
-		}
-
-		.bunting-curve {
-			position: absolute;
-			bottom: -28px;
-			left: 0;
-			width: 100%;
-			display: flex;
-			justify-content: space-between;
-			padding: 0 10px;
-			pointer-events: none;
-			z-index: 10;
-		}
-
-		.flag {
-			width: 0;
-			height: 0;
-			border-left: 18px solid transparent;
-			border-right: 18px solid transparent;
-			border-bottom: 28px solid;
-			transform: rotate(-10deg);
-			border-radius: 0 0 50% 50%;
-			animation: sway 4s ease-in-out infinite;
-		}
-
-		.flag:nth-child(1)  { border-bottom-color: #e1007b; }
-		.flag:nth-child(2)  { border-bottom-color: #30997a; }
-		.flag:nth-child(3)  { border-bottom-color: #748ec4; }
-		.flag:nth-child(4)  { border-bottom-color: #8f9114; }
-		.flag:nth-child(5)  { border-bottom-color: #ff69b4; }
-		.flag:nth-child(6)  { border-bottom-color: #ffd700; }
-		.flag:nth-child(7)  { border-bottom-color: #00bfff; }
-		.flag:nth-child(8)  { border-bottom-color: #ff4500; }
-		.flag:nth-child(9)  { border-bottom-color: #e1007b; }
-		.flag:nth-child(10) { border-bottom-color: #30997a; }
-		.flag:nth-child(11) { border-bottom-color: #748ec4; }
-		.flag:nth-child(12) { border-bottom-color: #8f9114; }
-
-		@keyframes sway {
-			0%, 100% { transform: rotate(-10deg); }
-			50%      { transform: rotate(-5deg); }
-		}
-
 
   </style>
 </head>
 <body>
 
-<header>
-  <div class="header-left">
-    <a href="https://hannahwh05.github.io/whelnettwedfest/">
-      <img src="whelnettwedfestlogo.png" alt="Whelnett Wedfest Logo" style="height: 50px; width: auto; max-width: 180px;">
-    </a>
-  </div>
+  <!-- Header (applied) -->
+  <header>
+    <div class="header-left">
+      <a href="https://hannahwh05.github.io/whelnettwedfest/" aria-label="Home">
+        <img src="whelnettwedfestlogo.png" alt="Whelnett Wedfest Logo">
+      </a>
+    </div>
 
-  <nav>
-    <ul style="list-style: none; display: flex; flex-wrap: wrap; justify-content: center; margin: 0; padding: 0;">
-      <li><a href="https://hannahwh05.github.io/whelnettwedfest/ticket-info.html" style="color: white; font-weight: bold; font-family: 'Montserrat', sans-serif; padding: 8px 12px; text-decoration: none; letter-spacing: 1px;">Ticket Info</a></li>
-      <li><a href="https://hannahwh05.github.io/whelnettwedfest/festival-info.html" style="color: white; font-weight: bold; font-family: 'Montserrat', sans-serif; padding: 8px 12px; text-decoration: none; letter-spacing: 1px;">Festival Info/FAQs</a></li>
-      <li><a href="https://hannahwh05.github.io/whelnettwedfest/coming-soon.html" style="color: white; font-weight: bold; font-family: 'Montserrat', sans-serif; padding: 8px 12px; text-decoration: none; letter-spacing: 1px;">Lineup</a></li>
-      <li><a href="https://hannahwh05.github.io/whelnettwedfest/location.html" style="color: white; font-weight: bold; font-family: 'Montserrat', sans-serif; padding: 8px 12px; text-decoration: none; letter-spacing: 1px;">Location</a></li>
-      <li><a href="https://hannahwh05.github.io/whelnettwedfest/coming-soon.html" style="color: white; font-weight: bold; font-family: 'Montserrat', sans-serif; padding: 8px 12px; text-decoration: none; letter-spacing: 1px;">Site Map</a></li>
-      <!-- New Presents link -->
-      <li><a href="https://hannahwh05.github.io/whelnettwedfest/presents.html" style="color: white; font-weight: bold; font-family: 'Montserrat', sans-serif; padding: 8px 12px; text-decoration: none; letter-spacing: 1px;">Presents</a></li>
-    </ul>
+    <!-- Desktop inline nav -->
+    <nav class="desktop-nav" aria-label="Primary navigation" role="navigation">
+      <ul>
+        <li><a href="https://hannahwh05.github.io/whelnettwedfest/ticket-info.html">Ticket Info</a></li>
+        <li><a href="https://hannahwh05.github.io/whelnettwedfest/festival-info.html">Festival Info/FAQs</a></li>
+        <li><a href="https://hannahwh05.github.io/whelnettwedfest/coming-soon.html">Lineup</a></li>
+        <li><a href="https://hannahwh05.github.io/whelnettwedfest/location.html">Location</a></li>
+        <li><a href="https://hannahwh05.github.io/whelnettwedfest/coming-soon.html">Site Map</a></li>
+        <li><a href="https://hannahwh05.github.io/whelnettwedfest/presents.html">Presents</a></li>
+      </ul>
+    </nav>
+
+    <!-- Mobile toggle using confetti SVG; icon inside small translucent box only -->
+    <button class="menu-toggle" aria-controls="main-nav" aria-expanded="false" aria-label="Open menu" title="Menu">
+      <span class="icon-box" aria-hidden="true">
+        <svg class="confetti-svg" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+          <g fill="none" stroke-linecap="round" stroke-width="1.6">
+            <path class="burst-piece" d="M16 5 L16 11" stroke="#ffd700" style="--tx:0; --ty:-18px; --r: -18deg;" />
+            <path class="burst-piece" d="M16 21 L16 27" stroke="#ff69b4" style="--tx:0; --ty:18px; --r: 22deg;" />
+            <path class="burst-piece" d="M5 16 L11 16" stroke="#30997a" style="--tx:-18px; --ty:0; --r: -8deg;" />
+            <path class="burst-piece" d="M21 16 L27 16" stroke="#748ec4" style="--tx:18px; --ty:0; --r: 10deg;" />
+            <circle class="burst-piece" cx="10" cy="8" r="1.6" fill="#ff4500" style="--tx:-8px; --ty:-12px; --r: 6deg;" />
+            <circle class="burst-piece" cx="22" cy="8" r="1.6" fill="#e1007b" style="--tx:8px; --ty:-12px; --r: -6deg;" />
+            <circle class="burst-piece" cx="8" cy="24" r="1.6" fill="#00bfff" style="--tx:-10px; --ty:14px; --r: 12deg;" />
+            <circle class="burst-piece" cx="24" cy="24" r="1.6" fill="#ffd700" style="--tx:10px; --ty:14px; --r: -12deg;" />
+          </g>
+        </svg>
+      </span>
+      <span class="menu-label">Menu</span>
+    </button>
+
+    <div class="header-right">
+      <a href="https://www.instagram.com/whelnettwedfest/#" target="_blank" rel="noopener noreferrer">
+        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
+      </a>
+    </div>
+
+    <div class="bunting-curve" aria-hidden="true">
+      <div class="flag"></div><div class="flag"></div><div class="flag"></div><div class="flag"></div>
+      <div class="flag"></div><div class="flag"></div><div class="flag"></div><div class="flag"></div>
+      <div class="flag"></div><div class="flag"></div><div class="flag"></div><div class="flag"></div>
+    </div>
+  </header>
+
+  <!-- Backdrop -->
+  <div id="nav-backdrop" aria-hidden="true"></div>
+
+  <!-- Overlay nav (mobile) trimmed to content and centered within viewport -->
+  <nav id="main-nav" class="overlay" aria-label="Primary navigation overlay" role="navigation">
+    <div class="nav-wrap" role="group" aria-label="Navigation links">
+      <ul>
+        <li><a href="https://hannahwh05.github.io/whelnettwedfest/ticket-info.html">Ticket Info</a></li>
+        <li><a href="https://hannahwh05.github.io/whelnettwedfest/festival-info.html">Festival Info/FAQs</a></li>
+        <li><a href="https://hannahwh05.github.io/whelnettwedfest/coming-soon.html">Lineup</a></li>
+        <li><a href="https://hannahwh05.github.io/whelnettwedfest/location.html">Location</a></li>
+        <li><a href="https://hannahwh05.github.io/whelnettwedfest/coming-soon.html">Site Map</a></li>
+        <li><a href="https://hannahwh05.github.io/whelnettwedfest/presents.html">Presents</a></li>
+      </ul>
+    </div>
   </nav>
 
-  <div class="header-right">
-    <a href="https://www.instagram.com/whelnettwedfest/#" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" style="height: 30px; width: auto;">
-    </a>
-  </div>
-
-  <!-- bunting flags -->
-  <div class="bunting-curve">
-    <div class="flag"></div>
-    <div class="flag"></div>
-    <div class="flag"></div>
-    <div class="flag"></div>
-    <div class="flag"></div>
-    <div class="flag"></div>
-    <div class="flag"></div>
-    <div class="flag"></div>
-    <div class="flag"></div>
-    <div class="flag"></div>
-    <div class="flag"></div>
-    <div class="flag"></div>
-  </div>
-</header>
-
-	
+  <!-- ---------- Main page content (user's page) ---------- -->
   <div class="background">
     <div class="left-bg"></div>
     <div class="right-bg">
@@ -444,9 +258,9 @@
         <br><br>
 
         <h1>
-					<a href="https://hannahwh05.github.io/whelnettwedfest/Poplar-Farm-Google-Maps.html" target="_blank" title="View location in Google Maps">
-						Poplar Farm, Clevedon<br>BS21 6UN
-					</a>
+          <a href="https://hannahwh05.github.io/whelnettwedfest/location.html" target="_blank" title="View location in Google Maps">
+            Poplar Farm, Clevedon<br>BS21 6UN
+          </a>
         </h1>
 
         <a href="https://hannahwh05.github.io/whelnettwedfest/ticket-info.html" target="_blank" class="rsvp-button" title="Register for Whelnett Wedfest Tickets" onmouseenter="burstSparkles(event)">
@@ -459,6 +273,7 @@
     </div>
   </div>
 
+  <!-- Footer (applied) -->
   <footer>
     <p>Whelnett Wedfest Ltd.</p>
     <img src="whelnettwedfestlogo.png" alt="Whelnett Wedfest Logo">
@@ -467,53 +282,47 @@
     </p>
   </footer>
 
+  <!-- ---------- Scripts (merged) ---------- -->
   <script>
+    /* Countdown */
     const targetDate = new Date("2026-08-08T12:00:00+01:00").getTime();
-
     function updateCountdown() {
       const now = new Date().getTime();
       const distance = targetDate - now;
-
       if (distance < 0) {
         document.getElementById("timer").innerHTML = "It's festival time!";
         return;
       }
-
       const days = Math.floor(distance / (1000 * 60 * 60 * 24));
       const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      document.getElementById("timer").innerHTML =
-        `${days}d ${hours}h ${minutes}m ${seconds}s`;
+      document.getElementById("timer").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
     }
-
     setInterval(updateCountdown, 1000);
+    updateCountdown();
 
+    /* Confetti petals */
     function createConfetti() {
       const petal = document.createElement('div');
       petal.classList.add('petal');
-
       const size = Math.random() * 12 + 8;
       petal.style.left = Math.random() * window.innerWidth + 'px';
       petal.style.width = `${size}px`;
       petal.style.height = `${size * 1.2}px`;
-
-      const colors = ['#ff007f', '#ffd700', '#00bfff', '#ff4500', '#32cd32', '#ffffff'];
+      const colors = ['#ff007f','#ffd700','#00bfff','#ff4500','#32cd32','#ffffff'];
       petal.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-
       const duration = Math.random() * 4 + 3;
       petal.style.animationDuration = `${duration}s`;
-
       document.body.appendChild(petal);
       setTimeout(() => petal.remove(), duration * 1000);
     }
-
     setInterval(createConfetti, 180);
 
+    /* RSVP sparkle burst */
     function burstSparkles(event) {
       const button = event.currentTarget;
-      const colors = ['#e1007b', '#748ec4', '#30997a', '#ffd700', '#8f9114'];
+      const colors = ['#e1007b','#748ec4','#30997a','#ffd700','#8f9114'];
       for (let i = 0; i < 12; i++) {
         const sparkle = document.createElement('span');
         sparkle.classList.add('sparkle');
@@ -526,6 +335,74 @@
         setTimeout(() => sparkle.remove(), 800);
       }
     }
+
+    /* Overlay menu logic + confetti icon animation */
+    (function(){
+      var toggle = document.querySelector('.menu-toggle');
+      var overlayNav = document.getElementById('main-nav');
+      var backdrop = document.getElementById('nav-backdrop');
+      var desktopNav = document.querySelector('.desktop-nav');
+      var confettiSvg = document.querySelector('.confetti-svg');
+
+      if (!toggle || !overlayNav) return;
+
+      function setOpen(open){
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        if (open){
+          overlayNav.classList.add('open');
+          backdrop.classList.add('open');
+          document.documentElement.style.overflow = 'hidden';
+          document.body.style.overflow = 'hidden';
+          toggle.setAttribute('aria-label','Close menu');
+          triggerConfetti(); // animate on open
+        } else {
+          overlayNav.classList.remove('open');
+          backdrop.classList.remove('open');
+          document.documentElement.style.overflow = '';
+          document.body.style.overflow = '';
+          toggle.setAttribute('aria-label','Open menu');
+        }
+      }
+
+      toggle.addEventListener('click', function(){
+        var expanded = toggle.getAttribute('aria-expanded') === 'true';
+        setOpen(!expanded);
+      });
+
+      backdrop.addEventListener('click', function(){ setOpen(false); });
+
+      overlayNav.addEventListener('click', function(e){
+        if (e.target.tagName.toLowerCase() === 'a' && window.matchMedia('(max-width:768px)').matches){
+          setOpen(false);
+        }
+      });
+
+      document.addEventListener('keydown', function(e){
+        if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true'){
+          setOpen(false);
+          toggle.focus();
+        }
+      });
+
+      function updateNavDisplay(){
+        if (window.matchMedia('(max-width:768px)').matches){
+          if (desktopNav) desktopNav.style.display = 'none';
+        } else {
+          if (desktopNav) desktopNav.style.display = '';
+          setOpen(false);
+        }
+      }
+      updateNavDisplay();
+      window.addEventListener('resize', updateNavDisplay);
+
+      function triggerConfetti(){
+        if (!confettiSvg) return;
+        confettiSvg.classList.remove('confetti-animate');
+        void confettiSvg.offsetWidth;
+        confettiSvg.classList.add('confetti-animate');
+        setTimeout(function(){ confettiSvg.classList.remove('confetti-animate'); }, 700);
+      }
+    })();
   </script>
 
 </body>
