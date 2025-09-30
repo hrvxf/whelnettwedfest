@@ -8,50 +8,60 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 
   <style>
-    :root{
+    :root {
       --bg-url: url('FestivalInfo.png');
       --accent-teal: #17b4ad;
     }
 
-    *{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%;background:#0f7f78;font-family:Montserrat,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;}
-    body{display:flex;align-items:center;justify-content:center;padding:12px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
-
-    .scene{
-      width:100%;
-      max-width:720px;
-      height:calc(min(90vh, 980px));
-      perspective:1200px;
-      cursor:pointer;
-      display:flex;
-      align-items:center;
-      justify-content:center;
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      height: 100%;
+      background: #0f7f78;
+      font-family: Montserrat, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
-    .pass{
-      width:100%;
-      height:100%;
-      position:relative;
-      transform-style:preserve-3d;
+    .scene {
+      width: 100%;
+      max-width: 720px;
+      height: calc(min(90vh, 980px));
+      perspective: 1200px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .pass {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
       transition: transform 700ms cubic-bezier(.2,.9,.3,1);
-      border-radius:12px;
-      box-shadow:0 8px 28px rgba(0,0,0,.35);
-      overflow:visible;
-      background-color:transparent;
+      border-radius: 12px;
+      box-shadow: 0 8px 28px rgba(0,0,0,.35);
+      overflow: visible;
+      background-color: transparent;
     }
 
     .scene.flipped .pass { transform: rotateY(180deg); }
 
-    .face{
-      position:absolute;
-      inset:0;
-      backface-visibility:hidden;
-      border-radius:12px;
-      display:flex;
-      align-items:flex-start;
-      justify-content:center;
-      overflow:visible;
-      background-repeat:no-repeat;
+    .face {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      border-radius: 12px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      background-repeat: no-repeat;
       background-position: center top;
       background-size: contain;
       background-image: var(--bg-url);
@@ -59,89 +69,88 @@
 
     .face.back { transform: rotateY(180deg); }
 
-    .text-frame{
-      position:absolute;
-      left:20%;
-      right:20%;
-      top:33%;
-      bottom:10%;
-      overflow:auto;
-      background: transparent;
-      -webkit-backdrop-filter: none;
-      backdrop-filter: none;
-      padding: clamp(6px, 1.6vw, 12px);
-      border-radius:8px;
+    .text-frame {
+      position: absolute;
+      top: 34%;
+      bottom: 13%;
+      left: 30%;
+      right: 30%;
+      overflow: hidden;
+      padding: clamp(6px, 1vw, 10px);
+      border-radius: 8px;
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
-      transform: translateY(0);
-      transition: transform 220ms ease, top 220ms ease;
+      overflow-wrap: break-word;
+      word-break: break-word;
+      max-height: 100%;
     }
 
-    h2,h3{
-      margin-bottom:0.22rem;
-      line-height:1;
+    h2, h3 {
+      margin-bottom: 0.18rem;
+      line-height: 1.1;
       font-family: Impact, 'Haettenschweiler', 'Arial Black', sans-serif;
-      color:#1a0120;
-      text-shadow:0 1px 0 rgba(255,255,255,.6);
+      color: #1a0120;
+      text-shadow: 0 1px 0 rgba(255,255,255,.6);
     }
 
-    h2{ font-size: clamp(0.815rem, 2.70vw, 1.045rem); }
-    h3{ font-size: clamp(0.705rem, 2.20vw, 0.865rem); margin-top:0.44rem; }
+      h2 {
+				font-size: clamp(0.7rem, 1.5vw, 0.85rem);
+				text-align: center;
+				text-transform: uppercase;
+				letter-spacing: 0.04em;
+			}
 
-    p{ font-size: clamp(0.565rem, 1.75vw, 0.705rem); color:#12030f; margin-top:0.28rem; line-height:1.28; }
-    p a{ color:var(--accent-teal); text-decoration:underline; }
-    strong{ font-weight:600; color:#12030f; }
+			h3 {
+				font-size: clamp(0.55rem, 1.2vw, 0.7rem);
+				margin-top: 0.4rem;
+			}
 
-    .text-frame::-webkit-scrollbar{ width:6px; }
-    .text-frame::-webkit-scrollbar-thumb{ background: rgba(0,0,0,0.10); border-radius:6px; }
-        
-    /* for just-above-phone widths */
-    @media (min-width: 431px) and (max-width: 679px) {
-      .text-frame { left: 22%; right: 22%; }
+			p {
+				font-size: clamp(0.48rem, 1vw, 0.65rem);
+				line-height: 1.15;
+				margin-top: 0.18rem;
+				color: #12030f;
+			}
+
+    p a {
+      color: var(--accent-teal);
+      text-decoration: underline;
     }
 
-    /* tablet / small desktop */
-    @media (min-width: 680px) and (max-width: 899px) {
-      .text-frame { left: 24%; right: 24%; }
+    strong {
+      font-weight: 600;
+      color: #12030f;
     }
 
-    /* larger desktops */
-    @media (min-width: 900px) {
-      .text-frame { left: 26%; right: 26%; }
+    .hint {
+      position: absolute;
+      left: 12px;
+      top: 12px;
+      background: rgba(255,255,255,0.85);
+      color: #2a1a1a;
+      font-size: 11px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+      user-select: none;
+      display: none;
     }
 
-    .hint{ position:absolute; left:12px; top:12px; background: rgba(255,255,255,0.85); color:#2a1a1a; font-size:11px; padding:6px 10px; border-radius:999px; box-shadow:0 2px 6px rgba(0,0,0,0.12); user-select:none; display:none; }
-    @media(min-width:680px){ .hint{ display:block; } }
-        
-    .hint-back{
-      right:12px;
-      left:auto;
-      top:12px;
-      display:none;
-    }
-        
-    @media(min-width:680px){
-      .hint-back{ display:block; }
+    @media(min-width:680px) {
+      .hint { display: block; }
+      .hint-back { display: block; }
     }
 
-    .pass, .text-frame, .face { -webkit-user-select:none; -ms-user-select:none; user-select:none; }
-    .text-frame * { user-select:text; }
-
-    @media (max-width:420px){
-      .text-frame{ left:10%; right:10%; top:36%; padding:8px; }
-      h2{ font-size:0.905rem; }
-      p{ font-size:0.575rem; }
+    .hint-back {
+      right: 12px;
+      left: auto;
+      top: 12px;
+      display: none;
     }
 
-    .face .text-frame h2 {
-      text-align: center;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      margin-left: 0;
-      margin-right: 0;
-    }
+    .pass, .text-frame, .face { -webkit-user-select: none; -ms-user-select: none; user-select: none; }
+    .text-frame * { user-select: text; }
 
-    /* Increased nudge: shift up an additional amount (total -12%) for 320–430px */
-    @media (min-width:320px) and (max-width:430px) {
+    @media (max-width:420px) {
       .text-frame { transform: translateY(-12%); }
     }
   </style>
@@ -166,7 +175,6 @@
           <p><strong>Train:</strong> The closest train station is Yatton. Either pre-book a taxi or ask a friend to collect you – it is about a 10 minute drive.</p>
           <p><strong>Cycle:</strong> If you are feeling adventurous, Poplar Farm is along National Cycle Route 33. North Somerset has some beautiful countryside to explore along the cycle routes.</p>
           <p><strong>Taxis:</strong> We would advise to book a taxi or Uber in advance as they are not frequent in the area. Local Companies: North Somerset Taxis, Streets Ahead Taxis, Triangle Cars Clevedon</p>
-
         </div>
       </section>
 
@@ -191,19 +199,29 @@
     (function(){
       const scene = document.getElementById('scene');
       let flipped = false;
+
       function toggleFlip(e){
         const sel = window.getSelection();
         if (sel && sel.toString().length) return;
         flipped = !flipped;
         scene.classList.toggle('flipped', flipped);
       }
+
       scene.addEventListener('click', toggleFlip);
+
       scene.addEventListener('keydown', function(e){
-        if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') { e.preventDefault(); toggleFlip(); }
+        if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+          e.preventDefault();
+          toggleFlip();
+        }
       });
+
       scene.addEventListener('transitionend', function(){
-        if (scene.classList.contains('flipped')) document.getElementById('backText').scrollTop = 0;
-        else document.getElementById('frontText').scrollTop = 0;
+        if (scene.classList.contains('flipped')) {
+           document.getElementById('backText').scrollTop = 0;
+        } else {
+          document.getElementById('frontText').scrollTop = 0;
+        }
       });
     })();
   </script>
