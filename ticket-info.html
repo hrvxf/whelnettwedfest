@@ -1,465 +1,358 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Whelnett Wedfest 2026 Invitation</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
   <style>
-    body {
-      margin: 0;
-      font-family: 'Montserrat', sans-serif;
-      background-color: #ffffff;
+    :root{
+      --brand:#e1007b;
+      --accent:#fcdb92;
+      --nav-text:#ffffff;
+      --overlay-bg: rgba(225,0,123,0.98);
     }
 
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background-color: #e1007b;
-      border-bottom: 2px solid #eee;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      padding: 10px 20px;
-      font-family: 'Montserrat', sans-serif;
-      position: relative;
+    html,body{height:100%;margin:0;font-family:'Montserrat',sans-serif;background:#fff;color:#111}
+
+    /* Header */
+    header{
+      position:sticky;top:0;z-index:1200;
+      background:var(--brand);border-bottom:2px solid #eee;
+      display:flex;align-items:center;justify-content:space-between;padding:10px 20px;gap:12px;position:relative;
     }
+    .header-left{display:flex;align-items:center}
+    .header-left img{height:50px;width:auto;max-width:180px;display:block}
 
-    .header-left {
-      flex: 0 0 auto;
-    }
+    /* Desktop nav */
+    .desktop-nav ul{display:flex;flex-wrap:wrap;justify-content:center;gap:0;margin:0;padding:0;list-style:none}
+    .desktop-nav a{display:inline-block;padding:8px 12px;color:var(--nav-text);text-decoration:none;font-weight:700;letter-spacing:1px}
+    .desktop-nav a:hover{color:var(--accent)}
 
-    .header-left img {
-      height: 50px;
-      width: auto;
-      max-width: 180px;
-    }
+    /* Header right */
+    .header-right img{height:30px;width:auto;display:block}
 
-    nav {
-      flex: 1 1 auto;
-      text-align: center;
-    }
-
-    nav ul {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-
-    nav li a {
-      text-decoration: none;
-      color: white;
-      font-weight: bold;
-      font-family: 'Montserrat', sans-serif;
-      padding: 8px 12px;
-      transition: color 0.3s ease;
-      letter-spacing: 1px;
-    }
-
-    nav li a:hover,
-    nav li a:active {
-      color: #fcdb92;
-    }
-
-    .header-right {
-      flex: 0 0 auto;
-    }
-
-    .header-right img {
-      height: 30px;
-      width: auto;
-    }
-
-    @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      nav ul {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      nav li {
-        margin: 5px 0;
-      }
-
-      .header-right {
-        align-self: flex-end;
-        margin-top: 10px;
-      }
-    }
-
-    /* --- Bunting curve styles merged in --- */
-    .bunting-curve {
-      position: absolute;
-      bottom: -28px;
-      left: 0;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      padding: 0 10px;
-      pointer-events: none;
-      z-index: 10;
-    }
-
-    .flag {
-      width: 0;
-      height: 0;
-      border-left: 18px solid transparent;
-      border-right: 18px solid transparent;
-      border-bottom: 28px solid;
-      transform: rotate(-10deg);
-      border-radius: 0 0 50% 50%;
-      animation: sway 4s ease-in-out infinite;
-    }
-
-    .flag:nth-child(1)  { border-bottom-color: #e1007b; }
-    .flag:nth-child(2)  { border-bottom-color: #30997a; }
-    .flag:nth-child(3)  { border-bottom-color: #748ec4; }
-    .flag:nth-child(4)  { border-bottom-color: #8f9114; }
-    .flag:nth-child(5)  { border-bottom-color: #ff69b4; }
-    .flag:nth-child(6)  { border-bottom-color: #ffd700; }
-    .flag:nth-child(7)  { border-bottom-color: #00bfff; }
-    .flag:nth-child(8)  { border-bottom-color: #ff4500; }
-    .flag:nth-child(9)  { border-bottom-color: #e1007b; }
-    .flag:nth-child(10) { border-bottom-color: #30997a; }
-    .flag:nth-child(11) { border-bottom-color: #748ec4; }
-    .flag:nth-child(12) { border-bottom-color: #8f9114; }
-
-    @keyframes sway {
-      0%, 100% { transform: rotate(-10deg); }
-      50%      { transform: rotate(-5deg); }
-    }
-
-    /* --- Your existing section styles remain unchanged --- */
-    .top-section {
-      background-color: #748ec4;
-      color: white;
-      padding: 60px 20px;
-      text-align: center;
-    }
-
-    .top-section h1 {
-      font-family: Impact, sans-serif;
-      text-transform: uppercase;
-      font-size: 48px;
-      margin-bottom: 20px;
-      letter-spacing: 4px;
-    }
-
-    .top-section p {
-      font-size: 18px;
-      margin: 10px 0;
-    }
-
-    .middle-section {
-      background-color: #B5CB9E;
-      color: white;
-      padding: 60px 200px;
-      text-align: center;
-    }
-
-    .middle-section h1 {
-      font-family: Impact, sans-serif;
-      text-transform: uppercase;
-      font-size: 48px;
-      margin-bottom: 20px;
-      letter-spacing: 4px;
-    }
-
-    .middle-section h2 {
-      font-size: 25px;
-      margin-bottom: 20px;
-      letter-spacing: 4px;
-    }
-
-    .middle-section h3 {
-      font-size: 20px;
-      margin-bottom: 20px;
-      text-align: left;
-    }
-
-    .middle-section p {
-      font-size: 18px;
-      margin: 10px 0;
-    }
-
-    li {
-      padding-left: 100px;
-      margin-left: 0;
-      display: inline;
-    }
-
-    .bottom-section {
-      background-color: #fcdb92;
-      padding: 80px 20px 120px;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .logo {
-      max-width: 300px;
-      height: auto;
-      margin-bottom: 50px;
-    }
-
-    .cta-button {
-      background-color: #30997a;
-      border-radius: 40px;
-      font-size: 1.2em;
-      font-family: Impact, sans-serif;
-      letter-spacing: 2px;
-      position: relative;
+    /* Menu toggle (mobile) — confetti SVG with small translucent white box behind icon only */
+    .menu-toggle{
+      display:none;
+      align-items:center;
+      gap:8px;
+      background: transparent;
+      border: none;
+      color: var(--nav-text);
       cursor: pointer;
-      text-decoration: none;
-      display: inline-block;
-      box-shadow: 0 0 12px rgba(255, 182, 193, 0.5);
-      transition: all 0.4s ease;
-      overflow: hidden;
-      width: 120px;
-      padding: 16px 0;
-      text-align: center;
-      border: 4px solid transparent;
-      background-image:
-        linear-gradient(#30997a, #30997a),
-        linear-gradient(45deg, #8f9114, #748ec4, #30997a, #e1007b);
-      background-origin: border-box;
-      background-clip: padding-box, border-box;
-      color: white;
-      text-transform: uppercase;
+      padding: 6px 8px;
+      border-radius: 10px;
+      font-weight:700;
+      font-size:15px;
+    }
+    .menu-toggle:focus { outline: 3px solid rgba(255,255,255,0.25); outline-offset: 2px; }
+
+    .icon-box {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:36px;
+      height:36px;
+      background: rgba(255,255,255,0.5); /* 50% white behind icon only */
+      border-radius:8px;
+      padding:4px;
+      flex:0 0 auto;
     }
 
-    .cta-button:hover {
-      width: 320px;
-      padding: 16px 32px;
+    .confetti-svg{width:28px;height:28px;display:block; color:var(--brand);}
+
+    .menu-label {
+      display:inline-block;
+      font-size:14px;
+      font-family: 'Montserrat', sans-serif; /* Montserrat for Menu text */
+      line-height:1;
+      color: #ffffff; /* white text */
+      text-transform: none;
+      letter-spacing: 0.6px;
     }
 
-    .cta-button .label {
-      transition: opacity 0.3s ease;
+    /* Bunting */
+    .bunting-curve{position:absolute;bottom:-28px;left:0;width:100%;display:flex;justify-content:space-between;padding:0 10px;pointer-events:none;z-index:10}
+    .flag{width:0;height:0;border-left:18px solid transparent;border-right:18px solid transparent;border-bottom:28px solid;transform:rotate(-10deg);border-radius:0 0 50% 50%;animation:sway 4s ease-in-out infinite}
+    .flag:nth-child(1){border-bottom-color:#e1007b}.flag:nth-child(2){border-bottom-color:#30997a}.flag:nth-child(3){border-bottom-color:#748ec4}
+    .flag:nth-child(4){border-bottom-color:#8f9114}.flag:nth-child(5){border-bottom-color:#ff69b4}.flag:nth-child(6){border-bottom-color:#ffd700}
+    .flag:nth-child(7){border-bottom-color:#00bfff}.flag:nth-child(8){border-bottom-color:#ff4500}.flag:nth-child(9){border-bottom-color:#e1007b}
+    .flag:nth-child(10){border-bottom-color:#30997a}.flag:nth-child(11){border-bottom-color:#748ec4}.flag:nth-child(12){border-bottom-color:#8f9114}
+    @keyframes sway{0%,100%{transform:rotate(-10deg)}50%{transform:rotate(-5deg)}}
+
+    /* Overlay nav and backdrop */
+    #nav-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.35);z-index:1100;opacity:0;pointer-events:none;transition:opacity .28s ease}
+    #nav-backdrop.open{opacity:1;pointer-events:auto}
+
+    /* Overlay trimmed to content height but never taller than 80vh */
+    nav.overlay{
+      position:fixed;inset:0;z-index:1150;background:var(--overlay-bg);
+      display:flex;flex-direction:column;align-items:center;
+      padding-top:86px;box-sizing:border-box;overflow-y:auto;
+      transform:translateY(-6%);opacity:0;pointer-events:none;transition:transform .28s ease,opacity .28s ease;
+      -webkit-overflow-scrolling:touch;
+      max-height:80vh; margin: 0 auto; left:0; right:0;
+    }
+    nav.overlay.open{transform:translateY(0);opacity:1;pointer-events:auto}
+    nav.overlay .nav-wrap { width:100%; max-width:520px; margin:6px 16px; }
+    nav.overlay ul{display:flex;flex-direction:column;gap:10px;padding:6px;margin:0;align-items:stretch;list-style:none}
+    nav.overlay a{padding:14px 16px;display:block;border-radius:10px;background:rgba(255,255,255,0.04);color:#fff;font-size:18px;text-decoration:none}
+    nav.overlay a:hover{background:rgba(255,255,255,0.07);color:var(--accent)}
+
+    /* If overlay content shorter than available space, center it slightly */
+    @media (max-width:768px){
+      .menu-toggle{display:flex}
+      .desktop-nav{display:none}
+      nav.overlay{max-height:80vh; top:10vh; bottom:10vh; border-radius:12px; overflow:visible}
+      nav.overlay.open { top:8vh; bottom:8vh; } /* slight lift when open */
     }
 
-    .cta-button .alt-text {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 1.1em;
-      font-weight: bold;
-      opacity: 0;
-      color: white;
-      white-space: nowrap;
-    }
-
-    .cta-button:hover .label {
-      opacity: 0;
-    }
-
-    .cta-button:hover .alt-text {
+    /* Confetti burst animation pieces */
+    .confetti-animate .burst-piece {
+      transform-origin: 50% 50%;
       opacity: 1;
+      animation: burst 520ms cubic-bezier(.2,.85,.32,1) forwards;
+    }
+    .confetti-animate .burst-piece:nth-child(1){ animation-delay: 0ms; }
+    .confetti-animate .burst-piece:nth-child(2){ animation-delay: 20ms; }
+    .confetti-animate .burst-piece:nth-child(3){ animation-delay: 40ms; }
+    .confetti-animate .burst-piece:nth-child(4){ animation-delay: 60ms; }
+    .confetti-animate .burst-piece:nth-child(5){ animation-delay: 80ms; }
+    .confetti-animate .burst-piece:nth-child(6){ animation-delay: 100ms; }
+    .confetti-animate .burst-piece:nth-child(7){ animation-delay: 120ms; }
+    .confetti-animate .burst-piece:nth-child(8){ animation-delay: 140ms; }
+
+    @keyframes burst {
+      0%   { transform: translate(0,0) scale(0.95) rotate(0deg); opacity:1; }
+      35%  { transform: translate(var(--tx), var(--ty)) scale(1.05) rotate(var(--r)); opacity:1; }
+      100% { transform: translate(calc(var(--tx) * 1.25), calc(var(--ty) * 1.25)) scale(0.9) rotate(calc(var(--r) * 1.2)); opacity:0; }
     }
 
-    footer {
-      background-color: #30997a;
-      text-align: center;
-      padding: 20px 10px;
-    }
+    /* Page sections */
+    .top-section{background:#748ec4;color:#fff;padding:60px 20px;text-align:center}
+    .top-section h1{font-family:Impact,sans-serif;text-transform:uppercase;font-size:48px;margin:0 0 18px;letter-spacing:4px}
+    .top-section p{font-size:18px;margin:12px 0;max-width:900px;margin-left:auto;margin-right:auto}
 
-    footer p {
-      color: #fff;
-      font-size: 0.9em;
-      margin: 0 0 10px;
-    }
+    .middle-section{background:#B5CB9E;color:#fff;padding:60px 40px;text-align:center}
+    .middle-section h1{font-family:Impact,sans-serif;text-transform:uppercase;font-size:36px;margin-bottom:14px;letter-spacing:4px}
+    .middle-section h2{font-size:25px;margin:8px 0 12px}
+    .middle-section h3{font-size:20px;margin:8px 0 10px;text-align:left}
+    .middle-section p{font-size:18px;margin:10px 0;text-align:left;max-width:900px;margin-left:auto;margin-right:auto}
 
-    footer img {
-      width: 60px;
-      height: auto;
-      display: inline-block;
-    }
+    .price-list{list-style:none;padding-left:0;margin:10px auto 0;max-width:900px;text-align:left;color:#fff}
+    .price-list li{margin:6px 0;display:block}
 
-    .attribution {
-      font-size: 0.6em;
-      margin-top: 5px;
-    }
+    .bell-gallery{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;padding:0;margin-top:18px;max-width:900px;margin-left:auto;margin-right:auto}
+    .bell-item{flex:1 1 30%;max-width:30%;box-sizing:border-box}
+    .bell-item img{width:100%;height:auto;display:block;border-radius:8px;object-fit:cover;box-shadow:0 6px 18px rgba(0,0,0,.12);border:4px solid rgba(255,255,255,.18)}
 
-    .attribution a {
-      color: #30997a;
-      text-decoration: none;
-    }
+    .bottom-section{background:#fcdb92;padding:80px 20px 120px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center}
+    .logo{max-width:300px;height:auto;margin-bottom:32px}
+    .cta-button{background:#30997a;border-radius:40px;font-family:Impact,sans-serif;letter-spacing:2px;text-decoration:none;color:#fff;padding:16px 28px;display:inline-block;border:4px solid transparent;box-shadow:0 0 12px rgba(255,182,193,.5);transition:all .35s ease}
+    .cta-button:hover{transform:translateY(-2px)}
 
-    .attribution a:hover {
-      text-decoration: underline;
-    }
+    footer{background:#30997a;text-align:center;padding:20px 10px;color:#fff}
+    footer img{width:60px;height:auto;display:inline-block}
+    .attribution a{color:#fff;text-decoration:underline;font-size:0.9rem}
 
-    /* Bell tent gallery - three across, stack on small screens */
-    .bell-gallery {
-      display: flex;
-      gap: 20px;
-      justify-content: center;
-      align-items: stretch;
-      margin-top: 18px;
-      flex-wrap: wrap;
-      padding: 0;
-      list-style: none;
-    }
-
-    .bell-gallery .bell-item {
-      flex: 1 1 30%;
-      max-width: 30%;
-      box-sizing: border-box;
-    }
-
-    .bell-gallery .bell-item img {
-      width: 100%;
-      height: auto;
-      display: block;
-      border-radius: 8px;
-      object-fit: cover;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
-      border: 4px solid rgba(255,255,255,0.18);
-    }
-
-    /* Medium screens: 2 across */
-    @media (max-width: 900px) {
-      .middle-section {
-        padding-left: 40px;
-        padding-right: 40px;
-      }
-      .bell-gallery .bell-item {
-        flex: 1 1 45%;
-        max-width: 45%;
-      }
-    }
-
-    /* Small screens: stacked */
-    @media (max-width: 540px) {
-      .bell-gallery {
-        gap: 12px;
-        margin-top: 14px;
-      }
-      .bell-gallery .bell-item {
-        flex: 1 1 100%;
-        max-width: 100%;
-      }
-    }
+    @media (max-width:900px){.middle-section{padding-left:40px;padding-right:40px}.bell-item{flex:1 1 45%;max-width:45%}}
+    @media (max-width:540px){.bell-item{flex:1 1 100%;max-width:100%}.top-section h1{font-size:32px}}
   </style>
 </head>
-
 <body>
 
 <header>
   <div class="header-left">
-    <a href="https://hannahwh05.github.io/whelnettwedfest/">
-      <img src="whelnettwedfestlogo.png" alt="Whelnett Wedfest Logo" style="height: 50px; width: auto; max-width: 180px;">
+    <a href="https://hannahwh05.github.io/whelnettwedfest/" aria-label="Home">
+      <img src="whelnettwedfestlogo.png" alt="Whelnett Wedfest Logo">
     </a>
   </div>
 
-  <nav>
-    <ul style="list-style: none; display: flex; flex-wrap: wrap; justify-content: center; margin: 0; padding: 0;">
-      <li><a href="https://hannahwh05.github.io/whelnettwedfest/ticket-info.html" style="color: white; font-weight: bold; font-family: 'Montserrat', sans-serif; padding: 8px 12px; text-decoration: none; letter-spacing: 1px;">Ticket Info</a></li>
-      <li><a href="https://hannahwh05.github.io/whelnettwedfest/festival-info.html" style="color: white; font-weight: bold; font-family: 'Montserrat', sans-serif; padding: 8px 12px; text-decoration: none; letter-spacing: 1px;">Festival Info/FAQs</a></li>
-      <li><a href="https://hannahwh05.github.io/whelnettwedfest/coming-soon.html" style="color: white; font-weight: bold; font-family: 'Montserrat', sans-serif; padding: 8px 12px; text-decoration: none; letter-spacing: 1px;">Lineup</a></li>
-      <li><a href="https://hannahwh05.github.io/whelnettwedfest/location.html" style="color: white; font-weight: bold; font-family: 'Montserrat', sans-serif; padding: 8px 12px; text-decoration: none; letter-spacing: 1px;">Location</a></li>
-      <li><a href="https://hannahwh05.github.io/whelnettwedfest/coming-soon.html" style="color: white; font-weight: bold; font-family: 'Montserrat', sans-serif; padding: 8px 12px; text-decoration: none; letter-spacing: 1px;">Site Map</a></li>
-      <li><a href="https://hannahwh05.github.io/whelnettwedfest/presents.html" style="color: white; font-weight: bold; font-family: 'Montserrat', sans-serif; padding: 8px 12px; text-decoration: none; letter-spacing: 1px;">Presents</a></li>
+  <!-- Desktop inline nav -->
+  <nav class="desktop-nav" aria-label="Primary navigation" role="navigation">
+    <ul>
+      <li><a href="https://hannahwh05.github.io/whelnettwedfest/ticket-info.html">Ticket Info</a></li>
+      <li><a href="https://hannahwh05.github.io/whelnettwedfest/festival-info.html">Festival Info/FAQs</a></li>
+      <li><a href="https://hannahwh05.github.io/whelnettwedfest/coming-soon.html">Lineup</a></li>
+      <li><a href="https://hannahwh05.github.io/whelnettwedfest/location.html">Location</a></li>
+      <li><a href="https://hannahwh05.github.io/whelnettwedfest/coming-soon.html">Site Map</a></li>
+      <li><a href="https://hannahwh05.github.io/whelnettwedfest/presents.html">Presents</a></li>
     </ul>
   </nav>
 
+  <!-- Mobile toggle using confetti burst SVG; icon inside small translucent box only -->
+  <button class="menu-toggle" aria-controls="main-nav" aria-expanded="false" aria-label="Open menu" title="Menu">
+    <span class="icon-box" aria-hidden="true">
+      <svg class="confetti-svg" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+        <g fill="none" stroke-linecap="round" stroke-width="1.6">
+          <path class="burst-piece" d="M16 5 L16 11" stroke="#ffd700" style="--tx:0; --ty:-18px; --r: -18deg;" />
+          <path class="burst-piece" d="M16 21 L16 27" stroke="#ff69b4" style="--tx:0; --ty:18px; --r: 22deg;" />
+          <path class="burst-piece" d="M5 16 L11 16" stroke="#30997a" style="--tx:-18px; --ty:0; --r: -8deg;" />
+          <path class="burst-piece" d="M21 16 L27 16" stroke="#748ec4" style="--tx:18px; --ty:0; --r: 10deg;" />
+          <circle class="burst-piece" cx="10" cy="8" r="1.6" fill="#ff4500" style="--tx:-8px; --ty:-12px; --r: 6deg;" />
+          <circle class="burst-piece" cx="22" cy="8" r="1.6" fill="#e1007b" style="--tx:8px; --ty:-12px; --r: -6deg;" />
+          <circle class="burst-piece" cx="8" cy="24" r="1.6" fill="#00bfff" style="--tx:-10px; --ty:14px; --r: 12deg;" />
+          <circle class="burst-piece" cx="24" cy="24" r="1.6" fill="#ffd700" style="--tx:10px; --ty:14px; --r: -12deg;" />
+        </g>
+      </svg>
+    </span>
+    <span class="menu-label">Menu</span>
+  </button>
+
   <div class="header-right">
-    <a href="https://www.instagram.com/whelnettwedfest/#" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" style="height: 30px; width: auto;">
+    <a href="https://www.instagram.com/whelnettwedfest/#" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
     </a>
   </div>
 
-  <div class="bunting-curve">
-    <div class="flag"></div>
-    <div class="flag"></div>
-    <div class="flag"></div>
-    <div class="flag"></div>
-    <div class="flag"></div>
-    <div class="flag"></div>
-    <div class="flag"></div>
-    <div class="flag"></div>
-    <div class="flag"></div>
-    <div class="flag"></div>
-    <div class="flag"></div>
-    <div class="flag"></div>
+  <div class="bunting-curve" aria-hidden="true">
+    <div class="flag"></div><div class="flag"></div><div class="flag"></div><div class="flag"></div>
+    <div class="flag"></div><div class="flag"></div><div class="flag"></div><div class="flag"></div>
+    <div class="flag"></div><div class="flag"></div><div class="flag"></div><div class="flag"></div>
   </div>
 </header>
 
-<section class="top-section">
-  <h1>WHELNETT WEDFEST 2026</h1>
-  <br>
-  <p>Hannah Wheldon and Laurence Bennett invite you to Whelnett Wedfest 2026!</p>
-  <br>
-  <p>To get your hands on these exclusive tickets, please register (RSVP) ahead of ticket release. All those who hope to attend Whelnett Wedfest must individually register for tickets.</p>
-  <br>
-  <p>For more details on Whelnett Wedfest, including, location, travel, accomodation and dress code, please visit the <a href="https://hannahwh05.github.io/whelnettwedfest/festival-info.html" style="color: #fcdb92; text-decoration: underline;">Festival Info/FAQs</a> section.</p>
-</section>
+<!-- Backdrop -->
+<div id="nav-backdrop" aria-hidden="true"></div>
 
-<section class="middle-section">
-  <h1>TICKET INFO</h1>
-  <br>
-  <h2>Day Ticket</h2>
-  <p>Join us for the ceremony, food and party. Stay as late as you like - head on home or find your own accomodation.</p>
-  <br>
-  <h2>Stay on Site</h2>
-  <p>Both campers and glampers are welcome to stay over on the Friday night before too. Prices quoted are for 2 nights (Friday and Saturday). There will be toilets and showers available. Breakfast on Sunday morning included. </p>
-  <br>
-  <h3>Camping</h3>
-  <p style="text-align:left;">Rock up and pitch up! Bring your own tent and bedding so you can crash whenever you like. £35 per person.</p>
-  <br>
-  <h3>Glamping</h3>
-  <p style="text-align:left;">Prefer to sleep in luxury and feel the full festival vibe?</p>
-
-  <!-- Bell tent gallery inserted directly below that line -->
-  <div class="bell-gallery" aria-label="Bell tent options">
-    <div class="bell-item">
-      <img src="BellTent1.PNG" alt="Bell tent 1">
-    </div>
-    <div class="bell-item">
-      <img src="BellTent3.PNG" alt="Bell tent 3">
-    </div>
-    <div class="bell-item">
-      <img src="BellTent2.PNG" alt="Bell tent 2">
-    </div>
+<!-- Overlay nav (mobile) trimmed to content and centered within viewport -->
+<nav id="main-nav" class="overlay" aria-label="Primary navigation overlay" role="navigation">
+  <div class="nav-wrap" role="group" aria-label="Navigation links">
+    <ul>
+      <li><a href="https://hannahwh05.github.io/whelnettwedfest/ticket-info.html">Ticket Info</a></li>
+      <li><a href="https://hannahwh05.github.io/whelnettwedfest/festival-info.html">Festival Info/FAQs</a></li>
+      <li><a href="https://hannahwh05.github.io/whelnettwedfest/coming-soon.html">Lineup</a></li>
+      <li><a href="https://hannahwh05.github.io/whelnettwedfest/location.html">Location</a></li>
+      <li><a href="https://hannahwh05.github.io/whelnettwedfest/coming-soon.html">Site Map</a></li>
+      <li><a href="https://hannahwh05.github.io/whelnettwedfest/presents.html">Presents</a></li>
+    </ul>
   </div>
+</nav>
 
-  <br>
-  <p style="text-align:left;">Rent a 5 or 4 metre furnished bell tent, including camp beds, mattresses and bedding. Prices range between £88 - £135 depending on how many people you share a bell tent with.</p>
-  <br>
-  <p style="text-align:left;">
-    <li style="text-align:left;">2 people: £135pp</li>
-    <li style="text-align:left;">3 people: £108pp</li>
-    <li style="text-align:left;">4 or 5 people: £95pp</li>
-    <li style="text-align:left;">6 people: £88pp</li>
-  </p>
-</section>
+<main>
+  <section class="top-section">
+    <h1>WHELNETT WEDFEST 2026</h1>
+    <p>Hannah Wheldon and Laurence Bennett invite you to Whelnett Wedfest 2026!</p>
+    <p>To get your hands on these exclusive tickets, please register (RSVP) ahead of ticket release. All those who hope to attend Whelnett Wedfest must individually register for tickets.</p>
+    <p>For more details on Whelnett Wedfest, including location, travel, accomodation and dress code, please visit the <a href="https://hannahwh05.github.io/whelnettwedfest/festival-info.html" style="color:var(--accent);text-decoration:underline">Festival Info/FAQs</a> section.</p>
+  </section>
 
-<section class="bottom-section">
-  <img src="whelnettwedfestlogo.png" alt="Whelnett Wedfest Logo" class="logo" />
-  <a href="https://hannahwh05.github.io/whelnettwedfest/queue.html" target="_blank" class="cta-button" title="Register for Whelnett Wedfest Tickets">
-    <span class="label">RSVP</span>
-    <span class="alt-text">Whelnett Wedfest Registration</span>
-  </a>
-</section>
+  <section class="middle-section">
+    <h1>TICKET INFO</h1>
+
+    <h2>Day Ticket</h2>
+    <p>Join us for the ceremony, food and party. Stay as late as you like - head on home or find your own accomodation.</p>
+
+    <h2>Stay on Site</h2>
+    <p>Both campers and glampers are welcome to stay over on the Friday night before too. Prices quoted are for 2 nights (Friday and Saturday). There will be toilets and showers available. Breakfast on Sunday morning included.</p>
+
+    <h3>Camping</h3>
+    <p>Rock up and pitch up! Bring your own tent and bedding so you can crash whenever you like. £35 per person.</p>
+
+    <h3>Glamping</h3>
+    <p>Prefer to sleep in luxury and feel the full festival vibe?</p>
+
+    <!-- Bell tent gallery -->
+    <div class="bell-gallery" aria-label="Bell tent options">
+      <div class="bell-item"><img src="BellTent1.PNG" alt="Bell tent 1"></div>
+      <div class="bell-item"><img src="BellTent3.PNG" alt="Bell tent 3"></div>
+      <div class="bell-item"><img src="BellTent2.PNG" alt="Bell tent 2"></div>
+    </div>
+
+    <p>Rent a 5 or 4 metre furnished bell tent, including camp beds, mattresses and bedding. Prices range between £88 - £135 depending on how many people you share a bell tent with.</p>
+
+    <ul class="price-list" aria-label="Bell tent pricing">
+      <li>2 people: £135pp</li>
+      <li>3 people: £108pp</li>
+      <li>4 or 5 people: £95pp</li>
+      <li>6 people: £88pp</li>
+    </ul>
+  </section>
+
+  <section class="bottom-section">
+    <img src="whelnettwedfestlogo.png" alt="Whelnett Wedfest Logo" class="logo" />
+    <a href="https://hannahwh05.github.io/whelnettwedfest/queue.html" target="_blank" class="cta-button" title="Register for Whelnett Wedfest Tickets" rel="noopener noreferrer">
+      RSVP
+    </a>
+  </section>
+</main>
 
 <footer>
   <p>Whelnett Wedfest Ltd.</p>
   <img src="whelnettwedfestlogo.png" alt="Whelnett Wedfest Logo">
-  <p class="attribution">
-    <a href="https://www.flaticon.com/free-icons/instagram" title="instagram icons">Instagram icons created by Grow studio - Flaticon</a>
-  </p>
+  <p class="attribution"><a href="https://www.flaticon.com/free-icons/instagram" title="instagram icons">Instagram icons created by Grow studio - Flaticon</a></p>
 </footer>
+
+<script>
+  (function(){
+    var toggle = document.querySelector('.menu-toggle');
+    var overlayNav = document.getElementById('main-nav');
+    var backdrop = document.getElementById('nav-backdrop');
+    var desktopNav = document.querySelector('.desktop-nav');
+    var confettiSvg = document.querySelector('.confetti-svg');
+
+    if (!toggle || !overlayNav) return;
+
+    function setOpen(open){
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      if (open){
+        overlayNav.classList.add('open');
+        backdrop.classList.add('open');
+        document.documentElement.style.overflow = 'hidden';
+        document.body.style.overflow = 'hidden';
+        toggle.setAttribute('aria-label','Close menu');
+        triggerConfetti(); // animate on open
+      } else {
+        overlayNav.classList.remove('open');
+        backdrop.classList.remove('open');
+        document.documentElement.style.overflow = '';
+        document.body.style.overflow = '';
+        toggle.setAttribute('aria-label','Open menu');
+      }
+    }
+
+    toggle.addEventListener('click', function(){
+      var expanded = toggle.getAttribute('aria-expanded') === 'true';
+      setOpen(!expanded);
+    });
+
+    backdrop.addEventListener('click', function(){ setOpen(false); });
+
+    overlayNav.addEventListener('click', function(e){
+      if (e.target.tagName.toLowerCase() === 'a' && window.matchMedia('(max-width:768px)').matches){
+        setOpen(false);
+      }
+    });
+
+    document.addEventListener('keydown', function(e){
+      if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true'){
+        setOpen(false);
+        toggle.focus();
+      }
+    });
+
+    function updateNavDisplay(){
+      if (window.matchMedia('(max-width:768px)').matches){
+        if (desktopNav) desktopNav.style.display = 'none';
+      } else {
+        if (desktopNav) desktopNav.style.display = '';
+        setOpen(false);
+      }
+    }
+    updateNavDisplay();
+    window.addEventListener('resize', updateNavDisplay);
+
+    /* Confetti animation: add class to SVG then remove after animation completes */
+    function triggerConfetti(){
+      if (!confettiSvg) return;
+      confettiSvg.classList.remove('confetti-animate');
+      void confettiSvg.offsetWidth;
+      confettiSvg.classList.add('confetti-animate');
+      setTimeout(function(){ confettiSvg.classList.remove('confetti-animate'); }, 700);
+    }
+  })();
+</script>
 
 </body>
 </html>
