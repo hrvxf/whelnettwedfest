@@ -240,7 +240,7 @@
       color: #12030f;
     }
 
-    .hint {
+    .flip-toggle {
       position: absolute;
       left: 12px;
       top: 12px;
@@ -252,10 +252,17 @@
       box-shadow: 0 2px 6px rgba(0,0,0,0.12);
       user-select: none;
       display: none;
+      border: 0;
+      font-family: inherit;
+      line-height: 1.2;
+      cursor: pointer;
+      pointer-events: auto;
+      appearance: none;
+      background-clip: padding-box;
     }
 
     @media(min-width:680px) {
-      .hint { display: block; }
+      .flip-toggle { display: block; }
       .hint-back { display: block; }
     }
 
@@ -326,37 +333,37 @@
     .site-footer .attribution a { color: #30997a; text-decoration:none; }
 		
 		/* Show flip hint on mobile and keep the desktop behaviour */
-		.hint,
-		.hint-back {
-			display: block !important;        /* make visible on all viewports */
-			position: absolute;
-			top: 12px;
-			left: 12px;
-			right: auto;
-			background: rgba(255,255,255,0.9);
-			color: #2a1a1a;
-			font-size: 11px;
-			padding: 6px 10px;
-			border-radius: 999px;
-			box-shadow: 0 2px 6px rgba(0,0,0,0.12);
-			z-index: 10;
-			pointer-events: none;             /* won't block taps on the scene */
-			-webkit-user-select: none;
-			user-select: none;
-		}
+                .flip-toggle,
+                .hint-back {
+                        display: block !important;        /* make visible on all viewports */
+                        position: absolute;
+                        top: 12px;
+                        left: 12px;
+                        right: auto;
+                        background: rgba(255,255,255,0.9);
+                        color: #2a1a1a;
+                        font-size: 11px;
+                        padding: 6px 10px;
+                        border-radius: 999px;
+                        box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+                        z-index: 10;
+                        pointer-events: auto;
+                        -webkit-user-select: none;
+                        user-select: none;
+                }
 
-		/* Keep the back hint on the right */
-		.hint-back { left: auto; right: 12px; }
+                /* Keep the back hint on the right */
+                .hint-back { left: auto; right: 12px; }
 
-		/* Slightly reduce size and spacing on very small screens */
-		@media (max-width: 420px) {
-			.hint,
-			.hint-back {
-				font-size: 10px;
-				padding: 5px 8px;
-				top: 8px;
-			}
-		}
+                /* Slightly reduce size and spacing on very small screens */
+                @media (max-width: 420px) {
+                        .flip-toggle,
+                        .hint-back {
+                                font-size: 10px;
+                                padding: 5px 8px;
+                                top: 8px;
+                        }
+                }
 
   </style>
 </head>
@@ -433,11 +440,11 @@
     <div class="lanyard">
       <div class="lanyard-strap" aria-hidden="true"></div>
       <div class="lanyard-clip" aria-hidden="true"></div>
-      <div class="scene" id="scene" tabindex="0" aria-label="Festival pass. Click to flip for more information.">
+      <div class="scene" id="scene" aria-label="Festival pass. Click to flip for more information.">
         <div class="pass" id="pass">
 
         <section class="face front" aria-hidden="false">
-          <div class="hint">Click to flip</div>
+          <button type="button" class="flip-toggle" aria-pressed="false">Click to flip</button>
           <div class="text-frame" id="frontText">
             <h2>FESTIVAL INFORMATION</h2>
             <p>The sections below aim to give you all the information you need about Whelnett Wedfest.</p>
@@ -455,7 +462,7 @@
         </section>
 
         <section class="face back" aria-hidden="true">
-          <div class="hint hint-back">Click to flip</div>
+          <button type="button" class="flip-toggle hint-back" aria-pressed="false">Click to flip</button>
           <div class="text-frame" id="backText">
             <h3>Accommodation</h3>
             <p>If camping or even glamping isn’t your style, Poplar Farm is not far from Clevedon or Yatton for hotels and AirBnBs. <br> We highly encourage you to bring the festival vibes though and rent a bell tent! <br> See our glamping options page for more information on what to expect.</p>
@@ -484,19 +491,35 @@
 
   <!-- ===== Scripts: mobile menu and scene flip (scene script preserved) ===== -->
   <script>
-    /* ===== Original scene flip script preserved exactly ===== */
+    /* ===== Scene flip script with accessible toggle controls ===== */
     (function(){
       const scene = document.getElementById('scene');
-      let flipped = false;
+      const toggles = scene.querySelectorAll('.flip-toggle');
+      let flipped = scene.classList.contains('flipped');
+
+      function updateToggleState() {
+        toggles.forEach(function(btn){
+          btn.setAttribute('aria-pressed', flipped ? 'true' : 'false');
+        });
+      }
 
       function toggleFlip(e){
         const sel = window.getSelection();
         if (sel && sel.toString().length) return;
         flipped = !flipped;
         scene.classList.toggle('flipped', flipped);
+        updateToggleState();
       }
 
       scene.addEventListener('click', toggleFlip);
+
+      toggles.forEach(function(btn){
+        btn.addEventListener('click', function(event){
+          event.preventDefault();
+          event.stopPropagation();
+          toggleFlip();
+        });
+      });
 
       scene.addEventListener('keydown', function(e){
         if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
@@ -512,6 +535,8 @@
           document.getElementById('frontText').scrollTop = 0;
         }
       });
+
+      updateToggleState();
     })();
   </script>
 
