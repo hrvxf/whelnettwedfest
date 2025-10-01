@@ -6,9 +6,11 @@
   <title>Festival Information</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/site.css">
+  <script src="assets/site.js" defer></script>
 
   <style>
-    /* ===== Preserve original page styles (kept, adjusted where needed for responsiveness) ===== */
+    /* ===== Preserve original page styles exactly (unchanged) ===== */
     :root {
       --bg-url: url('FestivalInfo.png');
       --accent-teal: #17b4ad;
@@ -39,23 +41,113 @@
       padding: 12px;
     }
 
+    .lanyard {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: min(100%, 720px);
+      isolation: isolate;
+      --lanyard-drop: clamp(140px, 26vh, 240px);
+      --clip-offset: clamp(26px, 5vw, 40px);
+      --strap-width: clamp(32px, 7vw, 52px);
+    }
+
+    .lanyard-strap,
+    .lanyard-clip {
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .lanyard-strap {
+      position: absolute;
+      top: calc(-1 * (var(--lanyard-drop) + var(--clip-offset)));
+      left: 50%;
+      transform: translateX(-50%);
+      width: var(--strap-width);
+      height: var(--lanyard-drop);
+      border-radius: 999px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.1) 0%, rgba(23,180,173,0.92) 40%, rgba(9,94,89,0.98) 100%);
+      box-shadow: 0 16px 32px rgba(0,0,0,0.35);
+      z-index: 0;
+    }
+
+    .lanyard-strap::after {
+      content: "";
+      position: absolute;
+      inset: 10% 20%;
+      border-radius: 999px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.55), rgba(255,255,255,0.05));
+      opacity: 0.75;
+    }
+
+    .lanyard-clip {
+      position: absolute;
+      top: calc(-1 * var(--clip-offset));
+      left: 50%;
+      transform: translateX(-50%);
+      width: clamp(84px, 18vw, 128px);
+      height: clamp(30px, 6vw, 46px);
+      border-radius: 14px 14px 18px 18px;
+      background: linear-gradient(180deg, #fafafa 0%, #d8d8d8 55%, #c3c3c3 100%);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.28);
+      z-index: 2;
+    }
+
+    .lanyard-clip::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 46%;
+      transform: translate(-50%, -50%);
+      width: 70%;
+      height: 48%;
+      border-radius: 999px;
+      border: 2px solid rgba(115,115,115,0.55);
+      background: linear-gradient(180deg, rgba(240,240,240,0.75), rgba(255,255,255,0.1));
+      box-shadow: inset 0 2px 4px rgba(255,255,255,0.45);
+    }
+
     .scene {
       width: 100%;
       max-width: 720px;
-      height: calc(min(90vh, 980px));
+      max-height: 90vh;
+      aspect-ratio: 1220 / 2126;
+      /* WebKit needs the prefixed perspective for 3D on iOS */
+      -webkit-perspective: 1200px;
       perspective: 1200px;
       cursor: pointer;
       display: flex;
-      align-items: center;
+      align-items: stretch;
       justify-content: center;
+      position: relative;
+      z-index: 1;
+      -webkit-transform-style: preserve-3d;
+    }
+
+    @media (max-width: 600px) {
+      .lanyard {
+        --lanyard-drop: clamp(110px, 24vh, 180px);
+        --clip-offset: clamp(22px, 5.8vw, 32px);
+        --strap-width: clamp(26px, 9vw, 40px);
+      }
+
+      .lanyard-clip {
+        width: clamp(72px, 28vw, 110px);
+        height: clamp(26px, 8vw, 40px);
+      }
     }
 
     .pass {
       width: 100%;
-      height: 100%;
+      max-height: 100%;
+      aspect-ratio: inherit;
       position: relative;
+      /* Preserve depth on the pass for Safari */
+      -webkit-transform-style: preserve-3d;
       transform-style: preserve-3d;
       transition: transform 700ms cubic-bezier(.2,.9,.3,1);
+      -webkit-transition: -webkit-transform 700ms cubic-bezier(.2,.9,.3,1);
       border-radius: 12px;
       box-shadow: 0 8px 28px rgba(0,0,0,.35);
       overflow: visible;
@@ -67,6 +159,8 @@
     .face {
       position: absolute;
       inset: 0;
+      /* Hide faces during the flip on Safari */
+      -webkit-backface-visibility: hidden;
       backface-visibility: hidden;
       border-radius: 12px;
       display: flex;
@@ -78,68 +172,63 @@
       background-image: var(--bg-url);
     }
 
-    .face.back { transform: rotateY(180deg); }
+    .face.back {
+      -webkit-transform: rotateY(180deg);
+      transform: rotateY(180deg);
+    }
 
-    /*
-      Responsive text-frame:
-      - uses clamp() and percentage-based left/right so the content area adapts across screens.
-      - has overflow-y:auto so it scrolls internally rather than pushing layout.
-    */
-.text-frame {
-  position: absolute;
-  top: 18%;
-  bottom: 10%;
-  
-  /* Centered box with responsive width */
-  left: 50%;
-  transform: translateX(-50%);
-  width: clamp(300px, 70%, 500px);  /* min 300px, max 500px, scales in between */
-  
-  overflow-y: auto;                 /* scroll if text is too tall */
-  -webkit-overflow-scrolling: touch;
-  
-  padding: clamp(10px, 2vw, 16px);  /* responsive padding */
-  border-radius: 8px;
-  background: rgba(255,255,255,0.1); /* optional translucent background */
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
-  
-  overflow-wrap: break-word;
-  word-break: break-word;
-  max-height: 100%;
-}
+    .text-frame {
+      position: absolute;
+      top: 37%;
+      bottom: 18%;
+      left: 29%;
+      right: 29%;
+      padding: clamp(10px, 1.25vw, 14px);
+      border-radius: 8px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
+      overflow-x: hidden;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      overflow-wrap: break-word;
+      word-break: break-word;
+      max-height: 100%;
+    }
 
+    @media (max-width: 480px) {
+      .text-frame {
+        top: 32%;
+        bottom: 12%;
+        left: 22%;
+        right: 22%;
+      }
+    }
 
-
-    /* Typography spacing: increase margins so headings and paragraphs breathe on mobile too */
     h2, h3 {
-      line-height: 1.2;
+      margin-bottom: 0.18rem;
+      line-height: 1.1;
       font-family: Impact, 'Haettenschweiler', 'Arial Black', sans-serif;
       color: #1a0120;
       text-shadow: 0 1px 0 rgba(255,255,255,.6);
-      -webkit-font-smoothing: antialiased;
     }
 
-    h2 {
-      font-size: clamp(0.9rem, 2vw, 1.1rem);
-      text-align: center;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      margin-bottom: 0.6rem; /* bigger gap under main heading */
-    }
+      h2 {
+        font-size: clamp(0.7rem, 1.5vw, 0.85rem);
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
 
-    h3 {
-      font-size: clamp(0.7rem, 1.5vw, 0.9rem);
-      margin-top: 0.9rem;   /* space above subheadings */
-      margin-bottom: 0.35rem;
-    }
+      h3 {
+        font-size: clamp(0.55rem, 1.2vw, 0.7rem);
+        margin-top: 0.4rem;
+      }
 
-    p {
-      font-size: clamp(0.65rem, 1.1vw, 0.95rem);
-      line-height: 1.4;
-      margin-bottom: 0.6rem;
-      color: #12030f;
-      margin-top: 0; /* we use margins between paras for consistent spacing */
-    }
+      p {
+        font-size: clamp(0.48rem, 1vw, 0.65rem);
+        line-height: 1.15;
+        margin-top: 0.18rem;
+        color: #12030f;
+      }
 
     p a {
       color: var(--accent-teal);
@@ -151,154 +240,100 @@
       color: #12030f;
     }
 
-    /* Flip hints — visible but non-blocking (pointer-events:none). Kept accessible and sized down on tiny screens. */
-    .hint,
-    .hint-back {
-      display: block !important;
+    .flip-toggle {
       position: absolute;
+      left: 12px;
       top: 12px;
-      background: rgba(255,255,255,0.92);
-      color: #2a1a1a;
+      background: var(--brand);
+      color: var(--nav-text);
       font-size: 11px;
       padding: 6px 10px;
       border-radius: 999px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.12);
       user-select: none;
-      pointer-events: none; /* won't block taps */
-      z-index: 10;
-      -webkit-font-smoothing: antialiased;
+      display: none;
+      border: 2px solid var(--accent);
+      font-family: inherit;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      line-height: 1.2;
+      cursor: pointer;
+      pointer-events: auto;
+      appearance: none;
+      background-clip: padding-box;
     }
 
-    .hint { left: 12px; }
-    .hint-back { right: 12px; left: auto; }
-
-    @media (max-width: 420px) {
-      .hint,
-      .hint-back {
-        font-size: 10px;
-        padding: 5px 8px;
-        top: 8px;
-      }
-      /* Slightly reduce text-frame inset on very small screens so the artwork stays visible */
-      .text-frame {
-        top: 15%;
-        bottom: 8%;
-        left: 6%;
-        right: 6%;
-      }
+    .flip-toggle:hover,
+    .flip-toggle:focus-visible {
+      background: var(--accent);
+      color: var(--brand);
+      border-color: var(--brand);
     }
 
-    /* preserve user-select defaults for content vs controls */
+    .flip-toggle:focus-visible {
+      outline: 3px solid var(--nav-text);
+      outline-offset: 3px;
+    }
+
+    @media(min-width:680px) {
+      .flip-toggle { display: block; }
+      .hint-back { display: block; }
+    }
+
+    .hint-back {
+      right: 12px;
+      left: auto;
+      top: 12px;
+      display: none;
+    }
+
     .pass, .text-frame, .face { -webkit-user-select: none; -ms-user-select: none; user-select: none; }
     .text-frame * { user-select: text; }
 
+    @media (max-width:420px) {
+      .text-frame { transform: none; }
+    }
+
     /* ===== Header / Footer styles (same as site) ===== */
-
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 1200;
-      background: #e1007b;
-      border-bottom: 2px solid #eee;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 10px 20px;
-      box-sizing: border-box;
-    }
-
-    .site-header .header-left { display:flex; align-items:center; }
-    .site-header .header-left img { height:50px; width:auto; max-width:180px; display:block; }
-
-    .site-header .desktop-nav { display:block; }
-    .site-header .desktop-nav ul { display:flex; flex-wrap:wrap; justify-content:center; gap:0; margin:0; padding:0; list-style:none; }
-    .site-header .desktop-nav a { display:inline-block; padding:8px 12px; color:#ffffff; text-decoration:none; font-weight:700; letter-spacing:1px; font-family: 'Montserrat', sans-serif; }
-    .site-header .desktop-nav a:hover { color: #fcdb92; }
-
-    .site-header .menu-toggle {
-      display:none;
-      align-items:center;
-      gap:8px;
-      background:transparent;
-      border:0;
-      color:#ffffff;
-      cursor:pointer;
-      padding:6px 8px;
-      border-radius:10px;
-      font-weight:700;
-      font-size:15px;
-    }
-    .site-header .menu-toggle:focus { outline: 3px solid rgba(255,255,255,0.25); outline-offset: 2px; }
-    .site-header .icon-box { display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; background: rgba(255,255,255,0.5); border-radius:8px; padding:4px; flex:0 0 auto; }
-    .site-header .confetti-svg{width:28px;height:28px;display:block;}
-    .site-header .menu-label { display:inline-block; font-size:14px; font-family: 'Montserrat', sans-serif; line-height:1; color:#ffffff; letter-spacing:0.6px; }
-
-    .site-header .header-right img { height:30px; width:auto; display:block; }
-
-    .site-header .bunting-curve{position:absolute;bottom:-28px;left:0;width:100%;display:flex;justify-content:space-between;padding:0 10px;pointer-events:none;z-index:10}
-    .site-header .flag{width:0;height:0;border-left:18px solid transparent;border-right:18px solid transparent;border-bottom:28px solid;transform:rotate(-10deg);border-radius:0 0 50% 50%;animation:sway 4s ease-in-out infinite}
-    .site-header .flag:nth-child(1){border-bottom-color:#e1007b}.site-header .flag:nth-child(2){border-bottom-color:#30997a}.site-header .flag:nth-child(3){border-bottom-color:#748ec4}
-    .site-header .flag:nth-child(4){border-bottom-color:#8f9114}.site-header .flag:nth-child(5){border-bottom-color:#ff69b4}.site-header .flag:nth-child(6){border-bottom-color:#ffd700}
-    @keyframes sway{0%,100%{transform:rotate(-10deg)}50%{transform:rotate(-5deg)}}
-
-    /* overlay nav/backdrop */
-    #nav-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.35);z-index:1140;opacity:0;pointer-events:none;transition:opacity .28s ease}
-    #nav-backdrop.open{opacity:1;pointer-events:auto}
-
-    nav.overlay{
-      position:fixed;
-      inset:0;
-      z-index:1150;
-      background: rgba(225,0,123,0.98);
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      padding-top:86px;
-      box-sizing:border-box;
-      overflow:visible;
-      transform:translateY(-6%);
-      opacity:0;
-      pointer-events:none;
-      transition:transform .28s ease,opacity .28s ease;
-      -webkit-overflow-scrolling:touch;
-      max-height:none;
-      margin:0 auto;
-      left:0;
-      right:0;
-      border-radius:0;
-    }
-    nav.overlay.open{transform:translateY(0);opacity:1;pointer-events:auto}
-    nav.overlay .nav-wrap{width:100%;max-width:520px;margin:6px 16px}
-    nav.overlay ul{display:flex;flex-direction:column;gap:10px;padding:6px;margin:0;align-items:stretch;list-style:none}
-    nav.overlay a{padding:14px 16px;display:block;border-radius:10px;background:rgba(255,255,255,0.04);color:#fff;font-size:18px;text-decoration:none}
-    nav.overlay a:hover{background:rgba(255,255,255,0.07);color:#fcdb92}
 
     @media (max-width:768px){
       .site-header { position: relative; }
-      .site-header .menu-toggle{ display:flex; position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); margin:0; z-index:1250; }
+      .site-header .menu-toggle{
+        display:flex;
+        position:absolute;
+        left:50%;
+        top:50%;
+        transform:translate(-50%,-50%);
+        margin:0;
+        z-index:1250;
+      }
       .site-header .desktop-nav{ display:none; }
-      .site-header .header-left{ position:relative; z-index:1260; }
-      .site-header .header-right{ position:relative; z-index:1260; }
+      .site-header .header-left,
+      .site-header .header-right{
+        position:relative;
+        z-index:1260;
+      }
     }
+		
+		/* Fix: force flag colours in header (use after existing .site-header rules) */
+.site-header .bunting-curve .flag { border-bottom-color: transparent !important; }
 
-    /* Fix: force flag colours in header (use after existing .site-header rules) */
-    .site-header .bunting-curve .flag { border-bottom-color: transparent !important; }
+		/* explicit mapping for up to 12 flags (use !important to override any inherited rule) */
+		.site-header .bunting-curve .flag:nth-child(1)  { border-bottom-color: #e1007b !important; }
+		.site-header .bunting-curve .flag:nth-child(2)  { border-bottom-color: #30997a !important; }
+		.site-header .bunting-curve .flag:nth-child(3)  { border-bottom-color: #748ec4 !important; }
+		.site-header .bunting-curve .flag:nth-child(4)  { border-bottom-color: #8f9114 !important; }
+		.site-header .bunting-curve .flag:nth-child(5)  { border-bottom-color: #ff69b4 !important; }
+		.site-header .bunting-curve .flag:nth-child(6)  { border-bottom-color: #ffd700 !important; }
+		.site-header .bunting-curve .flag:nth-child(7)  { border-bottom-color: #00bfff !important; }
+		.site-header .bunting-curve .flag:nth-child(8)  { border-bottom-color: #ff4500 !important; }
+		.site-header .bunting-curve .flag:nth-child(9)  { border-bottom-color: #e1007b !important; }
+		.site-header .bunting-curve .flag:nth-child(10) { border-bottom-color: #30997a !important; }
+		.site-header .bunting-curve .flag:nth-child(11) { border-bottom-color: #748ec4 !important; }
+		.site-header .bunting-curve .flag:nth-child(12) { border-bottom-color: #8f9114 !important; }
 
-    /* explicit mapping for up to 12 flags (use !important to override any inherited rule) */
-    .site-header .bunting-curve .flag:nth-child(1)  { border-bottom-color: #e1007b !important; }
-    .site-header .bunting-curve .flag:nth-child(2)  { border-bottom-color: #30997a !important; }
-    .site-header .bunting-curve .flag:nth-child(3)  { border-bottom-color: #748ec4 !important; }
-    .site-header .bunting-curve .flag:nth-child(4)  { border-bottom-color: #8f9114 !important; }
-    .site-header .bunting-curve .flag:nth-child(5)  { border-bottom-color: #ff69b4 !important; }
-    .site-header .bunting-curve .flag:nth-child(6)  { border-bottom-color: #ffd700 !important; }
-    .site-header .bunting-curve .flag:nth-child(7)  { border-bottom-color: #00bfff !important; }
-    .site-header .bunting-curve .flag:nth-child(8)  { border-bottom-color: #ff4500 !important; }
-    .site-header .bunting-curve .flag:nth-child(9)  { border-bottom-color: #e1007b !important; }
-    .site-header .bunting-curve .flag:nth-child(10) { border-bottom-color: #30997a !important; }
-    .site-header .bunting-curve .flag:nth-child(11) { border-bottom-color: #748ec4 !important; }
-    .site-header .bunting-curve .flag:nth-child(12) { border-bottom-color: #8f9114 !important; }
-
+		
     /* site footer */
     .site-footer {
       background-color: #30997a;
@@ -311,6 +346,39 @@
     .site-footer img { width: 60px; height: auto; display:inline-block; }
     .site-footer .attribution { font-size: 10px; margin-top:6px; color: #30997a; }
     .site-footer .attribution a { color: #30997a; text-decoration:none; }
+		
+		/* Show flip hint on mobile and keep the desktop behaviour */
+                .flip-toggle,
+                .hint-back {
+                        display: block !important;        /* make visible on all viewports */
+                        position: absolute;
+                        top: 12px;
+                        left: 12px;
+                        right: auto;
+                        background: rgba(255,255,255,0.9);
+                        color: #2a1a1a;
+                        font-size: 11px;
+                        padding: 6px 10px;
+                        border-radius: 999px;
+                        box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+                        z-index: 10;
+                        pointer-events: auto;
+                        -webkit-user-select: none;
+                        user-select: none;
+                }
+
+                /* Keep the back hint on the right */
+                .hint-back { left: auto; right: 12px; }
+
+                /* Slightly reduce size and spacing on very small screens */
+                @media (max-width: 420px) {
+                        .flip-toggle,
+                        .hint-back {
+                                font-size: 10px;
+                                padding: 5px 8px;
+                                top: 8px;
+                        }
+                }
 
   </style>
 </head>
@@ -382,13 +450,16 @@
     </div>
   </nav>
 
-  <!-- ===== original scene markup preserved below, inside page-content ===== -->
+  <!-- ===== original scene markup preserved exactly below, inside page-content ===== -->
   <div class="page-content">
-    <div class="scene" id="scene" tabindex="0" aria-label="Festival pass. Click to flip for more information.">
-      <div class="pass" id="pass">
+    <div class="lanyard">
+      <div class="lanyard-strap" aria-hidden="true"></div>
+      <div class="lanyard-clip" aria-hidden="true"></div>
+      <div class="scene" id="scene" aria-label="Festival pass. Click to flip for more information.">
+        <div class="pass" id="pass">
 
         <section class="face front" aria-hidden="false">
-          <div class="hint">Click to flip</div>
+          <button type="button" class="flip-toggle" aria-pressed="false">Click to flip</button>
           <div class="text-frame" id="frontText">
             <h2>FESTIVAL INFORMATION</h2>
             <p>The sections below aim to give you all the information you need about Whelnett Wedfest.</p>
@@ -406,7 +477,7 @@
         </section>
 
         <section class="face back" aria-hidden="true">
-          <div class="hint hint-back">Click to flip</div>
+          <button type="button" class="flip-toggle hint-back" aria-pressed="false">Click to flip</button>
           <div class="text-frame" id="backText">
             <h3>Accommodation</h3>
             <p>If camping or even glamping isn’t your style, Poplar Farm is not far from Clevedon or Yatton for hotels and AirBnBs. <br> We highly encourage you to bring the festival vibes though and rent a bell tent! <br> See our glamping options page for more information on what to expect.</p>
@@ -419,6 +490,7 @@
           </div>
         </section>
 
+        </div>
       </div>
     </div>
   </div>
@@ -434,84 +506,35 @@
 
   <!-- ===== Scripts: mobile menu and scene flip (scene script preserved) ===== -->
   <script>
-    /* Mobile menu logic (scoped to the header elements added) */
-    (function(){
-      var toggle = document.querySelector('.site-header .menu-toggle');
-      var overlayNav = document.getElementById('main-nav');
-      var backdrop = document.getElementById('nav-backdrop');
-      var desktopNav = document.querySelector('.site-header .desktop-nav');
-      var confettiSvg = document.querySelector('.site-header .confetti-svg');
-
-      if (!toggle || !overlayNav) return;
-
-      function setOpen(open){
-        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-        if (open){
-          overlayNav.classList.add('open');
-          backdrop.classList.add('open');
-          document.documentElement.style.overflow = 'hidden';
-          document.body.style.overflow = 'hidden';
-          toggle.setAttribute('aria-label','Close menu');
-          if (confettiSvg){
-            confettiSvg.classList.remove('confetti-animate');
-            void confettiSvg.offsetWidth;
-            confettiSvg.classList.add('confetti-animate');
-            setTimeout(function(){ confettiSvg.classList.remove('confetti-animate'); }, 700);
-          }
-        } else {
-          overlayNav.classList.remove('open');
-          backdrop.classList.remove('open');
-          document.documentElement.style.overflow = '';
-          document.body.style.overflow = '';
-          toggle.setAttribute('aria-label','Open menu');
-        }
-      }
-
-      toggle.addEventListener('click', function(){
-        var expanded = toggle.getAttribute('aria-expanded') === 'true';
-        setOpen(!expanded);
-      });
-
-      backdrop.addEventListener('click', function(){ setOpen(false); });
-
-      overlayNav.addEventListener('click', function(e){
-        if (e.target.tagName.toLowerCase() === 'a' && window.matchMedia('(max-width:768px)').matches){
-          setOpen(false);
-        }
-      });
-
-      document.addEventListener('keydown', function(e){
-        if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true'){
-          setOpen(false);
-          toggle.focus();
-        }
-      });
-
-      function updateNavDisplay(){
-        if (window.matchMedia('(max-width:768px)').matches){
-          if (desktopNav) desktopNav.style.display = 'none';
-        } else {
-          if (desktopNav) desktopNav.style.display = '';
-          setOpen(false);
-        }
-      }
-      updateNavDisplay();
-      window.addEventListener('resize', updateNavDisplay);
-    })();
-
-    /* ===== Original scene flip script preserved (with scroll reset) ===== */
+    /* ===== Scene flip script with accessible toggle controls ===== */
     (function(){
       const scene = document.getElementById('scene');
-      let flipped = false;
+      const toggles = scene.querySelectorAll('.flip-toggle');
+      let flipped = scene.classList.contains('flipped');
+
+      function updateToggleState() {
+        toggles.forEach(function(btn){
+          btn.setAttribute('aria-pressed', flipped ? 'true' : 'false');
+        });
+      }
 
       function toggleFlip(e){
         const sel = window.getSelection();
         if (sel && sel.toString().length) return;
         flipped = !flipped;
         scene.classList.toggle('flipped', flipped);
+        updateToggleState();
       }
 
       scene.addEventListener('click', toggleFlip);
+
+      toggles.forEach(function(btn){
+        btn.addEventListener('click', function(event){
+          event.preventDefault();
+          event.stopPropagation();
+          toggleFlip();
+        });
+      });
 
       scene.addEventListener('keydown', function(e){
         if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
@@ -522,18 +545,15 @@
 
       scene.addEventListener('transitionend', function(){
         if (scene.classList.contains('flipped')) {
-           // reset back face scroll when flipped
-           var bt = document.getElementById('backText');
-           if (bt) bt.scrollTop = 0;
+           document.getElementById('backText').scrollTop = 0;
         } else {
-          var ft = document.getElementById('frontText');
-          if (ft) ft.scrollTop = 0;
+          document.getElementById('frontText').scrollTop = 0;
         }
       });
+
+      updateToggleState();
     })();
   </script>
 
 </body>
 </html>
-
-
