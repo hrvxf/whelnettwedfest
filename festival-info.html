@@ -113,8 +113,9 @@
       max-width: 720px;
       max-height: 90vh;
       aspect-ratio: 1220 / 2126;
-      perspective: 1200px;
+      /* WebKit needs the prefixed perspective for 3D on iOS */
       -webkit-perspective: 1200px;
+      perspective: 1200px;
       cursor: pointer;
       display: flex;
       align-items: stretch;
@@ -142,8 +143,9 @@
       max-height: 100%;
       aspect-ratio: inherit;
       position: relative;
-      transform-style: preserve-3d;
+      /* Preserve depth on the pass for Safari */
       -webkit-transform-style: preserve-3d;
+      transform-style: preserve-3d;
       transition: transform 700ms cubic-bezier(.2,.9,.3,1);
       -webkit-transition: -webkit-transform 700ms cubic-bezier(.2,.9,.3,1);
       border-radius: 12px;
@@ -157,8 +159,9 @@
     .face {
       position: absolute;
       inset: 0;
-      backface-visibility: hidden;
+      /* Hide faces during the flip on Safari */
       -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
       border-radius: 12px;
       display: flex;
       align-items: flex-start;
@@ -170,8 +173,8 @@
     }
 
     .face.back {
-      transform: rotateY(180deg);
       -webkit-transform: rotateY(180deg);
+      transform: rotateY(180deg);
     }
 
     .text-frame {
