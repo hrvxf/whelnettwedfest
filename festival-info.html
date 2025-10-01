@@ -8,6 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 
   <style>
+    /* ===== Preserve original page styles exactly (unchanged) ===== */
     :root {
       --bg-url: url('FestivalInfo.png');
       --accent-teal: #17b4ad;
@@ -19,13 +20,23 @@
       background: #0f7f78;
       font-family: Montserrat, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
     }
+
+    /* Layout shell so header sits at top, footer at bottom and scene centers between */
     body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* keep scene centering inside the flexible middle area */
+    .page-content {
+      flex: 1 1 auto;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 12px;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
     }
 
     .scene {
@@ -93,23 +104,23 @@
     }
 
       h2 {
-				font-size: clamp(0.7rem, 1.5vw, 0.85rem);
-				text-align: center;
-				text-transform: uppercase;
-				letter-spacing: 0.04em;
-			}
+        font-size: clamp(0.7rem, 1.5vw, 0.85rem);
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
 
-			h3 {
-				font-size: clamp(0.55rem, 1.2vw, 0.7rem);
-				margin-top: 0.4rem;
-			}
+      h3 {
+        font-size: clamp(0.55rem, 1.2vw, 0.7rem);
+        margin-top: 0.4rem;
+      }
 
-			p {
-				font-size: clamp(0.48rem, 1vw, 0.65rem);
-				line-height: 1.15;
-				margin-top: 0.18rem;
-				color: #12030f;
-			}
+      p {
+        font-size: clamp(0.48rem, 1vw, 0.65rem);
+        line-height: 1.15;
+        margin-top: 0.18rem;
+        color: #12030f;
+      }
 
     p a {
       color: var(--accent-teal);
@@ -153,49 +164,316 @@
     @media (max-width:420px) {
       .text-frame { transform: translateY(-12%); }
     }
+
+    /* ===== Header / Footer styles (same as site) ===== */
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1200;
+      background: #e1007b;
+      border-bottom: 2px solid #eee;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 20px;
+      box-sizing: border-box;
+    }
+
+    .site-header .header-left { display:flex; align-items:center; }
+    .site-header .header-left img { height:50px; width:auto; max-width:180px; display:block; }
+
+    .site-header .desktop-nav { display:block; }
+    .site-header .desktop-nav ul { display:flex; flex-wrap:wrap; justify-content:center; gap:0; margin:0; padding:0; list-style:none; }
+    .site-header .desktop-nav a { display:inline-block; padding:8px 12px; color:#ffffff; text-decoration:none; font-weight:700; letter-spacing:1px; font-family: 'Montserrat', sans-serif; }
+    .site-header .desktop-nav a:hover { color: #fcdb92; }
+
+    .site-header .menu-toggle {
+      display:none;
+      align-items:center;
+      gap:8px;
+      background:transparent;
+      border:0;
+      color:#ffffff;
+      cursor:pointer;
+      padding:6px 8px;
+      border-radius:10px;
+      font-weight:700;
+      font-size:15px;
+    }
+    .site-header .menu-toggle:focus { outline: 3px solid rgba(255,255,255,0.25); outline-offset: 2px; }
+    .site-header .icon-box { display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; background: rgba(255,255,255,0.5); border-radius:8px; padding:4px; flex:0 0 auto; }
+    .site-header .confetti-svg{width:28px;height:28px;display:block;}
+    .site-header .menu-label { display:inline-block; font-size:14px; font-family: 'Montserrat', sans-serif; line-height:1; color:#ffffff; letter-spacing:0.6px; }
+
+    .site-header .header-right img { height:30px; width:auto; display:block; }
+
+    .site-header .bunting-curve{position:absolute;bottom:-28px;left:0;width:100%;display:flex;justify-content:space-between;padding:0 10px;pointer-events:none;z-index:10}
+    .site-header .flag{width:0;height:0;border-left:18px solid transparent;border-right:18px solid transparent;border-bottom:28px solid;transform:rotate(-10deg);border-radius:0 0 50% 50%;animation:sway 4s ease-in-out infinite}
+    .site-header .flag:nth-child(1){border-bottom-color:#e1007b}.site-header .flag:nth-child(2){border-bottom-color:#30997a}.site-header .flag:nth-child(3){border-bottom-color:#748ec4}
+    .site-header .flag:nth-child(4){border-bottom-color:#8f9114}.site-header .flag:nth-child(5){border-bottom-color:#ff69b4}.site-header .flag:nth-child(6){border-bottom-color:#ffd700}
+    @keyframes sway{0%,100%{transform:rotate(-10deg)}50%{transform:rotate(-5deg)}}
+
+    /* overlay nav/backdrop */
+    #nav-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.35);z-index:1140;opacity:0;pointer-events:none;transition:opacity .28s ease}
+    #nav-backdrop.open{opacity:1;pointer-events:auto}
+
+    nav.overlay{
+      position:fixed;
+      inset:0;
+      z-index:1150;
+      background: rgba(225,0,123,0.98);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      padding-top:86px;
+      box-sizing:border-box;
+      overflow:visible;
+      transform:translateY(-6%);
+      opacity:0;
+      pointer-events:none;
+      transition:transform .28s ease,opacity .28s ease;
+      -webkit-overflow-scrolling:touch;
+      max-height:none;
+      margin:0 auto;
+      left:0;
+      right:0;
+      border-radius:0;
+    }
+    nav.overlay.open{transform:translateY(0);opacity:1;pointer-events:auto}
+    nav.overlay .nav-wrap{width:100%;max-width:520px;margin:6px 16px}
+    nav.overlay ul{display:flex;flex-direction:column;gap:10px;padding:6px;margin:0;align-items:stretch;list-style:none}
+    nav.overlay a{padding:14px 16px;display:block;border-radius:10px;background:rgba(255,255,255,0.04);color:#fff;font-size:18px;text-decoration:none}
+    nav.overlay a:hover{background:rgba(255,255,255,0.07);color:#fcdb92}
+
+    @media (max-width:768px){
+      .site-header { position: relative; }
+      .site-header .menu-toggle{ display:flex; position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); margin:0; z-index:1250; }
+      .site-header .desktop-nav{ display:none; }
+      .site-header .header-left{ position:relative; z-index:1260; }
+      .site-header .header-right{ position:relative; z-index:1260; }
+    }
+		
+		/* Fix: force flag colours in header (use after existing .site-header rules) */
+.site-header .bunting-curve .flag { border-bottom-color: transparent !important; }
+
+		/* explicit mapping for up to 12 flags (use !important to override any inherited rule) */
+		.site-header .bunting-curve .flag:nth-child(1)  { border-bottom-color: #e1007b !important; }
+		.site-header .bunting-curve .flag:nth-child(2)  { border-bottom-color: #30997a !important; }
+		.site-header .bunting-curve .flag:nth-child(3)  { border-bottom-color: #748ec4 !important; }
+		.site-header .bunting-curve .flag:nth-child(4)  { border-bottom-color: #8f9114 !important; }
+		.site-header .bunting-curve .flag:nth-child(5)  { border-bottom-color: #ff69b4 !important; }
+		.site-header .bunting-curve .flag:nth-child(6)  { border-bottom-color: #ffd700 !important; }
+		.site-header .bunting-curve .flag:nth-child(7)  { border-bottom-color: #00bfff !important; }
+		.site-header .bunting-curve .flag:nth-child(8)  { border-bottom-color: #ff4500 !important; }
+		.site-header .bunting-curve .flag:nth-child(9)  { border-bottom-color: #e1007b !important; }
+		.site-header .bunting-curve .flag:nth-child(10) { border-bottom-color: #30997a !important; }
+		.site-header .bunting-curve .flag:nth-child(11) { border-bottom-color: #748ec4 !important; }
+		.site-header .bunting-curve .flag:nth-child(12) { border-bottom-color: #8f9114 !important; }
+
+		
+    /* site footer */
+    .site-footer {
+      background-color: #30997a;
+      text-align: center;
+      padding: 20px 10px;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .site-footer p { color: #fff; margin: 0 0 8px; }
+    .site-footer img { width: 60px; height: auto; display:inline-block; }
+    .site-footer .attribution { font-size: 10px; margin-top:6px; color: #30997a; }
+    .site-footer .attribution a { color: #30997a; text-decoration:none; }
+
   </style>
 </head>
 <body>
 
-  <div class="scene" id="scene" tabindex="0" aria-label="Festival pass. Click to flip for more information.">
-    <div class="pass" id="pass">
+  <!-- ===== Header (same appearance/behaviour used elsewhere) ===== -->
+  <header class="site-header" role="banner">
+    <div class="header-left">
+      <a href="https://hannahwh05.github.io/whelnettwedfest/" aria-label="Home">
+        <img src="whelnettwedfestlogo.png" alt="Whelnett Wedfest Logo">
+      </a>
+    </div>
 
-      <section class="face front" aria-hidden="false">
-        <div class="hint">Click to flip</div>
-        <div class="text-frame" id="frontText">
-          <h2>FESTIVAL INFORMATION</h2>
-          <p>The sections below aim to give you all the information you need about Whelnett Wedfest.</p>
+    <nav class="desktop-nav" aria-label="Primary navigation" role="navigation">
+      <ul>
+        <li><a href="https://hannahwh05.github.io/whelnettwedfest/ticket-info.html">Ticket Info</a></li>
+        <li><a href="https://hannahwh05.github.io/whelnettwedfest/festival-info.html">Festival Info/FAQs</a></li>
+        <li><a href="https://hannahwh05.github.io/whelnettwedfest/coming-soon.html">Lineup</a></li>
+        <li><a href="https://hannahwh05.github.io/whelnettwedfest/location.html">Location</a></li>
+        <li><a href="https://hannahwh05.github.io/whelnettwedfest/coming-soon.html">Site Map</a></li>
+        <li><a href="https://hannahwh05.github.io/whelnettwedfest/presents.html">Presents</a></li>
+      </ul>
+    </nav>
 
-          <h3>Location</h3>
-          <p>Poplar Farm, Clevedon, Somerset BS21 6UN <a href="https://hannahwh05.github.io/whelnettwedfest/Poplar-Farm-Google-Maps.html" target="_blank" rel="noopener noreferrer">Map</a></p>
+    <button class="menu-toggle" aria-controls="main-nav" aria-expanded="false" aria-label="Open menu" title="Menu">
+      <span class="icon-box" aria-hidden="true">
+        <svg class="confetti-svg" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+          <g fill="none" stroke-linecap="round" stroke-width="1.6">
+            <path class="burst-piece" d="M16 5 L16 11" stroke="#ffd700" style="--tx:0; --ty:-18px; --r:-18deg;" />
+            <path class="burst-piece" d="M16 21 L16 27" stroke="#ff69b4" style="--tx:0; --ty:18px; --r:22deg;" />
+            <path class="burst-piece" d="M5 16 L11 16" stroke="#30997a" style="--tx:-18px; --ty:0; --r:-8deg;" />
+            <path class="burst-piece" d="M21 16 L27 16" stroke="#748ec4" style="--tx:18px; --ty:0; --r:10deg;" />
+            <circle class="burst-piece" cx="10" cy="8" r="1.6" fill="#ff4500" style="--tx:-8px; --ty:-12px; --r:6deg;" />
+            <circle class="burst-piece" cx="22" cy="8" r="1.6" fill="#e1007b" style="--tx:8px; --ty:-12px; --r:-6deg;" />
+            <circle class="burst-piece" cx="8" cy="24" r="1.6" fill="#00bfff" style="--tx:-10px; --ty:14px; --r:12deg;" />
+            <circle class="burst-piece" cx="24" cy="24" r="1.6" fill="#ffd700" style="--tx:10px; --ty:14px; --r:-12deg;" />
+          </g>
+        </svg>
+      </span>
+      <span class="menu-label">Menu</span>
+    </button>
 
-          <h3>Travel</h3>
-          <p><strong>Car:</strong> Poplar Farm is just 10 minutes from Junction 20 M5. Please be weary of cyclists and pedestrians along the country roads near the Farm.</p>
-          <p><strong>Parking:</strong> There is plenty of parking available at Poplar Farm but please note that this is not immediately next to camping and bell tent areas. There will be clear signage when you arrive.</p>
-          <p><strong>Train:</strong> The closest train station is Yatton. Either pre-book a taxi or ask a friend to collect you – it is about a 10 minute drive.</p>
-          <p><strong>Cycle:</strong> If you are feeling adventurous, Poplar Farm is along National Cycle Route 33. North Somerset has some beautiful countryside to explore along the cycle routes.</p>
-          <p><strong>Taxis:</strong> We would advise to book a taxi or Uber in advance as they are not frequent in the area. Local Companies: North Somerset Taxis, Streets Ahead Taxis, Triangle Cars Clevedon</p>
-        </div>
-      </section>
+    <div class="header-right">
+      <a href="https://www.instagram.com/whelnettwedfest/#" target="_blank" rel="noopener noreferrer">
+        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
+      </a>
+    </div>
 
-      <section class="face back" aria-hidden="true">
-        <div class="hint hint-back">Click to flip</div>
-        <div class="text-frame" id="backText">
-          <h3>Accommodation</h3>
-          <p>If camping or even glamping isn’t your style, Poplar Farm is not far from Clevedon or Yatton for hotels and AirBnBs. <br> We highly encourage you to bring the festival vibes though and rent a bell tent! <br> See our glamping options page for more information on what to expect.</p>
+    <div class="bunting-curve" aria-hidden="true">
+      <div class="flag"></div><div class="flag"></div><div class="flag"></div><div class="flag"></div>
+      <div class="flag"></div><div class="flag"></div><div class="flag"></div><div class="flag"></div>
+      <div class="flag"></div><div class="flag"></div><div class="flag"></div><div class="flag"></div>
+    </div>
+  </header>
 
-          <h3>Dress Code</h3>
-          <p>We encourage earthy tones and bright colours for the handfasting ceremony as it is thought to bring positive energy to the occasion. We suggest more relaxed suits and flowy, comfortable dresses. Shoes with thin heels, such as stilettos, are not advised as we will be on grass for much of the day.<br><br> Bring vibrant, festival themed clothing for the rest of the day and be prepared for whatever the weather may bring!</p>
+  <!-- backdrop and overlay for the mobile nav -->
+  <div id="nav-backdrop" aria-hidden="true"></div>
 
-          <h3>Contacts</h3>
-          <p>Any queries, whatsapp Hannah or Laurie.</p>
-        </div>
-      </section>
+  <nav id="main-nav" class="overlay" aria-label="Primary navigation overlay" role="navigation">
+    <div class="nav-wrap" role="group" aria-label="Navigation links">
+      <ul>
+        <li><a href="https://hannahwh05.github.io/whelnettwedfest/ticket-info.html">Ticket Info</a></li>
+        <li><a href="https://hannahwh05.github.io/whelnettwedfest/festival-info.html">Festival Info/FAQs</a></li>
+        <li><a href="https://hannahwh05.github.io/whelnettwedfest/coming-soon.html">Lineup</a></li>
+        <li><a href="https://hannahwh05.github.io/whelnettwedfest/location.html">Location</a></li>
+        <li><a href="https://hannahwh05.github.io/whelnettwedfest/coming-soon.html">Site Map</a></li>
+        <li><a href="https://hannahwh05.github.io/whelnettwedfest/presents.html">Presents</a></li>
+      </ul>
+    </div>
+  </nav>
 
+  <!-- ===== original scene markup preserved exactly below, inside page-content ===== -->
+  <div class="page-content">
+    <div class="scene" id="scene" tabindex="0" aria-label="Festival pass. Click to flip for more information.">
+      <div class="pass" id="pass">
+
+        <section class="face front" aria-hidden="false">
+          <div class="hint">Click to flip</div>
+          <div class="text-frame" id="frontText">
+            <h2>FESTIVAL INFORMATION</h2>
+            <p>The sections below aim to give you all the information you need about Whelnett Wedfest.</p>
+
+            <h3>Location</h3>
+            <p>Poplar Farm, Clevedon, Somerset BS21 6UN <a href="https://hannahwh05.github.io/whelnettwedfest/Poplar-Farm-Google-Maps.html" target="_blank" rel="noopener noreferrer">Map</a></p>
+
+            <h3>Travel</h3>
+            <p><strong>Car:</strong> Poplar Farm is just 10 minutes from Junction 20 M5. Please be weary of cyclists and pedestrians along the country roads near the Farm.</p>
+            <p><strong>Parking:</strong> There is plenty of parking available at Poplar Farm but please note that this is not immediately next to camping and bell tent areas. There will be clear signage when you arrive.</p>
+            <p><strong>Train:</strong> The closest train station is Yatton. Either pre-book a taxi or ask a friend to collect you – it is about a 10 minute drive.</p>
+            <p><strong>Cycle:</strong> If you are feeling adventurous, Poplar Farm is along National Cycle Route 33. North Somerset has some beautiful countryside to explore along the cycle routes.</p>
+            <p><strong>Taxis:</strong> We would advise to book a taxi or Uber in advance as they are not frequent in the area. Local Companies: North Somerset Taxis, Streets Ahead Taxis, Triangle Cars Clevedon</p>
+          </div>
+        </section>
+
+        <section class="face back" aria-hidden="true">
+          <div class="hint hint-back">Click to flip</div>
+          <div class="text-frame" id="backText">
+            <h3>Accommodation</h3>
+            <p>If camping or even glamping isn’t your style, Poplar Farm is not far from Clevedon or Yatton for hotels and AirBnBs. <br> We highly encourage you to bring the festival vibes though and rent a bell tent! <br> See our glamping options page for more information on what to expect.</p>
+
+            <h3>Dress Code</h3>
+            <p>We encourage earthy tones and bright colours for the handfasting ceremony as it is thought to bring positive energy to the occasion. We suggest more relaxed suits and flowy, comfortable dresses. Shoes with thin heels, such as stilettos, are not advised as we will be on grass for much of the day.<br><br> Bring vibrant, festival themed clothing for the rest of the day and be prepared for whatever the weather may bring!</p>
+
+            <h3>Contacts</h3>
+            <p>Any queries, whatsapp Hannah or Laurie.</p>
+          </div>
+        </section>
+
+      </div>
     </div>
   </div>
 
+  <!-- ===== Footer (same look as site) ===== -->
+  <footer class="site-footer" role="contentinfo">
+    <p>Whelnett Wedfest Ltd.</p>
+    <img src="whelnettwedfestlogo.png" alt="Whelnett Wedfest Logo">
+    <p class="attribution">
+      <a href="https://www.flaticon.com/free-icons/instagram" title="instagram icons">Instagram icons created by Grow studio - Flaticon</a>
+    </p>
+  </footer>
+
+  <!-- ===== Scripts: mobile menu and scene flip (scene script preserved) ===== -->
   <script>
+    /* Mobile menu logic (scoped to the header elements added) */
+    (function(){
+      var toggle = document.querySelector('.site-header .menu-toggle');
+      var overlayNav = document.getElementById('main-nav');
+      var backdrop = document.getElementById('nav-backdrop');
+      var desktopNav = document.querySelector('.site-header .desktop-nav');
+      var confettiSvg = document.querySelector('.site-header .confetti-svg');
+
+      if (!toggle || !overlayNav) return;
+
+      function setOpen(open){
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        if (open){
+          overlayNav.classList.add('open');
+          backdrop.classList.add('open');
+          document.documentElement.style.overflow = 'hidden';
+          document.body.style.overflow = 'hidden';
+          toggle.setAttribute('aria-label','Close menu');
+          if (confettiSvg){
+            confettiSvg.classList.remove('confetti-animate');
+            void confettiSvg.offsetWidth;
+            confettiSvg.classList.add('confetti-animate');
+            setTimeout(function(){ confettiSvg.classList.remove('confetti-animate'); }, 700);
+          }
+        } else {
+          overlayNav.classList.remove('open');
+          backdrop.classList.remove('open');
+          document.documentElement.style.overflow = '';
+          document.body.style.overflow = '';
+          toggle.setAttribute('aria-label','Open menu');
+        }
+      }
+
+      toggle.addEventListener('click', function(){
+        var expanded = toggle.getAttribute('aria-expanded') === 'true';
+        setOpen(!expanded);
+      });
+
+      backdrop.addEventListener('click', function(){ setOpen(false); });
+
+      overlayNav.addEventListener('click', function(e){
+        if (e.target.tagName.toLowerCase() === 'a' && window.matchMedia('(max-width:768px)').matches){
+          setOpen(false);
+        }
+      });
+
+      document.addEventListener('keydown', function(e){
+        if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true'){
+          setOpen(false);
+          toggle.focus();
+        }
+      });
+
+      function updateNavDisplay(){
+        if (window.matchMedia('(max-width:768px)').matches){
+          if (desktopNav) desktopNav.style.display = 'none';
+        } else {
+          if (desktopNav) desktopNav.style.display = '';
+          setOpen(false);
+        }
+      }
+      updateNavDisplay();
+      window.addEventListener('resize', updateNavDisplay);
+    })();
+
+    /* ===== Original scene flip script preserved exactly ===== */
     (function(){
       const scene = document.getElementById('scene');
       let flipped = false;
