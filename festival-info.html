@@ -86,22 +86,15 @@
       - has overflow-y:auto so it scrolls internally rather than pushing layout.
     */
     .text-frame {
-      position: absolute;
-      top: 18%;
-      bottom: 10%;
-      /* left/right use clamp so small screens get a tighter inset and large desktop preserves the art */
-      left: clamp(6%, 12%, 25%);
-      right: clamp(6%, 12%, 25%);
-      overflow-y: auto;
-      -webkit-overflow-scrolling: touch;
-      padding: clamp(10px, 2vw, 14px);
-      border-radius: 8px;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
-      overflow-wrap: break-word;
-      word-break: break-word;
-      max-height: 100%;
-      background: transparent;
-    }
+  width: 300px;       /* or use % for responsive width */
+  height: 400px;      /* fixed height of the box */
+  overflow-y: auto;   /* scroll if text is too tall */
+  padding: 16px;      /* spacing inside the box */
+  border: 2px solid #000;  /* visible border for the box */
+  background-color: rgba(255,255,255,0.8); /* optional background */
+  border-radius: 8px; /* optional rounded corners */
+}
+
 
     /* Typography spacing: increase margins so headings and paragraphs breathe on mobile too */
     h2, h3 {
@@ -528,3 +521,4 @@
 
 </body>
 </html>
+
