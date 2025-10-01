@@ -189,10 +189,16 @@
       overflow-x: hidden;
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: #000000 transparent;
       overflow-wrap: break-word;
       word-break: break-word;
       max-height: 100%;
     }
+
+    .text-frame::-webkit-scrollbar { width: 3px; }
+    .text-frame::-webkit-scrollbar-track { background: transparent; }
+    .text-frame::-webkit-scrollbar-thumb { background-color: #000; border-radius: 999px; }
 
     @media (max-width: 480px) {
       .text-frame {
