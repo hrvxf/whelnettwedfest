@@ -8,7 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 
   <style>
-    /* ===== Preserve original page styles exactly (unchanged) ===== */
+    /* ===== Preserve original page styles (kept, adjusted where needed for responsiveness) ===== */
     :root {
       --bg-url: url('FestivalInfo.png');
       --accent-teal: #17b4ad;
@@ -80,47 +80,59 @@
 
     .face.back { transform: rotateY(180deg); }
 
+    /*
+      Responsive text-frame:
+      - uses clamp() and percentage-based left/right so the content area adapts across screens.
+      - has overflow-y:auto so it scrolls internally rather than pushing layout.
+    */
     .text-frame {
       position: absolute;
-      top: 34%;
-      bottom: 13%;
-      left: 25%;
-      right: 25%;
-      overflow: hidden;
-      padding: clamp(6px, 1vw, 10px);
+      top: 18%;
+      bottom: 10%;
+      /* left/right use clamp so small screens get a tighter inset and large desktop preserves the art */
+      left: clamp(6%, 12%, 25%);
+      right: clamp(6%, 12%, 25%);
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      padding: clamp(10px, 2vw, 14px);
       border-radius: 8px;
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
       overflow-wrap: break-word;
       word-break: break-word;
       max-height: 100%;
+      background: transparent;
     }
 
+    /* Typography spacing: increase margins so headings and paragraphs breathe on mobile too */
     h2, h3 {
-      margin-bottom: 0.18rem;
-      line-height: 1.1;
+      line-height: 1.2;
       font-family: Impact, 'Haettenschweiler', 'Arial Black', sans-serif;
       color: #1a0120;
       text-shadow: 0 1px 0 rgba(255,255,255,.6);
+      -webkit-font-smoothing: antialiased;
     }
 
-      h2 {
-        font-size: clamp(0.7rem, 1.5vw, 0.85rem);
-        text-align: center;
-        text-transform: uppercase;
-        letter-spacing: 0.04em;
-      }
+    h2 {
+      font-size: clamp(0.9rem, 2vw, 1.1rem);
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.6rem; /* bigger gap under main heading */
+    }
 
-      h3 {
-        font-size: clamp(0.55rem, 1.2vw, 0.7rem);
-        margin-top: 0.4rem;
-      }
+    h3 {
+      font-size: clamp(0.7rem, 1.5vw, 0.9rem);
+      margin-top: 0.9rem;   /* space above subheadings */
+      margin-bottom: 0.35rem;
+    }
 
-      p {
-        font-size: clamp(0.48rem, 1vw, 0.65rem);
-        line-height: 1.15;
-        margin-top: 0.18rem;
-        color: #12030f;
-      }
+    p {
+      font-size: clamp(0.65rem, 1.1vw, 0.95rem);
+      line-height: 1.4;
+      margin-bottom: 0.6rem;
+      color: #12030f;
+      margin-top: 0; /* we use margins between paras for consistent spacing */
+    }
 
     p a {
       color: var(--accent-teal);
@@ -132,38 +144,46 @@
       color: #12030f;
     }
 
-    .hint {
+    /* Flip hints — visible but non-blocking (pointer-events:none). Kept accessible and sized down on tiny screens. */
+    .hint,
+    .hint-back {
+      display: block !important;
       position: absolute;
-      left: 12px;
       top: 12px;
-      background: rgba(255,255,255,0.85);
+      background: rgba(255,255,255,0.92);
       color: #2a1a1a;
       font-size: 11px;
       padding: 6px 10px;
       border-radius: 999px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.12);
       user-select: none;
-      display: none;
+      pointer-events: none; /* won't block taps */
+      z-index: 10;
+      -webkit-font-smoothing: antialiased;
     }
 
-    @media(min-width:680px) {
-      .hint { display: block; }
-      .hint-back { display: block; }
+    .hint { left: 12px; }
+    .hint-back { right: 12px; left: auto; }
+
+    @media (max-width: 420px) {
+      .hint,
+      .hint-back {
+        font-size: 10px;
+        padding: 5px 8px;
+        top: 8px;
+      }
+      /* Slightly reduce text-frame inset on very small screens so the artwork stays visible */
+      .text-frame {
+        top: 15%;
+        bottom: 8%;
+        left: 6%;
+        right: 6%;
+      }
     }
 
-    .hint-back {
-      right: 12px;
-      left: auto;
-      top: 12px;
-      display: none;
-    }
-
+    /* preserve user-select defaults for content vs controls */
     .pass, .text-frame, .face { -webkit-user-select: none; -ms-user-select: none; user-select: none; }
     .text-frame * { user-select: text; }
-
-    @media (max-width:420px) {
-      .text-frame { transform: translateY(-12%); }
-    }
 
     /* ===== Header / Footer styles (same as site) ===== */
 
@@ -254,25 +274,24 @@
       .site-header .header-left{ position:relative; z-index:1260; }
       .site-header .header-right{ position:relative; z-index:1260; }
     }
-		
-		/* Fix: force flag colours in header (use after existing .site-header rules) */
-.site-header .bunting-curve .flag { border-bottom-color: transparent !important; }
 
-		/* explicit mapping for up to 12 flags (use !important to override any inherited rule) */
-		.site-header .bunting-curve .flag:nth-child(1)  { border-bottom-color: #e1007b !important; }
-		.site-header .bunting-curve .flag:nth-child(2)  { border-bottom-color: #30997a !important; }
-		.site-header .bunting-curve .flag:nth-child(3)  { border-bottom-color: #748ec4 !important; }
-		.site-header .bunting-curve .flag:nth-child(4)  { border-bottom-color: #8f9114 !important; }
-		.site-header .bunting-curve .flag:nth-child(5)  { border-bottom-color: #ff69b4 !important; }
-		.site-header .bunting-curve .flag:nth-child(6)  { border-bottom-color: #ffd700 !important; }
-		.site-header .bunting-curve .flag:nth-child(7)  { border-bottom-color: #00bfff !important; }
-		.site-header .bunting-curve .flag:nth-child(8)  { border-bottom-color: #ff4500 !important; }
-		.site-header .bunting-curve .flag:nth-child(9)  { border-bottom-color: #e1007b !important; }
-		.site-header .bunting-curve .flag:nth-child(10) { border-bottom-color: #30997a !important; }
-		.site-header .bunting-curve .flag:nth-child(11) { border-bottom-color: #748ec4 !important; }
-		.site-header .bunting-curve .flag:nth-child(12) { border-bottom-color: #8f9114 !important; }
+    /* Fix: force flag colours in header (use after existing .site-header rules) */
+    .site-header .bunting-curve .flag { border-bottom-color: transparent !important; }
 
-		
+    /* explicit mapping for up to 12 flags (use !important to override any inherited rule) */
+    .site-header .bunting-curve .flag:nth-child(1)  { border-bottom-color: #e1007b !important; }
+    .site-header .bunting-curve .flag:nth-child(2)  { border-bottom-color: #30997a !important; }
+    .site-header .bunting-curve .flag:nth-child(3)  { border-bottom-color: #748ec4 !important; }
+    .site-header .bunting-curve .flag:nth-child(4)  { border-bottom-color: #8f9114 !important; }
+    .site-header .bunting-curve .flag:nth-child(5)  { border-bottom-color: #ff69b4 !important; }
+    .site-header .bunting-curve .flag:nth-child(6)  { border-bottom-color: #ffd700 !important; }
+    .site-header .bunting-curve .flag:nth-child(7)  { border-bottom-color: #00bfff !important; }
+    .site-header .bunting-curve .flag:nth-child(8)  { border-bottom-color: #ff4500 !important; }
+    .site-header .bunting-curve .flag:nth-child(9)  { border-bottom-color: #e1007b !important; }
+    .site-header .bunting-curve .flag:nth-child(10) { border-bottom-color: #30997a !important; }
+    .site-header .bunting-curve .flag:nth-child(11) { border-bottom-color: #748ec4 !important; }
+    .site-header .bunting-curve .flag:nth-child(12) { border-bottom-color: #8f9114 !important; }
+
     /* site footer */
     .site-footer {
       background-color: #30997a;
@@ -285,39 +304,6 @@
     .site-footer img { width: 60px; height: auto; display:inline-block; }
     .site-footer .attribution { font-size: 10px; margin-top:6px; color: #30997a; }
     .site-footer .attribution a { color: #30997a; text-decoration:none; }
-		
-		/* Show flip hint on mobile and keep the desktop behaviour */
-		.hint,
-		.hint-back {
-			display: block !important;        /* make visible on all viewports */
-			position: absolute;
-			top: 12px;
-			left: 12px;
-			right: auto;
-			background: rgba(255,255,255,0.9);
-			color: #2a1a1a;
-			font-size: 11px;
-			padding: 6px 10px;
-			border-radius: 999px;
-			box-shadow: 0 2px 6px rgba(0,0,0,0.12);
-			z-index: 10;
-			pointer-events: none;             /* won't block taps on the scene */
-			-webkit-user-select: none;
-			user-select: none;
-		}
-
-		/* Keep the back hint on the right */
-		.hint-back { left: auto; right: 12px; }
-
-		/* Slightly reduce size and spacing on very small screens */
-		@media (max-width: 420px) {
-			.hint,
-			.hint-back {
-				font-size: 10px;
-				padding: 5px 8px;
-				top: 8px;
-			}
-		}
 
   </style>
 </head>
@@ -389,7 +375,7 @@
     </div>
   </nav>
 
-  <!-- ===== original scene markup preserved exactly below, inside page-content ===== -->
+  <!-- ===== original scene markup preserved below, inside page-content ===== -->
   <div class="page-content">
     <div class="scene" id="scene" tabindex="0" aria-label="Festival pass. Click to flip for more information.">
       <div class="pass" id="pass">
@@ -506,7 +492,7 @@
       window.addEventListener('resize', updateNavDisplay);
     })();
 
-    /* ===== Original scene flip script preserved exactly ===== */
+    /* ===== Original scene flip script preserved (with scroll reset) ===== */
     (function(){
       const scene = document.getElementById('scene');
       let flipped = false;
@@ -529,9 +515,12 @@
 
       scene.addEventListener('transitionend', function(){
         if (scene.classList.contains('flipped')) {
-           document.getElementById('backText').scrollTop = 0;
+           // reset back face scroll when flipped
+           var bt = document.getElementById('backText');
+           if (bt) bt.scrollTop = 0;
         } else {
-          document.getElementById('frontText').scrollTop = 0;
+          var ft = document.getElementById('frontText');
+          if (ft) ft.scrollTop = 0;
         }
       });
     })();
