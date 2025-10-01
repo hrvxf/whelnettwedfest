@@ -285,6 +285,39 @@
     .site-footer img { width: 60px; height: auto; display:inline-block; }
     .site-footer .attribution { font-size: 10px; margin-top:6px; color: #30997a; }
     .site-footer .attribution a { color: #30997a; text-decoration:none; }
+		
+		/* Show flip hint on mobile and keep the desktop behaviour */
+		.hint,
+		.hint-back {
+			display: block !important;        /* make visible on all viewports */
+			position: absolute;
+			top: 12px;
+			left: 12px;
+			right: auto;
+			background: rgba(255,255,255,0.9);
+			color: #2a1a1a;
+			font-size: 11px;
+			padding: 6px 10px;
+			border-radius: 999px;
+			box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+			z-index: 10;
+			pointer-events: none;             /* won't block taps on the scene */
+			-webkit-user-select: none;
+			user-select: none;
+		}
+
+		/* Keep the back hint on the right */
+		.hint-back { left: auto; right: 12px; }
+
+		/* Slightly reduce size and spacing on very small screens */
+		@media (max-width: 420px) {
+			.hint,
+			.hint-back {
+				font-size: 10px;
+				padding: 5px 8px;
+				top: 8px;
+			}
+		}
 
   </style>
 </head>
