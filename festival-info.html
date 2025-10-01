@@ -241,49 +241,66 @@
     }
 
     .info-list {
+      --icon-box-size: clamp(2.4rem, 7vw, 3rem);
       list-style: none;
       margin: 0.28rem 0 0.4rem;
       padding: 0;
       display: grid;
-      gap: 0.22rem;
+      gap: clamp(0.28rem, 1.2vw, 0.48rem);
     }
 
     .info-list li {
-      display: flex;
-      gap: 0.32rem;
+      display: grid;
+      grid-template-columns: var(--icon-box-size) 1fr;
+      gap: clamp(0.28rem, 1.1vw, 0.44rem);
       align-items: flex-start;
       font-size: clamp(0.46rem, 0.95vw, 0.62rem);
-      padding: 0.24rem 0.32rem;
-      border-radius: 6px;
-      background: rgba(255,255,255,0.6);
-      box-shadow: inset 0 0 0 1px rgba(17, 3, 15, 0.05);
+      padding: clamp(0.28rem, 1.2vw, 0.46rem) clamp(0.32rem, 1.4vw, 0.6rem);
+      border-radius: 10px;
+      background: rgba(255,255,255,0.62);
+      box-shadow: inset 0 0 0 1px rgba(17, 3, 15, 0.06);
+      min-height: var(--icon-box-size);
     }
 
     .item-label {
       display: inline-flex;
       align-items: center;
-      gap: 0.18rem;
-      font-weight: 700;
+      justify-content: center;
+      width: var(--icon-box-size);
+      height: var(--icon-box-size);
+      border-radius: 16px;
+      background: rgba(23,180,173,0.12);
+      box-shadow: inset 0 0 0 1.5px rgba(23,180,173,0.32);
       color: var(--accent-teal);
-      text-transform: uppercase;
-      letter-spacing: 0.03em;
-      flex: 0 0 auto;
+      position: relative;
+      align-self: center;
     }
 
     .item-description {
-      flex: 1 1 auto;
       color: #12030f;
-      line-height: 1.2;
+      line-height: 1.35;
     }
 
     .item-icon {
-      width: 0.9em;
-      height: 0.9em;
+      width: calc(var(--icon-box-size) * 0.52);
+      height: calc(var(--icon-box-size) * 0.52);
       display: block;
     }
 
     .back .info-list li {
       background: rgba(255,255,255,0.52);
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
     }
 
     .flip-toggle {
@@ -507,35 +524,35 @@
               <li>
                 <span class="item-label">
                   <svg class="item-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4.5 12.5h15l-1.1-3.6a2 2 0 0 0-1.9-1.4H7.5a2 2 0 0 0-1.9 1.4z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/><circle cx="7.5" cy="15.5" r="1.7" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="16.5" cy="15.5" r="1.7" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M3.5 12.5h17" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/></svg>
-                  Car
+                  <span class="sr-only">Car</span>
                 </span>
                 <span class="item-description">Poplar Farm is just 10 minutes from Junction 20 M5. Please be weary of cyclists and pedestrians along the country roads near the farm.</span>
               </li>
               <li>
                 <span class="item-label">
                   <svg class="item-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7h16v10H4z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M7 7V5h10v2" stroke="currentColor" stroke-width="1.5"/><path d="M8 12h8" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/></svg>
-                  Parking
+                  <span class="sr-only">Parking</span>
                 </span>
                 <span class="item-description">There is plenty of parking available at Poplar Farm but it is not immediately next to camping and bell tent areas. Follow the signage when you arrive.</span>
               </li>
               <li>
                 <span class="item-label">
                   <svg class="item-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="7" width="18" height="10" rx="2" ry="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 7V5h8v2" stroke="currentColor" stroke-width="1.5"/><circle cx="8" cy="15" r="1" fill="currentColor"/><circle cx="16" cy="15" r="1" fill="currentColor"/></svg>
-                  Train
+                  <span class="sr-only">Train</span>
                 </span>
                 <span class="item-description">The closest train station is Yatton. Either pre-book a taxi or ask a friend to collect you – it is about a 10 minute drive.</span>
               </li>
               <li>
                 <span class="item-label">
                   <svg class="item-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 17l2-10h10l2 10" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5"/><path d="M7 9h10" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/><circle cx="9" cy="17" r="1" fill="currentColor"/><circle cx="15" cy="17" r="1" fill="currentColor"/></svg>
-                  Cycle
+                  <span class="sr-only">Cycle</span>
                 </span>
                 <span class="item-description">If you are feeling adventurous, Poplar Farm sits along National Cycle Route 33. North Somerset has beautiful countryside to explore along the way.</span>
               </li>
               <li>
                 <span class="item-label">
                   <svg class="item-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4.5 15.5h15" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/><path d="M6 15.5l1.2-4.5a2 2 0 0 1 1.9-1.5h6.8a2 2 0 0 1 1.9 1.5l1.2 4.5" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5"/><path d="M9.5 9.5l.6-2.5h3.8l.6 2.5" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5"/></svg>
-                  Taxis
+                  <span class="sr-only">Taxis</span>
                 </span>
                 <span class="item-description">Book a taxi or Uber in advance as they are not frequent in the area. Local companies: North Somerset Taxis, Streets Ahead Taxis, Triangle Cars Clevedon.</span>
               </li>
@@ -551,21 +568,21 @@
               <li>
                 <span class="item-label">
                   <svg class="item-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 12l8-7 8 7v7H4z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5"/><path d="M10 19v-5h4v5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
-                  Nearby stays
+                  <span class="sr-only">Nearby stays</span>
                 </span>
                 <span class="item-description">If camping or glamping isn’t your style, Poplar Farm is close to Clevedon and Yatton for hotels and Airbnbs.</span>
               </li>
               <li>
                 <span class="item-label">
                   <svg class="item-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 18l9-10 9 10" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5"/><path d="M7 18h10" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/></svg>
-                  Festival vibes
+                  <span class="sr-only">Festival vibes</span>
                 </span>
                 <span class="item-description">We encourage you to bring the festival spirit and rent a bell tent if you can.</span>
               </li>
               <li>
                 <span class="item-label">
                   <svg class="item-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 6h16" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/><path d="M6 10h12" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/><path d="M8 14h8" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/><path d="M10 18h4" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/></svg>
-                  Glamping guide
+                  <span class="sr-only">Glamping guide</span>
                 </span>
                 <span class="item-description">See our glamping options page for details on what to expect and how to make the most of your stay.</span>
               </li>
