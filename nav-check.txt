@@ -1,0 +1,5 @@
+Manual navigation verification via Playwright (desktop and mobile viewports)
+- index.html: desktop nav visible, mobile overlay opened successfully.
+- ticket-info.html: desktop nav visible, mobile overlay opened successfully.
+- festival-info.html: desktop nav visible, mobile overlay opened successfully.
+- location.html: desktop nav visible, mobile overlay opened successfully.

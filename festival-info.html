@@ -6,6 +6,8 @@
   <title>Festival Information</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/site.css">
+  <script src="assets/site.js" defer></script>
 
   <style>
     /* ===== Preserve original page styles exactly (unchanged) ===== */
@@ -167,92 +169,23 @@
 
     /* ===== Header / Footer styles (same as site) ===== */
 
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 1200;
-      background: #e1007b;
-      border-bottom: 2px solid #eee;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 10px 20px;
-      box-sizing: border-box;
-    }
-
-    .site-header .header-left { display:flex; align-items:center; }
-    .site-header .header-left img { height:50px; width:auto; max-width:180px; display:block; }
-
-    .site-header .desktop-nav { display:block; }
-    .site-header .desktop-nav ul { display:flex; flex-wrap:wrap; justify-content:center; gap:0; margin:0; padding:0; list-style:none; }
-    .site-header .desktop-nav a { display:inline-block; padding:8px 12px; color:#ffffff; text-decoration:none; font-weight:700; letter-spacing:1px; font-family: 'Montserrat', sans-serif; }
-    .site-header .desktop-nav a:hover { color: #fcdb92; }
-
-    .site-header .menu-toggle {
-      display:none;
-      align-items:center;
-      gap:8px;
-      background:transparent;
-      border:0;
-      color:#ffffff;
-      cursor:pointer;
-      padding:6px 8px;
-      border-radius:10px;
-      font-weight:700;
-      font-size:15px;
-    }
-    .site-header .menu-toggle:focus { outline: 3px solid rgba(255,255,255,0.25); outline-offset: 2px; }
-    .site-header .icon-box { display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; background: rgba(255,255,255,0.5); border-radius:8px; padding:4px; flex:0 0 auto; }
-    .site-header .confetti-svg{width:28px;height:28px;display:block;}
-    .site-header .menu-label { display:inline-block; font-size:14px; font-family: 'Montserrat', sans-serif; line-height:1; color:#ffffff; letter-spacing:0.6px; }
-
-    .site-header .header-right img { height:30px; width:auto; display:block; }
-
-    .site-header .bunting-curve{position:absolute;bottom:-28px;left:0;width:100%;display:flex;justify-content:space-between;padding:0 10px;pointer-events:none;z-index:10}
-    .site-header .flag{width:0;height:0;border-left:18px solid transparent;border-right:18px solid transparent;border-bottom:28px solid;transform:rotate(-10deg);border-radius:0 0 50% 50%;animation:sway 4s ease-in-out infinite}
-    .site-header .flag:nth-child(1){border-bottom-color:#e1007b}.site-header .flag:nth-child(2){border-bottom-color:#30997a}.site-header .flag:nth-child(3){border-bottom-color:#748ec4}
-    .site-header .flag:nth-child(4){border-bottom-color:#8f9114}.site-header .flag:nth-child(5){border-bottom-color:#ff69b4}.site-header .flag:nth-child(6){border-bottom-color:#ffd700}
-    @keyframes sway{0%,100%{transform:rotate(-10deg)}50%{transform:rotate(-5deg)}}
-
-    /* overlay nav/backdrop */
-    #nav-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.35);z-index:1140;opacity:0;pointer-events:none;transition:opacity .28s ease}
-    #nav-backdrop.open{opacity:1;pointer-events:auto}
-
-    nav.overlay{
-      position:fixed;
-      inset:0;
-      z-index:1150;
-      background: rgba(225,0,123,0.98);
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      padding-top:86px;
-      box-sizing:border-box;
-      overflow:visible;
-      transform:translateY(-6%);
-      opacity:0;
-      pointer-events:none;
-      transition:transform .28s ease,opacity .28s ease;
-      -webkit-overflow-scrolling:touch;
-      max-height:none;
-      margin:0 auto;
-      left:0;
-      right:0;
-      border-radius:0;
-    }
-    nav.overlay.open{transform:translateY(0);opacity:1;pointer-events:auto}
-    nav.overlay .nav-wrap{width:100%;max-width:520px;margin:6px 16px}
-    nav.overlay ul{display:flex;flex-direction:column;gap:10px;padding:6px;margin:0;align-items:stretch;list-style:none}
-    nav.overlay a{padding:14px 16px;display:block;border-radius:10px;background:rgba(255,255,255,0.04);color:#fff;font-size:18px;text-decoration:none}
-    nav.overlay a:hover{background:rgba(255,255,255,0.07);color:#fcdb92}
-
     @media (max-width:768px){
       .site-header { position: relative; }
-      .site-header .menu-toggle{ display:flex; position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); margin:0; z-index:1250; }
+      .site-header .menu-toggle{
+        display:flex;
+        position:absolute;
+        left:50%;
+        top:50%;
+        transform:translate(-50%,-50%);
+        margin:0;
+        z-index:1250;
+      }
       .site-header .desktop-nav{ display:none; }
-      .site-header .header-left{ position:relative; z-index:1260; }
-      .site-header .header-right{ position:relative; z-index:1260; }
+      .site-header .header-left,
+      .site-header .header-right{
+        position:relative;
+        z-index:1260;
+      }
     }
 		
 		/* Fix: force flag colours in header (use after existing .site-header rules) */
@@ -441,71 +374,6 @@
 
   <!-- ===== Scripts: mobile menu and scene flip (scene script preserved) ===== -->
   <script>
-    /* Mobile menu logic (scoped to the header elements added) */
-    (function(){
-      var toggle = document.querySelector('.site-header .menu-toggle');
-      var overlayNav = document.getElementById('main-nav');
-      var backdrop = document.getElementById('nav-backdrop');
-      var desktopNav = document.querySelector('.site-header .desktop-nav');
-      var confettiSvg = document.querySelector('.site-header .confetti-svg');
-
-      if (!toggle || !overlayNav) return;
-
-      function setOpen(open){
-        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-        if (open){
-          overlayNav.classList.add('open');
-          backdrop.classList.add('open');
-          document.documentElement.style.overflow = 'hidden';
-          document.body.style.overflow = 'hidden';
-          toggle.setAttribute('aria-label','Close menu');
-          if (confettiSvg){
-            confettiSvg.classList.remove('confetti-animate');
-            void confettiSvg.offsetWidth;
-            confettiSvg.classList.add('confetti-animate');
-            setTimeout(function(){ confettiSvg.classList.remove('confetti-animate'); }, 700);
-          }
-        } else {
-          overlayNav.classList.remove('open');
-          backdrop.classList.remove('open');
-          document.documentElement.style.overflow = '';
-          document.body.style.overflow = '';
-          toggle.setAttribute('aria-label','Open menu');
-        }
-      }
-
-      toggle.addEventListener('click', function(){
-        var expanded = toggle.getAttribute('aria-expanded') === 'true';
-        setOpen(!expanded);
-      });
-
-      backdrop.addEventListener('click', function(){ setOpen(false); });
-
-      overlayNav.addEventListener('click', function(e){
-        if (e.target.tagName.toLowerCase() === 'a' && window.matchMedia('(max-width:768px)').matches){
-          setOpen(false);
-        }
-      });
-
-      document.addEventListener('keydown', function(e){
-        if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true'){
-          setOpen(false);
-          toggle.focus();
-        }
-      });
-
-      function updateNavDisplay(){
-        if (window.matchMedia('(max-width:768px)').matches){
-          if (desktopNav) desktopNav.style.display = 'none';
-        } else {
-          if (desktopNav) desktopNav.style.display = '';
-          setOpen(false);
-        }
-      }
-      updateNavDisplay();
-      window.addEventListener('resize', updateNavDisplay);
-    })();
-
     /* ===== Original scene flip script preserved exactly ===== */
     (function(){
       const scene = document.getElementById('scene');
