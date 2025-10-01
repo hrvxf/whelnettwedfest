@@ -5,78 +5,10 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Whelnett Wedfest 2026 Invitation</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/site.css">
+  <script src="assets/site.js" defer></script>
   <style>
-    :root{
-      --brand:#e1007b;
-      --accent:#fcdb92;
-      --nav-text:#ffffff;
-      --overlay-bg: rgba(225,0,123,0.98);
-    }
-
     html,body{height:100%;margin:0;font-family:'Montserrat',sans-serif;background:#fcdb92;color:#000;overflow-x:hidden}
-
-    /* ---------- Header / Nav (from updated header) ---------- */
-    header{
-      position:sticky;top:0;z-index:1200;
-      background:var(--brand);border-bottom:2px solid #eee;
-      display:flex;align-items:center;justify-content:space-between;padding:10px 20px;gap:12px;position:relative;
-    }
-    .header-left{display:flex;align-items:center}
-    .header-left img{height:50px;width:auto;max-width:180px;display:block}
-
-    /* Desktop nav */
-    .desktop-nav ul{display:flex;flex-wrap:wrap;justify-content:center;gap:0;margin:0;padding:0;list-style:none}
-    .desktop-nav a{display:inline-block;padding:8px 12px;color:var(--nav-text);text-decoration:none;font-weight:700;letter-spacing:1px}
-    .desktop-nav a:hover{color:var(--accent)}
-
-    /* Mobile menu toggle styles */
-    .menu-toggle{
-      display:none;align-items:center;gap:8px;background:transparent;border:0;color:var(--nav-text);cursor:pointer;padding:6px 8px;border-radius:10px;font-weight:700;font-size:15px;
-    }
-    .menu-toggle:focus { outline: 3px solid rgba(255,255,255,0.25); outline-offset: 2px; }
-    .icon-box { display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; background: rgba(255,255,255,0.5); border-radius:8px; padding:4px; flex:0 0 auto; }
-    .confetti-svg{width:28px;height:28px;display:block;}
-    .menu-label { display:inline-block; font-size:14px; font-family: 'Montserrat', sans-serif; line-height:1; color:#ffffff; letter-spacing:0.6px; }
-
-    /* Bunting */
-    .bunting-curve{position:absolute;bottom:-28px;left:0;width:100%;display:flex;justify-content:space-between;padding:0 10px;pointer-events:none;z-index:10}
-    .flag{width:0;height:0;border-left:18px solid transparent;border-right:18px solid transparent;border-bottom:28px solid;transform:rotate(-10deg);border-radius:0 0 50% 50%;animation:sway 4s ease-in-out infinite}
-    .flag:nth-child(1){border-bottom-color:#e1007b}.flag:nth-child(2){border-bottom-color:#30997a}.flag:nth-child(3){border-bottom-color:#748ec4}
-    .flag:nth-child(4){border-bottom-color:#8f9114}.flag:nth-child(5){border-bottom-color:#ff69b4}.flag:nth-child(6){border-bottom-color:#ffd700}
-    .flag:nth-child(7){border-bottom-color:#00bfff}.flag:nth-child(8){border-bottom-color:#ff4500}.flag:nth-child(9){border-bottom-color:#e1007b}
-    .flag:nth-child(10){border-bottom-color:#30997a}.flag:nth-child(11){border-bottom-color:#748ec4}.flag:nth-child(12){border-bottom-color:#8f9114}
-    @keyframes sway{0%,100%{transform:rotate(-10deg)}50%{transform:rotate(-5deg)}}
-
-    /* Overlay nav/backdrop */
-    #nav-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.35);z-index:1100;opacity:0;pointer-events:none;transition:opacity .28s ease}
-    #nav-backdrop.open{opacity:1;pointer-events:auto}
-
-    nav.overlay{
-      position:fixed;inset:0;z-index:1150;background:var(--overlay-bg);
-      display:flex;flex-direction:column;align-items:center;padding-top:86px;box-sizing:border-box;overflow-y:auto;
-      transform:translateY(-6%);opacity:0;pointer-events:none;transition:transform .28s ease,opacity .28s ease;
-      -webkit-overflow-scrolling:touch;max-height:80vh;margin:0 auto;left:0;right:0;
-    }
-    nav.overlay.open{transform:translateY(0);opacity:1;pointer-events:auto}
-    nav.overlay .nav-wrap{width:100%;max-width:520px;margin:6px 16px}
-    nav.overlay ul{display:flex;flex-direction:column;gap:10px;padding:6px;margin:0;align-items:stretch;list-style:none}
-    nav.overlay a{padding:14px 16px;display:block;border-radius:10px;background:rgba(255,255,255,0.04);color:#fff;font-size:18px;text-decoration:none}
-    nav.overlay a:hover{background:rgba(255,255,255,0.07);color:var(--accent)}
-
-    @media (max-width:768px){
-      .menu-toggle{display:flex}
-      .desktop-nav{display:none}
-      nav.overlay{max-height:80vh;top:10vh;bottom:10vh;border-radius:12px;overflow:visible}
-      nav.overlay.open{top:8vh;bottom:8vh}
-    }
-
-    /* Confetti burst animation pieces */
-    .confetti-animate .burst-piece{ transform-origin:50% 50%; opacity:1; animation: burst 520ms cubic-bezier(.2,.85,.32,1) forwards; }
-    .confetti-animate .burst-piece:nth-child(1){ animation-delay:0ms } .confetti-animate .burst-piece:nth-child(2){ animation-delay:20ms }
-    .confetti-animate .burst-piece:nth-child(3){ animation-delay:40ms } .confetti-animate .burst-piece:nth-child(4){ animation-delay:60ms }
-    .confetti-animate .burst-piece:nth-child(5){ animation-delay:80ms } .confetti-animate .burst-piece:nth-child(6){ animation-delay:100ms }
-    .confetti-animate .burst-piece:nth-child(7){ animation-delay:120ms } .confetti-animate .burst-piece:nth-child(8){ animation-delay:140ms }
-    @keyframes burst{0%{transform:translate(0,0) scale(.95) rotate(0);opacity:1}35%{transform:translate(var(--tx),var(--ty)) scale(1.05) rotate(var(--r));opacity:1}100%{transform:translate(calc(var(--tx)*1.25),calc(var(--ty)*1.25)) scale(.9) rotate(calc(var(--r)*1.2));opacity:0}}
 
     /* ---------- Page specific styles (from user's page) ---------- */
     .background { display:flex; width:100vw; flex-direction:row; }
@@ -336,73 +268,6 @@
       }
     }
 
-    /* Overlay menu logic + confetti icon animation */
-    (function(){
-      var toggle = document.querySelector('.menu-toggle');
-      var overlayNav = document.getElementById('main-nav');
-      var backdrop = document.getElementById('nav-backdrop');
-      var desktopNav = document.querySelector('.desktop-nav');
-      var confettiSvg = document.querySelector('.confetti-svg');
-
-      if (!toggle || !overlayNav) return;
-
-      function setOpen(open){
-        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-        if (open){
-          overlayNav.classList.add('open');
-          backdrop.classList.add('open');
-          document.documentElement.style.overflow = 'hidden';
-          document.body.style.overflow = 'hidden';
-          toggle.setAttribute('aria-label','Close menu');
-          triggerConfetti(); // animate on open
-        } else {
-          overlayNav.classList.remove('open');
-          backdrop.classList.remove('open');
-          document.documentElement.style.overflow = '';
-          document.body.style.overflow = '';
-          toggle.setAttribute('aria-label','Open menu');
-        }
-      }
-
-      toggle.addEventListener('click', function(){
-        var expanded = toggle.getAttribute('aria-expanded') === 'true';
-        setOpen(!expanded);
-      });
-
-      backdrop.addEventListener('click', function(){ setOpen(false); });
-
-      overlayNav.addEventListener('click', function(e){
-        if (e.target.tagName.toLowerCase() === 'a' && window.matchMedia('(max-width:768px)').matches){
-          setOpen(false);
-        }
-      });
-
-      document.addEventListener('keydown', function(e){
-        if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true'){
-          setOpen(false);
-          toggle.focus();
-        }
-      });
-
-      function updateNavDisplay(){
-        if (window.matchMedia('(max-width:768px)').matches){
-          if (desktopNav) desktopNav.style.display = 'none';
-        } else {
-          if (desktopNav) desktopNav.style.display = '';
-          setOpen(false);
-        }
-      }
-      updateNavDisplay();
-      window.addEventListener('resize', updateNavDisplay);
-
-      function triggerConfetti(){
-        if (!confettiSvg) return;
-        confettiSvg.classList.remove('confetti-animate');
-        void confettiSvg.offsetWidth;
-        confettiSvg.classList.add('confetti-animate');
-        setTimeout(function(){ confettiSvg.classList.remove('confetti-animate'); }, 700);
-      }
-    })();
   </script>
 
 </body>
