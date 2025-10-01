@@ -240,6 +240,52 @@
       color: #12030f;
     }
 
+    .info-list {
+      list-style: none;
+      margin: 0.28rem 0 0.4rem;
+      padding: 0;
+      display: grid;
+      gap: 0.22rem;
+    }
+
+    .info-list li {
+      display: flex;
+      gap: 0.32rem;
+      align-items: flex-start;
+      font-size: clamp(0.46rem, 0.95vw, 0.62rem);
+      padding: 0.24rem 0.32rem;
+      border-radius: 6px;
+      background: rgba(255,255,255,0.6);
+      box-shadow: inset 0 0 0 1px rgba(17, 3, 15, 0.05);
+    }
+
+    .item-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.18rem;
+      font-weight: 700;
+      color: var(--accent-teal);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      flex: 0 0 auto;
+    }
+
+    .item-description {
+      flex: 1 1 auto;
+      color: #12030f;
+      line-height: 1.2;
+    }
+
+    .item-icon {
+      width: 0.9em;
+      height: 0.9em;
+      display: block;
+    }
+
+    .back .info-list li {
+      background: rgba(255,255,255,0.52);
+    }
+
     .flip-toggle {
       position: absolute;
       left: 12px;
@@ -457,11 +503,43 @@
             <p>Poplar Farm, Clevedon, Somerset BS21 6UN <a href="https://hannahwh05.github.io/whelnettwedfest/Poplar-Farm-Google-Maps.html" target="_blank" rel="noopener noreferrer">Map</a></p>
 
             <h3>Travel</h3>
-            <p><strong>Car:</strong> Poplar Farm is just 10 minutes from Junction 20 M5. Please be weary of cyclists and pedestrians along the country roads near the Farm.</p>
-            <p><strong>Parking:</strong> There is plenty of parking available at Poplar Farm but please note that this is not immediately next to camping and bell tent areas. There will be clear signage when you arrive.</p>
-            <p><strong>Train:</strong> The closest train station is Yatton. Either pre-book a taxi or ask a friend to collect you – it is about a 10 minute drive.</p>
-            <p><strong>Cycle:</strong> If you are feeling adventurous, Poplar Farm is along National Cycle Route 33. North Somerset has some beautiful countryside to explore along the cycle routes.</p>
-            <p><strong>Taxis:</strong> We would advise to book a taxi or Uber in advance as they are not frequent in the area. Local Companies: North Somerset Taxis, Streets Ahead Taxis, Triangle Cars Clevedon</p>
+            <ul class="info-list travel-list">
+              <li>
+                <span class="item-label">
+                  <svg class="item-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4.5 12.5h15l-1.1-3.6a2 2 0 0 0-1.9-1.4H7.5a2 2 0 0 0-1.9 1.4z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/><circle cx="7.5" cy="15.5" r="1.7" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="16.5" cy="15.5" r="1.7" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M3.5 12.5h17" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/></svg>
+                  Car
+                </span>
+                <span class="item-description">Poplar Farm is just 10 minutes from Junction 20 M5. Please be weary of cyclists and pedestrians along the country roads near the farm.</span>
+              </li>
+              <li>
+                <span class="item-label">
+                  <svg class="item-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7h16v10H4z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M7 7V5h10v2" stroke="currentColor" stroke-width="1.5"/><path d="M8 12h8" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/></svg>
+                  Parking
+                </span>
+                <span class="item-description">There is plenty of parking available at Poplar Farm but it is not immediately next to camping and bell tent areas. Follow the signage when you arrive.</span>
+              </li>
+              <li>
+                <span class="item-label">
+                  <svg class="item-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="7" width="18" height="10" rx="2" ry="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 7V5h8v2" stroke="currentColor" stroke-width="1.5"/><circle cx="8" cy="15" r="1" fill="currentColor"/><circle cx="16" cy="15" r="1" fill="currentColor"/></svg>
+                  Train
+                </span>
+                <span class="item-description">The closest train station is Yatton. Either pre-book a taxi or ask a friend to collect you – it is about a 10 minute drive.</span>
+              </li>
+              <li>
+                <span class="item-label">
+                  <svg class="item-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 17l2-10h10l2 10" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5"/><path d="M7 9h10" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/><circle cx="9" cy="17" r="1" fill="currentColor"/><circle cx="15" cy="17" r="1" fill="currentColor"/></svg>
+                  Cycle
+                </span>
+                <span class="item-description">If you are feeling adventurous, Poplar Farm sits along National Cycle Route 33. North Somerset has beautiful countryside to explore along the way.</span>
+              </li>
+              <li>
+                <span class="item-label">
+                  <svg class="item-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4.5 15.5h15" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/><path d="M6 15.5l1.2-4.5a2 2 0 0 1 1.9-1.5h6.8a2 2 0 0 1 1.9 1.5l1.2 4.5" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5"/><path d="M9.5 9.5l.6-2.5h3.8l.6 2.5" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5"/></svg>
+                  Taxis
+                </span>
+                <span class="item-description">Book a taxi or Uber in advance as they are not frequent in the area. Local companies: North Somerset Taxis, Streets Ahead Taxis, Triangle Cars Clevedon.</span>
+              </li>
+            </ul>
           </div>
         </section>
 
@@ -469,7 +547,29 @@
           <button type="button" class="flip-toggle hint-back" aria-pressed="false">Click to flip</button>
           <div class="text-frame" id="backText">
             <h3>Accommodation</h3>
-            <p>If camping or even glamping isn’t your style, Poplar Farm is not far from Clevedon or Yatton for hotels and AirBnBs. <br> We highly encourage you to bring the festival vibes though and rent a bell tent! <br> See our glamping options page for more information on what to expect.</p>
+            <ul class="info-list accommodation-list">
+              <li>
+                <span class="item-label">
+                  <svg class="item-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 12l8-7 8 7v7H4z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5"/><path d="M10 19v-5h4v5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+                  Nearby stays
+                </span>
+                <span class="item-description">If camping or glamping isn’t your style, Poplar Farm is close to Clevedon and Yatton for hotels and Airbnbs.</span>
+              </li>
+              <li>
+                <span class="item-label">
+                  <svg class="item-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 18l9-10 9 10" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5"/><path d="M7 18h10" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/></svg>
+                  Festival vibes
+                </span>
+                <span class="item-description">We encourage you to bring the festival spirit and rent a bell tent if you can.</span>
+              </li>
+              <li>
+                <span class="item-label">
+                  <svg class="item-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 6h16" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/><path d="M6 10h12" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/><path d="M8 14h8" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/><path d="M10 18h4" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/></svg>
+                  Glamping guide
+                </span>
+                <span class="item-description">See our glamping options page for details on what to expect and how to make the most of your stay.</span>
+              </li>
+            </ul>
 
             <h3>Dress Code</h3>
             <p>We encourage earthy tones and bright colours for the handfasting ceremony as it is thought to bring positive energy to the occasion. We suggest more relaxed suits and flowy, comfortable dresses. Shoes with thin heels, such as stilettos, are not advised as we will be on grass for much of the day.<br><br> Bring vibrant, festival themed clothing for the rest of the day and be prepared for whatever the weather may bring!</p>
