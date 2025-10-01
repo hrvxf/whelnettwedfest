@@ -158,6 +158,30 @@
 
     @media (max-width:900px){.middle-section{padding-left:40px;padding-right:40px}.bell-item{flex:1 1 45%;max-width:45%}}
     @media (max-width:540px){.bell-item{flex:1 1 100%;max-width:100%}.top-section h1{font-size:32px}}
+		
+		/* Ensure headings align to the same horizontal gutter as section content */
+		.top-section, .middle-section, .bottom-section { box-sizing: border-box; }
+		
+		/* Ensure h3s align with the section content (same max-width + centering) */
+		.middle-section h3,
+		.top-section h3,
+		.bottom-section h3 {
+			box-sizing: border-box;
+			max-width: 900px;        /* same constraint used for your paragraphs */
+			margin: 8px auto 10px;   /* vertical spacing preserved; horizontally centered */
+			padding: 0;              /* remove any extra inline padding that pushed it out */
+			text-align: left;        /* keep left-aligned text */
+			width: auto;             /* allow the centered max-width behaviour */
+		}
+
+		/* If you use different max-widths at other breakpoints, mirror them here */
+		@media (max-width: 900px) {
+			.middle-section h3,
+			.top-section h3,
+			.bottom-section h3 { max-width: calc(100% - 80px); /* allow for section padding: 40px each side */ }
+		}
+
+
   </style>
 </head>
 <body>
