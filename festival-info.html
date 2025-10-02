@@ -181,13 +181,17 @@
     }
 
     .scene:not(.flipped) .face.back,
-    .scene.flipped .face.front {
+    .scene:not(.flipped) .face.back *,
+    .scene.flipped .face.front,
+    .scene.flipped .face.front * {
       opacity: 0;
       pointer-events: none;
     }
 
     .scene:not(.flipped) .face.front,
-    .scene.flipped .face.back {
+    .scene:not(.flipped) .face.front *,
+    .scene.flipped .face.back,
+    .scene.flipped .face.back * {
       opacity: 1;
       pointer-events: auto;
     }
