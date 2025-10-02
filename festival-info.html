@@ -125,6 +125,8 @@
       -webkit-transform-style: preserve-3d;
     }
 
+    .scene .text-frame { cursor: text; }
+
     @media (max-width: 600px) {
       .lanyard {
         --lanyard-drop: clamp(110px, 24vh, 180px);
@@ -638,7 +640,12 @@
         updateToggleState();
       }
 
-      scene.addEventListener('click', toggleFlip);
+      scene.addEventListener('click', function(event){
+        if (event.target.closest('.text-frame')) {
+          return;
+        }
+        toggleFlip(event);
+      });
 
       toggles.forEach(function(btn){
         btn.addEventListener('click', function(event){
