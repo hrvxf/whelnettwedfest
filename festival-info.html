@@ -148,8 +148,8 @@
       /* Preserve depth on the pass for Safari */
       -webkit-transform-style: preserve-3d;
       transform-style: preserve-3d;
-      transition: transform 700ms cubic-bezier(.2,.9,.3,1);
-      -webkit-transition: -webkit-transform 700ms cubic-bezier(.2,.9,.3,1);
+      transition: transform 360ms cubic-bezier(.2,.9,.3,1);
+      -webkit-transition: -webkit-transform 360ms cubic-bezier(.2,.9,.3,1);
       border-radius: 12px;
       box-shadow: 0 8px 28px rgba(0,0,0,.35);
       overflow: visible;
@@ -164,6 +164,7 @@
       /* Hide faces during the flip on Safari */
       -webkit-backface-visibility: hidden;
       backface-visibility: hidden;
+      transition: opacity 200ms ease;
       border-radius: 12px;
       display: flex;
       align-items: flex-start;
@@ -177,6 +178,18 @@
     .face.back {
       -webkit-transform: rotateY(180deg);
       transform: rotateY(180deg);
+    }
+
+    .scene:not(.flipped) .face.back,
+    .scene.flipped .face.front {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .scene:not(.flipped) .face.front,
+    .scene.flipped .face.back {
+      opacity: 1;
+      pointer-events: auto;
     }
 
     .text-frame {
@@ -624,6 +637,8 @@
     (function(){
       const scene = document.getElementById('scene');
       const toggles = scene.querySelectorAll('.flip-toggle');
+      const frontFace = scene.querySelector('.face.front');
+      const backFace = scene.querySelector('.face.back');
       let flipped = scene.classList.contains('flipped');
 
       function updateToggleState() {
@@ -632,12 +647,22 @@
         });
       }
 
+      function updateFaceState() {
+        if (frontFace) {
+          frontFace.setAttribute('aria-hidden', flipped ? 'true' : 'false');
+        }
+        if (backFace) {
+          backFace.setAttribute('aria-hidden', flipped ? 'false' : 'true');
+        }
+      }
+
       function toggleFlip(e){
         const sel = window.getSelection();
         if (sel && sel.toString().length) return;
         flipped = !flipped;
         scene.classList.toggle('flipped', flipped);
         updateToggleState();
+        updateFaceState();
       }
 
       scene.addEventListener('click', function(event){
@@ -671,6 +696,7 @@
       });
 
       updateToggleState();
+      updateFaceState();
     })();
   </script>
 
